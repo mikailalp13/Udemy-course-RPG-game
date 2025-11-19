@@ -11,7 +11,7 @@ public class Player_JumpState : Player_AiredState
         base.Enter();
 
         // make object go up, increase y velocity
-        player.SetVelocity(rb.linearVelocity.x, player.jumpForce);
+        player.SetVelocity(rb.linearVelocity.x, player.jump_force);
     }
 
     public override void Update()

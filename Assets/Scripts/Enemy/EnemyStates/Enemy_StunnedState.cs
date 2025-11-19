@@ -3,7 +3,7 @@ using UnityEngine;
 public class Enemy_StunnedState : EnemyState
 {
     private Enemy_VFX vfx;
-    public Enemy_StunnedState(Enemy enemy, StateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName)
+    public Enemy_StunnedState(Enemy enemy, StateMachine state_machine, string animBoolName) : base(enemy, state_machine, animBoolName)
     {
         vfx = enemy.GetComponent<Enemy_VFX>();
     }
@@ -16,7 +16,7 @@ public class Enemy_StunnedState : EnemyState
         enemy.EnableCounterWindow(false);
 
         stateTimer = enemy.stunned_duration;
-        rb.linearVelocity = new Vector2(enemy.stunned_velocity.x * -enemy.facingDir, enemy.stunned_velocity.y);
+        rb.linearVelocity = new Vector2(enemy.stunned_velocity.x * -enemy.facing_dir, enemy.stunned_velocity.y);
     }
 
     public override void Update()

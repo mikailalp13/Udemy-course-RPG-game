@@ -15,23 +15,23 @@ public class Player_WallSlideState : PlayerState
         if (input.Player.Jump.WasPressedThisFrame())
             stateMachine.ChangeState(player.wallJumpState);
 
-        if (player.wallDetected == false)
+        if (player.wall_detected == false)
             stateMachine.ChangeState(player.fallState);
 
-        if (player.groundDetected)
+        if (player.ground_detected)
             {
                 stateMachine.ChangeState(player.idleState);
 
-                if(player.facingDir != player.moveInput.x)
+                if(player.facing_dir != player.move_input.x)
                     player.Flip();
             }
     }
 
     private void HandleWallSlide()
     {
-        if (player.moveInput.y < 0)
-            player.SetVelocity(player.moveInput.x, rb.linearVelocity.y);
+        if (player.move_input.y < 0)
+            player.SetVelocity(player.move_input.x, rb.linearVelocity.y);
         else
-            player.SetVelocity(player.moveInput.x, rb.linearVelocity.y * player.wallSlideSlowMultiplier);
+            player.SetVelocity(player.move_input.x, rb.linearVelocity.y * player.wall_slide_slow_multiplier);
     }
 }

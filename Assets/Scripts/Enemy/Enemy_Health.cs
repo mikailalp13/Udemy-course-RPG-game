@@ -4,14 +4,16 @@ public class Enemy_Health : Entity_Health
 {
     private Enemy enemy => GetComponent<Enemy>();
 
-    public override void TakeDamage(float damage, Transform damageDealer)
+    public override bool TakeDamage(float damage, float elemental_damage, ElementType element, Transform damage_dealer)
     {
-        base.TakeDamage(damage, damageDealer);
+        bool was_hit = base.TakeDamage(damage, elemental_damage, element, damage_dealer);
 
-        if (isDead)
-            return;
+        if (was_hit == false)
+            return false;
 
-        if (damageDealer.GetComponent<Player>() != null)
-            enemy.TryEnterBattleState(damageDealer);
+        if (damage_dealer.GetComponent<Player>() != null)
+            enemy.TryEnterBattleState(damage_dealer);
+
+        return true;
     }
 }

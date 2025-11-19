@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Player_DashState : PlayerState
 {
-    private float originalGravityScale;
-    private int dashDir;
+    private float original_gravity_scale;
+    private int dash_dir;
     public Player_DashState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
     }
@@ -12,10 +12,10 @@ public class Player_DashState : PlayerState
     {
         base.Enter();
 
-        dashDir = player.moveInput.x != 0 ? ((int)player.moveInput.x) : player.facingDir;
-        stateTimer = player.dashDuration;
+        dash_dir = player.move_input.x != 0 ? ((int)player.move_input.x) : player.facing_dir;
+        stateTimer = player.dash_duration;
 
-        originalGravityScale = rb.gravityScale;
+        original_gravity_scale = rb.gravityScale;
         rb.gravityScale = 0;
     }
 
@@ -24,11 +24,11 @@ public class Player_DashState : PlayerState
     {
         base.Update();
         CancelDashIfNeeded();
-        player.SetVelocity(player.dashSpeed * dashDir, 0);
+        player.SetVelocity(player.dash_speed * dash_dir, 0);
 
         if (stateTimer < 0)
         {
-            if (player.groundDetected)
+            if (player.ground_detected)
                 stateMachine.ChangeState(player.idleState);
             else
                 stateMachine.ChangeState(player.fallState);
@@ -39,14 +39,14 @@ public class Player_DashState : PlayerState
     {
         base.Exit();
         player.SetVelocity(0, 0);
-        rb.gravityScale = originalGravityScale;
+        rb.gravityScale = original_gravity_scale;
     }
 
     private void CancelDashIfNeeded()
     {
-        if (player.wallDetected)
+        if (player.wall_detected)
         {
-            if (player.groundDetected)
+            if (player.ground_detected)
                 stateMachine.ChangeState(player.idleState);
             else
                 stateMachine.ChangeState(player.wallSlideState);

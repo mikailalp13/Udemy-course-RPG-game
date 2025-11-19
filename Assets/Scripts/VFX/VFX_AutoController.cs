@@ -1,3 +1,4 @@
+using System.Runtime.Serialization;
 using Microsoft.VisualBasic;
 using UnityEngine;
 
@@ -8,6 +9,11 @@ public class VFX_AutoController : MonoBehaviour
     [Space]
     [SerializeField] private bool random_offset = true;
     [SerializeField] private bool random_rotation = true;
+
+
+    [Header("Random rotation")]
+    [SerializeField] private float min_rotation = 0;
+    [SerializeField] private float max_rotation = 360;
 
 
     [Header("Random Position")]
@@ -44,7 +50,7 @@ public class VFX_AutoController : MonoBehaviour
         if (random_rotation == false)
             return;
 
-        float z_rotation = Random.Range(0, 360);
+        float z_rotation = Random.Range(min_rotation, max_rotation);
         transform.Rotate(0, 0, z_rotation);
     }
 }

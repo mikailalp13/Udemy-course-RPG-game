@@ -12,6 +12,7 @@ public abstract class PlayerState : EntityState
         anim = player.anim;
         rb = player.rb;
         input = player.input;
+        stats = player.stats;
     }
 
     public override void Update()
@@ -30,7 +31,7 @@ public abstract class PlayerState : EntityState
 
     private bool CanDash()
     {
-        if (player.wallDetected)
+        if (player.wall_detected)
             return false;
 
         if (stateMachine.currentState == player.dashState)

@@ -21,7 +21,7 @@ public class Enemy_BattleState : EnemyState
 
         if (ShouldRetreat())
         {
-            rb.linearVelocity = new Vector2(enemy.retreatVelocity.x * -DirectionToPlayer(), enemy.retreatVelocity.y);
+            rb.linearVelocity = new Vector2(enemy.retreat_velocity.x * -DirectionToPlayer(), enemy.retreat_velocity.y);
             enemy.HandleFlip(DirectionToPlayer());
         }
 
@@ -40,16 +40,17 @@ public class Enemy_BattleState : EnemyState
         if (WithinAttackRange() && enemy.PlayerDetected())
             stateMachine.ChangeState(enemy.attackState);
         else
-            enemy.SetVelocity(enemy.battleMoveSpeed * DirectionToPlayer(), rb.linearVelocity.y);
+            enemy.SetVelocity(enemy.battle_move_speed * DirectionToPlayer(), rb.linearVelocity.y);
     }
 
     private void UpdateBattleTimer() => lastTimeWasInBattle = Time.time;
 
-    private bool BattleTimeIsOver() => Time.time > lastTimeWasInBattle + enemy.battleTimeDuration;
+    private bool BattleTimeIsOver() => Time.time > lastTimeWasInBattle + enemy.battle_time_duration;
 
-    private bool WithinAttackRange() => DistanceToPlayer() < enemy.attackDistance;
+    private bool WithinAttackRange() => DistanceToPlayer() < enemy.attack_distance;
 
-    private bool ShouldRetreat() => DistanceToPlayer() < enemy.minRetreatDistance;
+    private bool ShouldRetreat() => DistanceToPlayer() < enemy.min_retreat_distance;
+    
     private float DistanceToPlayer()
     {
         if (player == null)

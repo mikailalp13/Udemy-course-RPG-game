@@ -10,7 +10,7 @@ public class Player_WallJumpState : PlayerState
     {
         base.Enter();
 
-        player.SetVelocity(player.wallJumpForce.x * -player.facingDir, player.wallJumpForce.y);
+        player.SetVelocity(player.wall_jump_force.x * -player.facing_dir, player.wall_jump_force.y);
     }
 
     public override void Update()
@@ -20,7 +20,7 @@ public class Player_WallJumpState : PlayerState
         if (rb.linearVelocity.y < 0)
             stateMachine.ChangeState(player.fallState);
 
-        if (player.wallDetected)
+        if (player.wall_detected)
             stateMachine.ChangeState(player.wallSlideState);
     }
 }

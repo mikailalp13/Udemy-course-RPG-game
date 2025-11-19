@@ -9,7 +9,7 @@ public class Player_GroundedState : PlayerState
     {
         base.Update();
 
-        if (rb.linearVelocity.y < 0 && player.groundDetected == false)
+        if (rb.linearVelocity.y < 0 && player.ground_detected == false)
             stateMachine.ChangeState(player.fallState);
 
         if (input.Player.Jump.WasPressedThisFrame())

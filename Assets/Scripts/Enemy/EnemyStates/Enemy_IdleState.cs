@@ -10,7 +10,7 @@ public class Enemy_IdleState : Enemy_GroundedState
     {
         base.Enter();
 
-        stateTimer = enemy.idleTime;
+        stateTimer = enemy.idle_time;
     }
 
     public override void Update()

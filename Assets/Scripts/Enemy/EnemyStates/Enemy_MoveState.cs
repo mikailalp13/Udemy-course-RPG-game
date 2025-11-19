@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class Enemy_MoveState : Enemy_GroundedState
 {
-    public Enemy_MoveState(Enemy enemy, StateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName)
+    public Enemy_MoveState(Enemy enemy, StateMachine state_machine, string animBoolName) : base(enemy, state_machine, animBoolName)
     {
     }
 
     public override void Enter()
     {
         base.Enter();
-        if (enemy.groundDetected == false || enemy.wallDetected)
+        if (enemy.ground_detected == false || enemy.wall_detected)
             enemy.Flip();
     }
 
@@ -17,9 +17,9 @@ public class Enemy_MoveState : Enemy_GroundedState
     {
         base.Update();
 
-        enemy.SetVelocity(enemy.moveSpeed * enemy.facingDir, rb.linearVelocity.y);
+        enemy.SetVelocity(enemy.move_speed * enemy.facing_dir, rb.linearVelocity.y);
 
-        if (enemy.groundDetected == false || enemy.wallDetected)
+        if (enemy.ground_detected == false || enemy.wall_detected)
             stateMachine.ChangeState(enemy.idleState);
 
     }
