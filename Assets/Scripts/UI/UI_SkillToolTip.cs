@@ -86,6 +86,9 @@ public class UI_SkillToolTip : UI_ToolTip
 
         foreach (var node in needed_nodes)
         {
+            if (node == null)
+                continue;
+                
             string node_color = node.is_unlocked ? met_condition_hex : not_met_condition_hex;
             string node_text = $"- {node.skill_data.display_name}";
             string final_node_text = GetColoredText(node_color, node_text);
@@ -101,6 +104,9 @@ public class UI_SkillToolTip : UI_ToolTip
 
         foreach (var node in conflict_nodes)
         {
+            if (node == null)
+                continue;
+
             string node_text = $"- {node.skill_data.display_name}";
             string final_node_text = GetColoredText(important_info_hex, node_text);
             sb.AppendLine(final_node_text);

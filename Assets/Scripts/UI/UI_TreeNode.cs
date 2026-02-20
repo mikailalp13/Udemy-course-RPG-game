@@ -36,6 +36,12 @@ public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         UpdateIconColor(GetColorByHex(locked_color_hex));
     }
 
+    private void Start()
+    {
+        if (skill_data.unlocked_by_default)
+            Unlock();
+    }
+
     public void Refund()
     {
         is_unlocked = false;
@@ -54,6 +60,8 @@ public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
         skill_tree.RemoveSkillPoints(skill_data.cost);
         connect_handler.UnlockConnectionImage(true);
+
+        skill_tree.skill_manager.GetSkillByType(skill_data.skill_type).SetSkillUpgrade(skill_data.upgrade_data);
     }
 
     private bool CanBeUnlocked()
@@ -81,8 +89,20 @@ public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     private void LockConflictNodes()
     {
-        foreach (var node in conflict_nodes)  
+        foreach (var node in conflict_nodes)
+        {
             node.is_locked = true; 
+            node.LockChildNodes();
+        }  
+    }
+
+    public void LockChildNodes()
+    {
+        is_locked = true;
+
+        foreach (var node in connect_handler.GetChildNodes())
+            node.LockChildNodes();
+
     }
 
     private void UpdateIconColor(Color color)
@@ -107,16 +127,18 @@ public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         ui.skill_tool_tip.ShowToolTip(true, rect, this);
 
-        if (is_unlocked == false || is_locked == false)
-            ToggleNodeHighlight(true);        
+        if (is_unlocked || is_locked)
+            return;
+        ToggleNodeHighlight(true);        
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         ui.skill_tool_tip.ShowToolTip(false, rect);
 
-        if (is_unlocked == false || is_locked == false)
-            ToggleNodeHighlight(false);
+        if (is_unlocked || is_locked)
+            return;
+        ToggleNodeHighlight(false);
     }
 
     private void ToggleNodeHighlight(bool highlight)
