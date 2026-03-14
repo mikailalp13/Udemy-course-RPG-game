@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: window_glass_1_0
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -4584014384345606717, guid: ce41a5292015442a897d26e7f46b400e, type: 3}
+  m_Sprite: {fileID: -4584014384345606717, guid: cbd014173b5cbb4498a5670a23580840, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

@@ -26,6 +26,13 @@ public class Entity_StatusHandler : MonoBehaviour
         entity_vfx = GetComponent<Entity_VFX>();
     }
 
+    public void RemoveAllNegativeEffects()
+    {
+        StopAllCoroutines();
+        current_effect = ElementType.None;
+        entity_vfx.StopAllVfx();
+    }
+
     public void ApplyStatusEffect(ElementType element, ElementalEffectData effectData)
     {
         if (element == ElementType.Ice && CanBeApplied(ElementType.Ice))
@@ -38,7 +45,7 @@ public class Entity_StatusHandler : MonoBehaviour
             ApplyShockEffect(effectData.shock_duration, effectData.shock_damage, effectData.shock_charge);
     }
 
-    public void ApplyShockEffect(float duration, float damage, float charge)
+    private void ApplyShockEffect(float duration, float damage, float charge)
     {
         // builds up charge of electricty, if charges enough ? lightning strike : restart electirify status
         float lightning_resistance = entity_stats.GetElementalResistance(ElementType.Lightning);
@@ -80,7 +87,7 @@ public class Entity_StatusHandler : MonoBehaviour
         StopShockEffect();
     }
 
-    public void ApplyBurnEffect(float duration, float fire_damage)
+    private void ApplyBurnEffect(float duration, float fire_damage)
     {
         // gives damage over time
         float fire_resistance = entity_stats.GetElementalResistance(ElementType.Fire);
@@ -110,7 +117,7 @@ public class Entity_StatusHandler : MonoBehaviour
     }
 
 
-    public void ApplyChillEffect(float duration, float slow_multiplier)
+    private void ApplyChillEffect(float duration, float slow_multiplier)
     {
         float ice_resistance = entity_stats.GetElementalResistance(ElementType.Ice);
         float final_duration = duration * (1 - ice_resistance);

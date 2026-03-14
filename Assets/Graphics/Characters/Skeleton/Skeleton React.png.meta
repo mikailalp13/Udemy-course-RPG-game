@@ -1,19 +1,7 @@
 fileFormatVersion: 2
-guid: 8bc5c6756583b4ad0abd3a3f0d21912a
+guid: e92de2a1ccb01f549b849a6ad6b1cb0e
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -1515603127067585740
-    second: Skeleton React_0
-  - first:
-      213: -974260186754260340
-    second: Skeleton React_1
-  - first:
-      213: 6619721271862762800
-    second: Skeleton React_2
-  - first:
-      213: 436870274612170266
-    second: Skeleton React_3
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -114,7 +102,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 23
+        width: 22
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -122,10 +110,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4335aa66cfe77fae0800000000000000
-      internalID: -1515603127067585740
+      spriteID: 09ec8dceb05cc7549858eb8a9b9222d9
+      internalID: -433043161
       vertices: []
       indices: 
       edges: []
@@ -134,9 +122,9 @@ TextureImporter:
       name: Skeleton React_1
       rect:
         serializedVersion: 2
-        x: 21
+        x: 22
         y: 0
-        width: 24
+        width: 22
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -144,10 +132,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c82e4b1a58bba72f0800000000000000
-      internalID: -974260186754260340
+      spriteID: 10b75005d93e57b4eb728e39fbd78ecd
+      internalID: -1859993815
       vertices: []
       indices: 
       edges: []
@@ -156,9 +144,9 @@ TextureImporter:
       name: Skeleton React_2
       rect:
         serializedVersion: 2
-        x: 43
+        x: 44
         y: 0
-        width: 24
+        width: 22
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -166,10 +154,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 03d1a798c69fddb50800000000000000
-      internalID: 6619721271862762800
+      spriteID: 542e7560b43e66249b7c11af190f722d
+      internalID: -1807521490
       vertices: []
       indices: 
       edges: []
@@ -178,9 +166,9 @@ TextureImporter:
       name: Skeleton React_3
       rect:
         serializedVersion: 2
-        x: 65
+        x: 66
         y: 0
-        width: 23
+        width: 22
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -188,10 +176,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a1e8f2b3333101600800000000000000
-      internalID: 436870274612170266
+      spriteID: 19a6493390504e243bf8c252d4498e58
+      internalID: 2092572870
       vertices: []
       indices: 
       edges: []
@@ -200,7 +188,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: b38ccecb37a83d14c84f12e3f447facb
     internalID: 0
     vertices: []
     indices: 
@@ -210,10 +198,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Skeleton React_0: -1515603127067585740
-      Skeleton React_1: -974260186754260340
-      Skeleton React_2: 6619721271862762800
-      Skeleton React_3: 436870274612170266
+      Skeleton React_0: -433043161
+      Skeleton React_1: -1859993815
+      Skeleton React_2: -1807521490
+      Skeleton React_3: 2092572870
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

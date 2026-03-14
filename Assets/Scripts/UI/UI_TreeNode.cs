@@ -20,7 +20,7 @@ public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [Header("Skill Details")]
     public Skill_DataSO skill_data;
     [SerializeField] private string skill_name;
-    [SerializeField] private Image skill_icon;
+    [SerializeField] private Image skillIcon;
     [SerializeField] private int skill_cost;
     [SerializeField] private string locked_color_hex = "#9F9797";
     private Color last_color;
@@ -107,11 +107,11 @@ public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     private void UpdateIconColor(Color color)
     {
-        if (skill_icon == null)
+        if (skillIcon == null)
             return;
         
-        last_color = skill_icon.color;
-        skill_icon.color = color;
+        last_color = skillIcon.color;
+        skillIcon.color = color;
     }
 
 
@@ -170,7 +170,7 @@ public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         if (skill_data == null)
             return;
         skill_name = skill_data.display_name;
-        skill_icon.sprite = skill_data.icon;
+        skillIcon.sprite = skill_data.icon;
         skill_cost = skill_data.cost;
         gameObject.name = "UI_TreeNode - " + skill_data.display_name;
     }

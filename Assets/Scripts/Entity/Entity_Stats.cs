@@ -218,8 +218,5 @@ public class Entity_Stats : MonoBehaviour
         defense.fire_res.SetBaseValue(default_stat_setup.fire_resistance);
         defense.ice_res.SetBaseValue(default_stat_setup.ice_resistance);
         defense.lightning_res.SetBaseValue(default_stat_setup.lightning_resistance);
-
-
-
     }
 }

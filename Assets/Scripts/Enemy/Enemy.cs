@@ -4,6 +4,7 @@ using System.Collections;
 
 public class Enemy : Entity
 {
+    public Enemy_Health health { get; private set; }
     public Enemy_IdleState idleState;
     public Enemy_MoveState moveState;
     public Enemy_AttackState attackState;
@@ -38,25 +39,36 @@ public class Enemy : Entity
     [SerializeField] private Transform playerCheck;
     [SerializeField] private float playerCheckDistance = 10;
     public Transform player { get; private set; }
+    public float active_slow_multiplier { get; private set; } = 1f;
 
+
+    public float GetMoveSpeed() => move_speed * active_slow_multiplier;
+    public float GetBattleMoveSpeed() => battle_move_speed * active_slow_multiplier;
+
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        health = GetComponent<Enemy_Health>();
+    }
 
     protected override IEnumerator SlowDownEntityCo(float duration, float slow_multiplier)
     {
-        float original_move_speed = move_speed;
-        float original_battle_speed = battle_move_speed;
-        float original_anim_speed = anim.speed;
+        active_slow_multiplier = 1 - slow_multiplier;
 
-        float speed_multiplier = 1 - slow_multiplier;
-
-        move_speed = move_speed * slow_multiplier;
-        battle_move_speed = battle_move_speed * slow_multiplier;
-        anim.speed = anim.speed * slow_multiplier;
+        anim.speed = anim.speed * active_slow_multiplier;
 
         yield return new WaitForSeconds(duration);
+        StopSlowDown();
+    }
 
-        move_speed = original_move_speed;
-        battle_move_speed = original_battle_speed;
-        anim.speed = original_anim_speed;
+    public override void StopSlowDown()
+    {
+        active_slow_multiplier = 1f;
+        anim.speed = 1f;
+
+        base.StopSlowDown();
     }
 
 

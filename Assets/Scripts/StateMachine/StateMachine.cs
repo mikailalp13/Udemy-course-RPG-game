@@ -3,16 +3,16 @@ using UnityEngine;
 public class StateMachine
 {
     public EntityState currentState { get; private set; }
-    private bool canChangeState;
+    private bool can_change_state;
     public void Initialize(EntityState startState)
     {
-        canChangeState = true;
+        can_change_state = true;
         currentState = startState;
         currentState.Enter();
     }
     public void ChangeState(EntityState newState)
     {
-        if (canChangeState == false)
+        if (can_change_state == false)
             return;
         
         currentState.Exit();
@@ -25,5 +25,5 @@ public class StateMachine
         currentState.Update();
     }
 
-    public void SwitchOffStateMachine() => canChangeState = false;
+    public void SwitchOffStateMachine() => can_change_state = false;
 }

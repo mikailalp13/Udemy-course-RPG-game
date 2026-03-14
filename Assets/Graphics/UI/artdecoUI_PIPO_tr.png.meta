@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f2ec813183f784da59fffde9283caf38
+guid: 0ab4fdc3beceac84e9ea5ef1d74582cf
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -309,9 +309,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1073
-        y: 583
-        width: 48
-        height: 46
+        y: 593
+        width: 12
+        height: 36
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -322,6 +322,50 @@ TextureImporter:
       bones: []
       spriteID: e6dcb3a8edbfbc5b0800000000000000
       internalID: -5346903199351845522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: artdecoUI_PIPO_tr_8
+      rect:
+        serializedVersion: 2
+        x: 1083
+        y: 617
+        width: 38
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0375d1eff54b13ef0800000000000000
+      internalID: -130124589838805200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: artdecoUI_PIPO_tr_9
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 583
+        width: 12
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd1cde6d7d9506e50800000000000000
+      internalID: 6800534220888195548
       vertices: []
       indices: 
       edges: []
@@ -366,6 +410,28 @@ TextureImporter:
       bones: []
       spriteID: 203c588b04e85a390800000000000000
       internalID: -7807677970352061694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: artdecoUI_PIPO_tr_12
+      rect:
+        serializedVersion: 2
+        x: 1073
+        y: 583
+        width: 38
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76e4453b8916f30b0800000000000000
+      internalID: -5746767291029893529
       vertices: []
       indices: 
       edges: []
@@ -484,7 +550,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 1e65269511c51460fa6629ed2d7bedaf
+    spriteID: e0422e4b73c284ff091b8b5e97ea79db
     internalID: 0
     vertices: []
     indices: 

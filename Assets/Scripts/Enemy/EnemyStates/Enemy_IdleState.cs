@@ -10,14 +10,14 @@ public class Enemy_IdleState : Enemy_GroundedState
     {
         base.Enter();
 
-        stateTimer = enemy.idle_time;
+        state_timer = enemy.idle_time;
     }
 
     public override void Update()
     {
         base.Update();
 
-        if (stateTimer < 0)
+        if (state_timer < 0)
             stateMachine.ChangeState(enemy.moveState);
     }
 }

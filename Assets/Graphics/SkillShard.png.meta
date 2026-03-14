@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 782dd61154cb948afabcbb43251af683
+guid: e892a8ff31b23ce45b4cb65d4e1e2a25
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -115,7 +115,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Crystal_0
+      name: SkillShard_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,16 +128,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ae8a7067980a47940800000000000000
-      internalID: 5293031974318352618
+      spriteID: 889a2afd02cbd4a7d8be602edb030ad6
+      internalID: -486238884
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Crystal_1
+      name: SkillShard_1
       rect:
         serializedVersion: 2
         x: 128
@@ -150,16 +150,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6fa201bb7b02804b0800000000000000
-      internalID: -5474089373579334922
+      spriteID: e0311fa3dcfa841f9a9431adda028978
+      internalID: 568843955
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Crystal_2
+      name: SkillShard_2
       rect:
         serializedVersion: 2
         x: 256
@@ -172,16 +172,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a2ddec5919eaae9d0800000000000000
-      internalID: -2744189082622042838
+      spriteID: 8c11fa9e48dd04939bc0bade61fcabd6
+      internalID: -1734644521
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Crystal_3
+      name: SkillShard_3
       rect:
         serializedVersion: 2
         x: 384
@@ -194,16 +194,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9842dd7fb257acdc0800000000000000
-      internalID: -3617950518936263543
+      spriteID: d2547cd847ed34762a9f066c42d7eabf
+      internalID: -2091939621
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Crystal_4
+      name: SkillShard_4
       rect:
         serializedVersion: 2
         x: 512
@@ -216,16 +216,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9a56405efa539bae0800000000000000
-      internalID: -1533135168565123671
+      spriteID: c951f7e530d9a4f1d88bdbd551ca09a0
+      internalID: 296766531
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Crystal_5
+      name: SkillShard_5
       rect:
         serializedVersion: 2
         x: 640
@@ -238,10 +238,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 08835e7a9d9f4b490800000000000000
-      internalID: -7731279947068262272
+      spriteID: 210c5323dcfac4c21a1c18f175a17ab4
+      internalID: 162669893
       vertices: []
       indices: 
       edges: []
@@ -250,7 +250,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: cfadc8feae06341049bc7e5026b566d0
+    spriteID: 6ea1131eb922d8049ad8eb5e20db29f1
     internalID: 0
     vertices: []
     indices: 
@@ -262,12 +262,12 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":128.0,"y":128.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Crystal_0: 5293031974318352618
-      Crystal_1: -5474089373579334922
-      Crystal_2: -2744189082622042838
-      Crystal_3: -3617950518936263543
-      Crystal_4: -1533135168565123671
-      Crystal_5: -7731279947068262272
+      SkillShard_0: -486238884
+      SkillShard_1: 568843955
+      SkillShard_2: -1734644521
+      SkillShard_3: -2091939621
+      SkillShard_4: 296766531
+      SkillShard_5: 162669893
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

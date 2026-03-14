@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9139722ae2aff477c913fa3d58f2b133
+guid: 33b1b08236616684c83fc5aca8e3ff8d
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -121,7 +121,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ShardExplosion_0
+      name: Effect 1 - Sprite Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -129,21 +129,21 @@ TextureImporter:
         width: 64
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 641c5fdc853604b758e20323392c6d03
-      internalID: -2090654068
+      spriteID: 25833d7d16c1d214c8f18a96453525ac
+      internalID: 1102079177054390825
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ShardExplosion_1
+      name: Effect 1 - Sprite Sheet_1
       rect:
         serializedVersion: 2
         x: 0
@@ -151,21 +151,21 @@ TextureImporter:
         width: 64
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c884d7e43ae844c328718b4777fac386
-      internalID: 1725624586
+      spriteID: e538d081b42df5c45ab163d7eeb6bd80
+      internalID: 5305133420586813660
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ShardExplosion_2
+      name: Effect 1 - Sprite Sheet_2
       rect:
         serializedVersion: 2
         x: 0
@@ -173,21 +173,21 @@ TextureImporter:
         width: 64
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49b6e6ba127c84b7cbe81d2db4bb19f4
-      internalID: -1876323470
+      spriteID: f0cf135b94864ee48933a4edb68d9a10
+      internalID: 8968323078544666857
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ShardExplosion_3
+      name: Effect 1 - Sprite Sheet_3
       rect:
         serializedVersion: 2
         x: 0
@@ -195,15 +195,15 @@ TextureImporter:
         width: 64
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c81330838940346e58334609deaa435d
-      internalID: -694032880
+      spriteID: 7576d370bf992344f9a6725b58002839
+      internalID: -7452963896434346594
       vertices: []
       indices: 
       edges: []
@@ -212,7 +212,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 65089241f536546958a3cc8d34b68360
+    spriteID: 5622964b1f21925409160dddd10c3c4f
     internalID: 0
     vertices: []
     indices: 
@@ -220,14 +220,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      ShardExplosion_0: -2090654068
-      ShardExplosion_1: 1725624586
-      ShardExplosion_2: -1876323470
-      ShardExplosion_3: -694032880
+      Effect 1 - Sprite Sheet_0: 1102079177054390825
+      Effect 1 - Sprite Sheet_1: 5305133420586813660
+      Effect 1 - Sprite Sheet_2: 8968323078544666857
+      Effect 1 - Sprite Sheet_3: -7452963896434346594
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

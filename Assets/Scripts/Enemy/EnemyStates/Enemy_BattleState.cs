@@ -3,6 +3,7 @@ using UnityEngine;
 public class Enemy_BattleState : EnemyState
 {
     private Transform player;
+    private Transform last_target;
     private float lastTimeWasInBattle;
     public Enemy_BattleState(Enemy enemy, StateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName)
     {
@@ -21,7 +22,7 @@ public class Enemy_BattleState : EnemyState
 
         if (ShouldRetreat())
         {
-            rb.linearVelocity = new Vector2(enemy.retreat_velocity.x * -DirectionToPlayer(), enemy.retreat_velocity.y);
+            rb.linearVelocity = new Vector2((enemy.retreat_velocity.x * enemy.active_slow_multiplier) * -DirectionToPlayer(), enemy.retreat_velocity.y);
             enemy.HandleFlip(DirectionToPlayer());
         }
 
@@ -32,7 +33,10 @@ public class Enemy_BattleState : EnemyState
         base.Update();
 
         if (enemy.PlayerDetected())
+        {
+            UpdateTargetIfNeeded();
             UpdateBattleTimer();
+        }
 
         if (BattleTimeIsOver())
             stateMachine.ChangeState(enemy.idleState);
@@ -40,7 +44,21 @@ public class Enemy_BattleState : EnemyState
         if (WithinAttackRange() && enemy.PlayerDetected())
             stateMachine.ChangeState(enemy.attackState);
         else
-            enemy.SetVelocity(enemy.battle_move_speed * DirectionToPlayer(), rb.linearVelocity.y);
+            enemy.SetVelocity(enemy.GetBattleMoveSpeed() * DirectionToPlayer(), rb.linearVelocity.y);
+    }
+
+    private void UpdateTargetIfNeeded()
+    {
+        if (enemy.PlayerDetected() == false)
+            return;
+        
+        Transform new_target = enemy.PlayerDetected().transform;
+
+        if (new_target != last_target)
+        {
+            last_target = new_target;
+            player = new_target;
+        }
     }
 
     private void UpdateBattleTimer() => lastTimeWasInBattle = Time.time;

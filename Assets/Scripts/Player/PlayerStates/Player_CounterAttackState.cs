@@ -13,7 +13,7 @@ public class Player_CounterAttackState : PlayerState
     {
         base.Enter();
 
-        stateTimer = combat.GetCounterRecoveryDuration();
+        state_timer = combat.GetCounterRecoveryDuration();
         counteredSomebody = combat.CounterAttackPerformed();
         anim.SetBool("counterAttackPerformed", counteredSomebody);
     }
@@ -24,10 +24,10 @@ public class Player_CounterAttackState : PlayerState
 
         player.SetVelocity(0, rb.linearVelocity.y);
 
-        if (triggerCalled)
+        if (trigger_called)
             stateMachine.ChangeState(player.idleState);
 
-        if (stateTimer < 0 && counteredSomebody == false)
+        if (state_timer < 0 && counteredSomebody == false)
             stateMachine.ChangeState(player.idleState);
     }
 }

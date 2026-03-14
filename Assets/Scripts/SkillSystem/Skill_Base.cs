@@ -20,6 +20,7 @@ public class Skill_Base : MonoBehaviour
         skill_manager = GetComponentInParent<Player_SkillManager>();
         player = GetComponentInParent<Player>();
         last_time_used = last_time_used - cooldown;
+        damage_scale_data = new DamageScaleData();
     }
 
     public virtual void TryUseSkill()
@@ -32,9 +33,10 @@ public class Skill_Base : MonoBehaviour
         upgrade_type = upgrade.upgrade_type;
         cooldown = upgrade.cooldown;
         damage_scale_data = upgrade.damage_scale_data;
+        ResetCooldown();
     }
 
-    public bool CanUseSkill()
+    public virtual bool CanUseSkill()
     {
         if (upgrade_type == SkillUpgradeType.None)
             return false;
@@ -52,6 +54,6 @@ public class Skill_Base : MonoBehaviour
 
     protected bool OnCooldown() => Time.time < last_time_used + cooldown;
     public void SetSkillOnCooldown() => last_time_used = Time.time;
-    public void ResetCooldownBy(float cooldown_reduction) => last_time_used = last_time_used + cooldown_reduction;
-    public void ResetCooldown() => last_time_used = Time.time;
+    public void ReduceCooldownBy(float cooldown_reduction) => last_time_used = last_time_used + cooldown_reduction;
+    public void ResetCooldown() => last_time_used = Time.time - cooldown;
 }

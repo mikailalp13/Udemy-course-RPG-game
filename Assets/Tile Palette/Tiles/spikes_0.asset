@@ -11,8 +11,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: spikes_0
-  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.Tilemaps.Tile
-  m_Sprite: {fileID: 8382717070696663976, guid: fa4d26bcf64624b0c8d51cd4f7327b89, type: 3}
+  m_EditorClassIdentifier: 
+  m_Sprite: {fileID: 8382717070696663976, guid: 64c3c54665857e74db3e3366ef0fea7d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

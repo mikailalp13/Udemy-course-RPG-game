@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: a423919f41f5040d0ae9c5cf3dcdf727
+guid: 337bc36f95fe31d42904af9e4f74a10c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8181396477003839159
-    second: Enemy_AttackAlert_0
+      213: 8025236860314895381
+    second: Attack Alert_0
   - first:
-      213: 4961445968188712750
-    second: Enemy_AttackAlert_1
+      213: -5522797092413215163
+    second: Attack Alert_1
   - first:
-      213: -8357495285596298861
-    second: Enemy_AttackAlert_2
+      213: -1105296438365056984
+    second: Attack Alert_2
   - first:
-      213: -8900005401159255355
-    second: Enemy_AttackAlert_3
+      213: -7103819612892982674
+    second: Attack Alert_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,7 +109,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy_AttackAlert_0
+      name: Attack Alert_0
       rect:
         serializedVersion: 2
         x: 0
@@ -117,21 +117,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7b6327abfb82a8170800000000000000
-      internalID: 8181396477003839159
+      spriteID: 514c079a76e5f5f60800000000000000
+      internalID: 8025236860314895381
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_AttackAlert_1
+      name: Attack Alert_1
       rect:
         serializedVersion: 2
         x: 32
@@ -139,21 +139,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e27ae2a32d89ad440800000000000000
-      internalID: 4961445968188712750
+      spriteID: 54e66243e451b53b0800000000000000
+      internalID: -5522797092413215163
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_AttackAlert_2
+      name: Attack Alert_2
       rect:
         serializedVersion: 2
         x: 0
@@ -161,21 +161,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 391e7025156340c80800000000000000
-      internalID: -8357495285596298861
+      spriteID: 8201fb3deb239a0f0800000000000000
+      internalID: -1105296438365056984
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_AttackAlert_3
+      name: Attack Alert_3
       rect:
         serializedVersion: 2
         x: 32
@@ -183,15 +183,15 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5ca38dced34dc7480800000000000000
-      internalID: -8900005401159255355
+      spriteID: e629f0123b92a6d90800000000000000
+      internalID: -7103819612892982674
       vertices: []
       indices: 
       edges: []
@@ -200,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: cb81e26fa1a5c429593eaab4df3f6925
+    spriteID: d138e4ac46a245643ab09d6508e296ff
     internalID: 0
     vertices: []
     indices: 
@@ -208,14 +208,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      Enemy_AttackAlert_0: 8181396477003839159
-      Enemy_AttackAlert_1: 4961445968188712750
-      Enemy_AttackAlert_2: -8357495285596298861
-      Enemy_AttackAlert_3: -8900005401159255355
+      Attack Alert_0: 8025236860314895381
+      Attack Alert_1: -5522797092413215163
+      Attack Alert_2: -1105296438365056984
+      Attack Alert_3: -7103819612892982674
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

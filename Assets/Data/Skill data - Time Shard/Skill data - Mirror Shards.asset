@@ -9,16 +9,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 550c0fa54bac14a1caa86208877e0457, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b05f30c54261b84c806ef06deeb4a03, type: 3}
   m_Name: Skill data - Mirror Shards
   m_EditorClassIdentifier: Assembly-CSharp::Skill_DataSO
-  cost: 3
-  unlocked_by_default: 0
-  skill_type: 2
-  upgrade_data:
-    upgrade_type: 8
-    cooldown: 4
   display_name: Mirror Shards
   description: 'You can create up to 3 shards. They will move towards closest enemy
     by default. '
   icon: {fileID: 87442461, guid: 296a2f23620d24c2da66028878af7391, type: 3}
+  cost: 2
+  unlocked_by_default: 0
+  skill_type: 1
+  upgrade_data:
+    upgrade_type: 8
+    cooldown: 3
+    damage_scale_data:
+      physical: 1
+      elemental: 1
+      chill_duration: 3
+      chill_slow_multiplier: 0.2
+      burn_duration: 3
+      burn_damage_scale: 1
+      shock_duration: 3
+      shock_damage_scale: 1
+      shock_charge: 0.4

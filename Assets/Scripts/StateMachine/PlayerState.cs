@@ -26,6 +26,16 @@ public abstract class PlayerState : EntityState
             skill_manager.dash.SetSkillOnCooldown();
             stateMachine.ChangeState(player.dashState);
         }
+
+        if (input.Player.UltimateSpell.WasPressedThisFrame() && skill_manager.domain_expansion.CanUseSkill())
+        {
+            if (skill_manager.domain_expansion.InstantDomain())
+                skill_manager.domain_expansion.CreateDomain();
+            else 
+                stateMachine.ChangeState(player.domainExpansionState);
+
+            skill_manager.domain_expansion.SetSkillOnCooldown();
+        }
     }
 
     public override void UpdateAnimationParameters()
@@ -42,7 +52,7 @@ public abstract class PlayerState : EntityState
         if (player.wall_detected)
             return false;
 
-        if (stateMachine.currentState == player.dashState)
+        if (stateMachine.currentState == player.dashState || stateMachine.currentState == player.domainExpansionState)
             return false;
 
         return true;

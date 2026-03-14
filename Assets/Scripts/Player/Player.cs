@@ -10,6 +10,9 @@ public class Player : Entity
     public PlayerInputSet input { get; private set; }
     public Player_SkillManager skill_manager { get; private set; }
     public Player_VFX vfx { get; private set; }
+    public Entity_Health health { get; private set; }
+    public Entity_StatusHandler status_handler { get; private set; }
+
 
     #region State Variables
     public Player_IdleState idleState { get; private set; }
@@ -23,11 +26,13 @@ public class Player : Entity
     public Player_JumpAttackState jumpAttackState { get; private set; }
     public Player_DeadState deadState { get; private set; }
     public Player_CounterAttackState counterAttackState { get; private set; }
+    public Player_SwordThrowState swordThrowState { get; private set; }
+    public Player_DomainExpansionState domainExpansionState { get; private set; }
 
     #endregion
 
 
-    [Header("Attack details")]
+    [Header("Attack Details")]
     public Vector2[] attack_velocity;
     public Vector2 jump_attack_velocity;
     public float attack_velocity_duration = 0.1f;
@@ -35,7 +40,12 @@ public class Player : Entity
     private Coroutine queued_attack_co;
 
 
-    [Header("Movement details")]
+    [Header("Ultimate Ability Details")]
+    public float rise_speed = 25f;
+    public float rise_max_distance = 3f;
+
+
+    [Header("Movement Details")]
     public float move_speed;
     public float jump_force = 5;
     public Vector2 wall_jump_force;
@@ -49,14 +59,19 @@ public class Player : Entity
     public float dash_speed = 20;
     public Vector2 move_input { get; private set; }
 
+    public Vector2 mouse_position { get; private set; }
+
     protected override void Awake()
     {
         base.Awake();
 
         ui = FindAnyObjectByType<UI>();
-        input = new PlayerInputSet();
-        skill_manager = GetComponent<Player_SkillManager>();
         vfx = GetComponent<Player_VFX>();
+        health = GetComponent<Entity_Health>();
+        skill_manager = GetComponent<Player_SkillManager>();
+        status_handler = GetComponent<Entity_StatusHandler>();
+
+        input = new PlayerInputSet();
 
         idleState = new Player_IdleState(this, state_machine, "idle");
         moveState = new Player_MoveState(this, state_machine, "move");
@@ -69,6 +84,8 @@ public class Player : Entity
         jumpAttackState = new Player_JumpAttackState(this, state_machine, "jumpAttack");
         deadState = new Player_DeadState(this, state_machine, "dead");
         counterAttackState = new Player_CounterAttackState(this, state_machine, "counterAttack");
+        swordThrowState = new Player_SwordThrowState(this, state_machine, "swordThrow");
+        domainExpansionState = new Player_DomainExpansionState(this, state_machine, "jumpFall");
     }
 
     protected override void Start()
@@ -117,10 +134,7 @@ public class Player : Entity
         {
             attack_velocity[i] = original_attack_velocity[i];
         }
-        
-
     }
-
 
     public override void EntityDeath()
     {
@@ -146,11 +160,16 @@ public class Player : Entity
     private void OnEnable()
     {
         input.Enable();        
+
+        input.Player.Mouse.performed += ctx => mouse_position = ctx.ReadValue<Vector2>();
+
         input.Player.Movement.performed += ctx => move_input = ctx.ReadValue<Vector2>();
         input.Player.Movement.canceled += ctx => move_input = Vector2.zero;
 
         input.Player.ToggleSkillTreeUI.performed += ctx => ui.ToggleSkillTreeUI();
+
         input.Player.Spell.performed += ctx => skill_manager.shard.TryUseSkill();
+        input.Player.Spell.performed += ctx => skill_manager.time_echo.TryUseSkill();
     }
     private void OnDisable()
     {

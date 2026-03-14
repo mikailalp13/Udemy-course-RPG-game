@@ -16,10 +16,12 @@ public class Player_DashState : PlayerState
         player.vfx.DoImageEchoEffect(player.dash_duration);
 
         dash_dir = player.move_input.x != 0 ? ((int)player.move_input.x) : player.facing_dir;
-        stateTimer = player.dash_duration;
+        state_timer = player.dash_duration;
 
         original_gravity_scale = rb.gravityScale;
         rb.gravityScale = 0;
+
+        player.health.SetCanTakeDamage(false);
     }
 
 
@@ -29,7 +31,7 @@ public class Player_DashState : PlayerState
         CancelDashIfNeeded();
         player.SetVelocity(player.dash_speed * dash_dir, 0);
 
-        if (stateTimer < 0)
+        if (state_timer < 0)
         {
             if (player.ground_detected)
                 stateMachine.ChangeState(player.idleState);
@@ -44,6 +46,7 @@ public class Player_DashState : PlayerState
 
         skill_manager.dash.OnEndEffect();
 
+        player.health.SetCanTakeDamage(true);
         player.SetVelocity(0, 0);
         rb.gravityScale = original_gravity_scale;
     }

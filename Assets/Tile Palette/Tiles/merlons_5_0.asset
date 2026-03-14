@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: merlons_5_0
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -349366137307616432, guid: a00a82e40db624df389b0c60cf124da1, type: 3}
+  m_Sprite: {fileID: -349366137307616432, guid: 52558f5e58c7c01418c61580f5206ff3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

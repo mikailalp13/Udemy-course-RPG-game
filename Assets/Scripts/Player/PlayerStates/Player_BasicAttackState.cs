@@ -45,7 +45,7 @@ public class Player_BasicAttackState : PlayerState
         if (input.Player.Attack.WasPressedThisFrame())
             QueueNextAttack();
 
-        if (triggerCalled)
+        if (trigger_called)
             HandleStateExit();            
     }
 

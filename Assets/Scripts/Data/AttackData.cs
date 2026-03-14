@@ -12,11 +12,11 @@ public class AttackData
     public ElementalEffectData effect_data;
 
 
-    public AttackData(Entity_Stats entity_stats, DamageScaleData scale_date)
+    public AttackData(Entity_Stats entity_stats, DamageScaleData scale_data)
     {
-        physcial_damage = entity_stats.GetPhysicalDamage(out is_crit, scale_date.physical);
-        elemental_damage = entity_stats.GetElementalDamage(out element, scale_date.elemental);
+        physcial_damage = entity_stats.GetPhysicalDamage(out is_crit, scale_data.physical);
+        elemental_damage = entity_stats.GetElementalDamage(out element, scale_data.elemental);
 
-        effect_data = new ElementalEffectData(entity_stats, scale_date);
+        effect_data = new ElementalEffectData(entity_stats, scale_data);
     }
 }
