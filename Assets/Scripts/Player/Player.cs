@@ -12,6 +12,7 @@ public class Player : Entity
     public Player_VFX vfx { get; private set; }
     public Entity_Health health { get; private set; }
     public Entity_StatusHandler status_handler { get; private set; }
+    public Player_Combat combat { get; private set; }
 
 
     #region State Variables
@@ -67,6 +68,7 @@ public class Player : Entity
 
         ui = FindAnyObjectByType<UI>();
         vfx = GetComponent<Player_VFX>();
+        combat = GetComponent<Player_Combat>();
         health = GetComponent<Entity_Health>();
         skill_manager = GetComponent<Player_SkillManager>();
         status_handler = GetComponent<Entity_StatusHandler>();
@@ -166,10 +168,11 @@ public class Player : Entity
         input.Player.Movement.performed += ctx => move_input = ctx.ReadValue<Vector2>();
         input.Player.Movement.canceled += ctx => move_input = Vector2.zero;
 
-        input.Player.ToggleSkillTreeUI.performed += ctx => ui.ToggleSkillTreeUI();
-
         input.Player.Spell.performed += ctx => skill_manager.shard.TryUseSkill();
         input.Player.Spell.performed += ctx => skill_manager.time_echo.TryUseSkill();
+
+        input.Player.ToggleSkillTreeUI.performed += ctx => ui.ToggleSkillTreeUI();
+        input.Player.ToggleInventoryUI.performed += ctx => ui.ToggleInventoryUI();
     }
     private void OnDisable()
     {

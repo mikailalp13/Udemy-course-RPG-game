@@ -52,7 +52,7 @@ public abstract class PlayerState : EntityState
         if (player.wall_detected)
             return false;
 
-        if (stateMachine.currentState == player.dashState || stateMachine.currentState == player.domainExpansionState)
+        if (stateMachine.current_state == player.dashState || stateMachine.current_state == player.domainExpansionState)
             return false;
 
         return true;

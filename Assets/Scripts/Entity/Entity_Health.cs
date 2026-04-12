@@ -1,9 +1,10 @@
-using System.Diagnostics;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class Entity_Health : MonoBehaviour , IDamageable
 {
+    public event Action OnTakingDamage;
+
     private Slider health_bar;
     private Entity entity;
     private Entity_VFX entity_vfx;
@@ -22,7 +23,7 @@ public class Entity_Health : MonoBehaviour , IDamageable
 
     [Header("On Damage Knockback")]
     [SerializeField] private Vector2 knockback_power = new Vector2(1.5f, 2.5f);
-    [SerializeField] private Vector2 heavy_knockback_power = new Vector2(7, 7);
+    [SerializeField] private Vector2 heavy_knockback_power = new Vector2(4, 4);
     [SerializeField] private float knockback_duration = 0.2f;
     [SerializeField] private float heavy_knockback_duration = 0.5f;
 
@@ -71,6 +72,7 @@ public class Entity_Health : MonoBehaviour , IDamageable
 
         last_damage_taken = physical_damage_taken + elemental_damage_taken;
         
+        OnTakingDamage?.Invoke();
         return true;
     }
     
@@ -81,7 +83,7 @@ public class Entity_Health : MonoBehaviour , IDamageable
         if (entity_stats == null)
             return false;
         else
-            return Random.Range(0, 100) < entity_stats.GetEvasion();
+            return UnityEngine.Random.Range(0, 100) < entity_stats.GetEvasion();
     } 
         
 

@@ -2,7 +2,7 @@ using UnityEngine;
 // scriptable object
 
 [CreateAssetMenu(menuName = "RPG Setup / Default Stat Setup", fileName = "Default Stat Setup")]
-public class Stat_SetupSO : ScriptableObject
+public class StatSetupDataSO : ScriptableObject
 {
     [Header("Resources")]
     public float max_health = 100;

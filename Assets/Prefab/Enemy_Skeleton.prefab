@@ -896,12 +896,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2deb6c68399f5dd40a3049f988ed38ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  current_health: 0
-  is_dead: 0
+  current_health: 1500
   regen_interval: 1
   can_regenerate_health: 1
   knockback_power: {x: 1.5, y: 2.5}
-  heavy_knockback_power: {x: 7, y: 7}
+  heavy_knockback_power: {x: 4, y: 4}
   knockback_duration: 0.2
   heavy_knockback_duration: 0.5
   heavy_damage_threshold: 0.3
@@ -951,7 +950,7 @@ MonoBehaviour:
       base_value: 1
       modifiers: []
     damage:
-      base_value: 150
+      base_value: 20
       modifiers: []
     crit_power:
       base_value: 0

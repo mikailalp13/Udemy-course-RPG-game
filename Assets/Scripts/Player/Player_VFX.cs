@@ -9,6 +9,12 @@ public class Player_VFX : Entity_VFX
     private Coroutine image_echo_co;
 
 
+    public void CreateEffectOf(GameObject effect, Transform target)
+    {
+        Instantiate(effect, target.position, Quaternion.identity);
+    }
+
+
     public void DoImageEchoEffect(float duration)
     {
         if (image_echo_co != null)

@@ -88,7 +88,7 @@ public class Enemy : Entity
 
     public void TryEnterBattleState(Transform player)
     {
-        if (state_machine.currentState == battleState || state_machine.currentState == attackState)
+        if (state_machine.current_state == battleState || state_machine.current_state == attackState)
             return;
 
         this.player = player;

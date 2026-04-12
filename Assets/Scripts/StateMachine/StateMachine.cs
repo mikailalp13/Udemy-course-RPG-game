@@ -2,27 +2,27 @@ using UnityEngine;
 
 public class StateMachine
 {
-    public EntityState currentState { get; private set; }
+    public EntityState current_state { get; private set; }
     private bool can_change_state;
-    public void Initialize(EntityState startState)
+    public void Initialize(EntityState start_state)
     {
         can_change_state = true;
-        currentState = startState;
-        currentState.Enter();
+        current_state = start_state;
+        current_state.Enter();
     }
-    public void ChangeState(EntityState newState)
+    public void ChangeState(EntityState new_state)
     {
         if (can_change_state == false)
             return;
         
-        currentState.Exit();
-        currentState = newState;
-        currentState.Enter();
+        current_state.Exit();
+        current_state = new_state;
+        current_state.Enter();
     }
 
     public void UpdateActiveState()
     {
-        currentState.Update();
+        current_state.Update();
     }
 
     public void SwitchOffStateMachine() => can_change_state = false;

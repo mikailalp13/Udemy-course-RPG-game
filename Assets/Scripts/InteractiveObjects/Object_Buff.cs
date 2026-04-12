@@ -1,26 +1,16 @@
-using UnityEngine;
 using System;
+using UnityEngine;
 using System.Collections;
-
-[Serializable]
-public class Buff
-{
-    public StatType type;
-    public float value;
-}
 
 public class Object_Buff : MonoBehaviour
 {
-    private SpriteRenderer sr;
-    private Entity_Stats stats_to_modify;
+    private Player_Stats stats_to_modify;
 
 
     [Header("Buff Details")]
-    [SerializeField] private Buff[] buffs; // its an array so that with one buff we can gain multiple stuff
+    [SerializeField] private BuffEffectData[] buffs; // its an array so that with one buff we can gain multiple stuff
     [SerializeField] private string buff_name;
     [SerializeField] private float buff_duration = 4f;
-    [SerializeField] private bool can_be_used = true;
-
 
 
     [Header("Vertical Movement")]
@@ -30,7 +20,6 @@ public class Object_Buff : MonoBehaviour
 
     private void Awake()
     {
-        sr = GetComponentInChildren<SpriteRenderer>();
         start_position = transform.position;
     }
 
@@ -42,33 +31,13 @@ public class Object_Buff : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (can_be_used == false)
-            return;
+        stats_to_modify = collision.GetComponent<Player_Stats>();
 
-        stats_to_modify = collision.GetComponent<Entity_Stats>();
-        StartCoroutine(BuffCo(buff_duration));
-    }
-
-    private IEnumerator BuffCo(float duration)
-    {
-        can_be_used = false;
-        sr.color = Color.clear; // we wont be able to see the object. we cant destroy it since its connected to a Coroutine
-        ApplyBuff(true);
-
-        yield return new WaitForSeconds(duration);
-
-        ApplyBuff(false);
-        Destroy(gameObject);
-    }
-
-    private void ApplyBuff(bool apply)
-    {
-        foreach (var buff in buffs)
+        if (stats_to_modify.CanApplyBuffOf(buff_name))
         {
-            if (apply)
-                stats_to_modify.GetStatByType(buff.type).AddModifier(buff.value, buff_name);
-            else
-                stats_to_modify.GetStatByType(buff.type).RemoveModifier(buff_name);
+            stats_to_modify.ApplyBuff(buffs, buff_duration, buff_name);
+            Destroy(gameObject);
         }
+
     }
 }
