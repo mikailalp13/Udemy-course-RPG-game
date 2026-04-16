@@ -8,6 +8,11 @@ public class UI : MonoBehaviour
 
     public UI_SkillTree skill_tree_ui { get; private set; }
     public UI_Inventory inventory_ui { get; private set; }
+    public UI_Storage storage_ui { get; private set; }
+    public UI_Craft craft_ui { get; private set; }
+    public UI_Merchant merchant_ui { get; private set; }
+
+
     private bool skill_tree_enabled;
     private bool inventory_enabled;
 
@@ -20,9 +25,19 @@ public class UI : MonoBehaviour
 
         skill_tree_ui = GetComponentInChildren<UI_SkillTree>(true); // when you give true to the function it works even when the game object is disabled
         inventory_ui = GetComponentInChildren<UI_Inventory>(true);
+        storage_ui = GetComponentInChildren<UI_Storage>(true);
+        craft_ui = GetComponentInChildren<UI_Craft>(true);
+        merchant_ui = GetComponentInChildren<UI_Merchant>(true);
 
         skill_tree_enabled = skill_tree_ui.gameObject.activeSelf;
         inventory_enabled = inventory_ui.gameObject.activeSelf;
+    }
+
+    public void SwitchOffAllTooltips()
+    {
+        item_tool_tip.ShowToolTip(false, null);
+        skill_tool_tip.ShowToolTip(false, null);
+        stat_tool_tip.ShowToolTip(false, null);
     }
 
     public void ToggleSkillTreeUI()

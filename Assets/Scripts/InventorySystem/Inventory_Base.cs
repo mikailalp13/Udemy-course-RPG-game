@@ -1,6 +1,7 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
-using System;
+
 public class Inventory_Base : MonoBehaviour
 {
     public event Action OnInventoryChange;
@@ -26,12 +27,17 @@ public class Inventory_Base : MonoBehaviour
         if (consumable.stack_size > 1)
             consumable.RemoveStack();
         else
-            RemoveItem(consumable);
+            RemoveOneItem(consumable);
 
         OnInventoryChange?.Invoke();
     }
 
-    public bool CanAddItem() => item_list.Count < max_inventory_size;
+    public bool CanAddItem(Inventory_Item item_to_add)
+    {
+        bool has_stackable = FindStackable(item_to_add) != null;
+        return has_stackable || item_list.Count < max_inventory_size;
+    } 
+        
     public Inventory_Item FindStackable(Inventory_Item item_to_add)
     {
         List<Inventory_Item> stackable_items = item_list.FindAll(item => item.item_data == item_to_add.item_data);
@@ -58,15 +64,31 @@ public class Inventory_Base : MonoBehaviour
     }
 
 
-    public void RemoveItem(Inventory_Item item_to_remove)
+    public void RemoveOneItem(Inventory_Item item_to_remove)
     {
-        item_list.Remove(item_to_remove);
+        Inventory_Item item_in_inventory = item_list.Find(item => item == item_to_remove);
+
+        if (item_in_inventory.stack_size > 1)
+            item_in_inventory.RemoveStack();
+        else
+            item_list.Remove(item_to_remove);
+
+
         OnInventoryChange?.Invoke();
     }
 
-    public Inventory_Item FindItem(ItemDataSO item_data)
+
+    public void RemoveFullStack(Inventory_Item item_to_remove)
     {
-        return item_list.Find(item => item.item_data == item_data);
+        for (int i = 0; i < item_to_remove.stack_size; i++)
+        {
+            RemoveOneItem(item_to_remove);
+        }
+    }
+
+    public Inventory_Item FindItem(Inventory_Item item_to_find)
+    {
+        return item_list.Find(item => item == item_to_find);
     }
 
     public void TriggerUpdateUI() => OnInventoryChange?.Invoke();

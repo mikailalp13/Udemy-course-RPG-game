@@ -3,19 +3,24 @@ using System.Collections.Generic;
 
 public class Inventory_Player : Inventory_Base
 {
+    public int gold = 1000;
+
     private Player player;
     public List<Inventory_EquipmentSlot> equip_list;
+    public Inventory_Storage storage { get; private set; }
 
     protected override void Awake()
     {
         base.Awake();
 
         player = GetComponent<Player>();
+        storage = FindFirstObjectByType<Inventory_Storage>();
     }
+
 
     public void TryEquipItem(Inventory_Item item)
     {
-        var inventory_item = FindItem(item.item_data);
+        var inventory_item = FindItem(item);
         var matching_slots = equip_list.FindAll(slot => slot.slot_type == item.item_data.item_type);
 
         // Step 1: Try to find an empty slot and equip item
@@ -46,12 +51,12 @@ public class Inventory_Player : Inventory_Base
         slot.equiped_item.AddItemEffect(player);
 
         player.health.SetHealthToPercent(saved_health_percent);
-        RemoveItem(item_to_equip);
+        RemoveOneItem(item_to_equip);
     }
 
     public void UnequipItem(Inventory_Item item_to_unequip, bool replacing_item = false)
     {
-        if (CanAddItem() == false && replacing_item == false)
+        if (CanAddItem(item_to_unequip) == false && replacing_item == false)
         {
             Debug.Log("No space!");
             return;

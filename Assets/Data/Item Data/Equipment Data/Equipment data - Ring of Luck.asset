@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb333cd3dc553479181de45788bc2950, type: 3}
+  m_Name: Equipment data - Ring of Luck
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentDataSO
+  item_price: 100
+  min_stack_size_at_shop: 1
+  max_stack_size_at_shop: 1
+  item_rarity: 850
+  drop_chance: 15.1
+  max_drop_chance: 65
+  craft_recipe: []
+  item_name: Ring of Luck
+  item_icon: {fileID: -1488466702, guid: 296a2f23620d24c2da66028878af7391, type: 3}
+  item_type: 3
+  max_stack_size: 1
+  item_effect: {fileID: 0}
+  modifiers:
+  - stat_type: 8
+    value: 15
+  - stat_type: 0
+    value: 50
+  - stat_type: 15
+    value: 12

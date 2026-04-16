@@ -728,6 +728,7 @@ GameObject:
   - component: {fileID: 175430866473161657}
   - component: {fileID: 4284223986879445403}
   - component: {fileID: 1491986315721214162}
+  - component: {fileID: 155284093545966773}
   m_Layer: 8
   m_Name: Enemy_Skeleton
   m_TagString: Untagged
@@ -1014,6 +1015,22 @@ MonoBehaviour:
   lightning_strike_vfx: {fileID: 609128798462994316, guid: 7892dafb312e9ef46bc51c6c233e5927, type: 3}
   current_charge: 0
   maximum_charge: 1
+--- !u!114 &155284093545966773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6409625887082432548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89e5b018401dd4ce9b92e368c1c5dfe3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Entity_DropManager
+  item_drop_prefab: {fileID: 5019581549182869519, guid: 335e3262e66df4cf6b294e240d63862c, type: 3}
+  drop_data: {fileID: 11400000, guid: 144450d56ab874ab88fb65b9ed7f1bdb, type: 2}
+  max_rarity_amount: 1200
+  max_items_to_drop: 3
 --- !u!1 &6765360969479623504
 GameObject:
   m_ObjectHideFlags: 0

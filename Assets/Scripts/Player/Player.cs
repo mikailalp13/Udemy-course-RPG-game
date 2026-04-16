@@ -159,6 +159,34 @@ public class Player : Entity
         state_machine.ChangeState(basicAttackState);
     }
 
+    private void TryInteract()
+    {
+        Transform closest = null;
+        float closest_distance = Mathf.Infinity;
+        Collider2D[] objects_around = Physics2D.OverlapCircleAll(transform.position, 1f);
+
+        foreach (var target in objects_around)
+        {
+            IInteractable interactable = target.GetComponent<IInteractable>();
+
+            if (interactable == null)
+                continue;
+            
+            float distance = Vector2.Distance(transform.position, target.transform.position);
+
+            if (distance < closest_distance)
+            {
+                closest_distance = distance;
+                closest = target.transform;
+            }
+        }
+
+        if (closest == null)
+            return;
+
+        closest.GetComponent<IInteractable>().Interact();
+    }
+
     private void OnEnable()
     {
         input.Enable();        
@@ -170,6 +198,8 @@ public class Player : Entity
 
         input.Player.Spell.performed += ctx => skill_manager.shard.TryUseSkill();
         input.Player.Spell.performed += ctx => skill_manager.time_echo.TryUseSkill();
+
+        input.Player.Interact.performed += ctx => TryInteract();
 
         input.Player.ToggleSkillTreeUI.performed += ctx => ui.ToggleSkillTreeUI();
         input.Player.ToggleInventoryUI.performed += ctx => ui.ToggleInventoryUI();

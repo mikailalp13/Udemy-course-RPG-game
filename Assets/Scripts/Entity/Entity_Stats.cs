@@ -199,7 +199,7 @@ public class Entity_Stats : MonoBehaviour
     {
         if (default_stat_setup == null)
         {
-            Debug.Log("No default stat setup assigned. ");
+            Debug.Log("No default stat setup assigned.");
             return;
         }
 
