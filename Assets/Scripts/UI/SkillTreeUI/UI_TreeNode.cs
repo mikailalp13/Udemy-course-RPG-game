@@ -26,21 +26,32 @@ public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private Color last_color;
 
 
-    private void Awake()
-    {
-        ui = GetComponentInParent<UI>();
-        rect = GetComponent<RectTransform>();
-        skill_tree = GetComponentInParent<UI_SkillTree>();
-        connect_handler = GetComponent<UI_TreeConnectHandler>();
-
-        UpdateIconColor(GetColorByHex(locked_color_hex));
-    }
-
     private void Start()
     {
+        if (is_unlocked == false)
+            UpdateIconColor(GetColorByHex(locked_color_hex));
+            
+        UnlockDefaultSkill();
+    }
+
+
+    public void UnlockDefaultSkill()
+    {
+        GetNeededComponents();
+
         if (skill_data.unlocked_by_default)
             Unlock();
     }
+
+
+    private void GetNeededComponents()
+    {
+        ui = GetComponentInParent<UI>();
+        rect = GetComponent<RectTransform>();
+        skill_tree = GetComponentInParent<UI_SkillTree>(true);
+        connect_handler = GetComponent<UI_TreeConnectHandler>();
+    }
+
 
     public void Refund()
     {
@@ -56,8 +67,15 @@ public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         connect_handler.UnlockConnectionImage(false);
     }
 
+
     private void Unlock()
     {
+        if (is_unlocked)
+        {
+            Debug.Log("Skill is already unlocked.");
+            return;
+        }
+
         is_unlocked = true;
         UpdateIconColor(Color.white);
         LockConflictNodes();
@@ -65,7 +83,7 @@ public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         skill_tree.RemoveSkillPoints(skill_data.cost);
         connect_handler.UnlockConnectionImage(true);
 
-        skill_tree.skill_manager.GetSkillByType(skill_data.skill_type).SetSkillUpgrade(skill_data.upgrade_data);
+        skill_tree.skill_manager.GetSkillByType(skill_data.skill_type).SetSkillUpgrade(skill_data);
     }
 
     private bool CanBeUnlocked()
@@ -129,7 +147,7 @@ public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        ui.skill_tool_tip.ShowToolTip(true, rect, this);
+        ui.skill_tool_tip.ShowToolTip(true, rect, skill_data, this);
 
         if (is_unlocked || is_locked)
             return;
@@ -139,6 +157,7 @@ public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public void OnPointerExit(PointerEventData eventData)
     {
         ui.skill_tool_tip.ShowToolTip(false, rect);
+        ui.skill_tool_tip.StopLockedSkillEffect();
 
         if (is_unlocked || is_locked)
             return;

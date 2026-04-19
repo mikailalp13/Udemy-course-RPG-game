@@ -1,9 +1,11 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class Entity_Health : MonoBehaviour , IDamageable
 {
     public event Action OnTakingDamage;
+    public event Action OnHealthUpdate;
 
     private Slider health_bar;
     private Entity entity;
@@ -11,6 +13,7 @@ public class Entity_Health : MonoBehaviour , IDamageable
     private Entity_Stats entity_stats;
     private Entity_DropManager drop_manager;
 
+    private bool mini_health_bar_active;
     [SerializeField] protected float current_health;
 
     
@@ -31,6 +34,7 @@ public class Entity_Health : MonoBehaviour , IDamageable
     [Header("On Heavy Damage")]
     [SerializeField] private float heavy_damage_threshold = 0.3f; // percentage of health you should loose to heavy damage
 
+
     protected virtual void Awake()
     {
         entity = GetComponent<Entity>();
@@ -42,15 +46,19 @@ public class Entity_Health : MonoBehaviour , IDamageable
         SetupHealth();
     }
 
+
     private void SetupHealth()
     {
         if (entity_stats == null)
             return;
         
         current_health = entity_stats.GetMaxHealth();
+        OnHealthUpdate += UpdateHealthBar;
+
         UpdateHealthBar();
         InvokeRepeating(nameof(RegenerateHealth), 0, regen_interval); // method name, delay time, repeat rate
     }
+
 
     public virtual bool TakeDamage(float damage, float elemental_damage, ElementType element, Transform damage_dealer)
     {
@@ -78,7 +86,9 @@ public class Entity_Health : MonoBehaviour , IDamageable
         return true;
     }
     
+
     public void SetCanTakeDamage(bool can_take_damage) => this.can_take_damage = can_take_damage;   
+
 
     private bool AttackEvaded()
     {
@@ -98,6 +108,7 @@ public class Entity_Health : MonoBehaviour , IDamageable
         IncreaseHealth(regen_amount);
     }
 
+
     public void IncreaseHealth(float heal_amount)
     {
         if (is_dead)
@@ -107,18 +118,21 @@ public class Entity_Health : MonoBehaviour , IDamageable
         float max_health = entity_stats.GetMaxHealth();
 
         current_health = Mathf.Min(new_health, max_health); // with this method we stop the over healing
-        UpdateHealthBar();
+        OnHealthUpdate?.Invoke();
     }
+
 
     public void ReduceHealth(float damage)
     {
-        entity_vfx?.PlayeOnDamageVfx();
         current_health -= damage;
-        UpdateHealthBar();
+
+        entity_vfx?.PlayeOnDamageVfx();
+        OnHealthUpdate?.Invoke();
 
         if (current_health <= 0)
             Die();
     }
+
 
     protected virtual void Die()
     {
@@ -127,21 +141,31 @@ public class Entity_Health : MonoBehaviour , IDamageable
         drop_manager?.DropItems();
     }
 
+
     public float GetHealthPercent() => current_health / entity_stats.GetMaxHealth();  
+
 
     public void SetHealthToPercent(float percent)
     {
         current_health = entity_stats.GetMaxHealth() * Mathf.Clamp01(percent);
-        UpdateHealthBar();
+        OnHealthUpdate?.Invoke();
     }
+
+
+    public float GetCurrentHealth() => current_health;
+
 
     private void UpdateHealthBar()
     {
-        if (health_bar == null)
+        if (health_bar == null && health_bar.transform.parent.gameObject.activeSelf == false)
             return;
 
         health_bar.value = current_health / entity_stats.GetMaxHealth();
     }
+
+
+    public void EnableHealthBar(bool enable) => health_bar?.transform.parent.gameObject.SetActive(enable);
+
 
     private void TakeKnockback(Transform damage_dealer, float final_damage)
     {
@@ -150,6 +174,7 @@ public class Entity_Health : MonoBehaviour , IDamageable
 
         entity?.RecieveKnockback(knockback, duration);
     }
+
 
     private Vector2 CalculateKnockback(float damage, Transform damageDealer)
     {
@@ -162,7 +187,9 @@ public class Entity_Health : MonoBehaviour , IDamageable
         return knockback;
     }
 
+
     private float CalculateDuration(float damage) => IsHeavyDamage(damage) ? heavy_knockback_duration : knockback_duration;
+    
     private bool IsHeavyDamage(float damage)
     {
         if (entity_stats == null)

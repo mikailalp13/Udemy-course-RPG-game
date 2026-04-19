@@ -9,15 +9,11 @@ public class ItemEffect_Buff : ItemEffectDataSO
     [SerializeField] private float duration;
     [SerializeField] private string source = Guid.NewGuid().ToString();
 
-    private Player_Stats player_stats;
-
-    public override bool CanBeUsed()
+    public override bool CanBeUsed(Player player)
     {
-        if (player_stats == null)
-            player_stats = FindFirstObjectByType<Player_Stats>();
-
-        if (player_stats.CanApplyBuffOf(source))
+        if (player.stats.CanApplyBuffOf(source))
         {
+            this.player = player;
             return true;
         }
         else
@@ -29,6 +25,7 @@ public class ItemEffect_Buff : ItemEffectDataSO
 
     public override void ExecuteEffect()
     {
-        player_stats.ApplyBuff(buffs_to_apply, duration, source);
+        player.stats.ApplyBuff(buffs_to_apply, duration, source);
+        player = null;
     }
 }

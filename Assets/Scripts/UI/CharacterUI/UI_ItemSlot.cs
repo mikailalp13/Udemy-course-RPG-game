@@ -12,11 +12,12 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
 
 
     [Header("UI Slot Setup")]
-    [SerializeField] private Image item_icon; 
-    [SerializeField] private TextMeshProUGUI item_stack_size;
+    [SerializeField] private GameObject default_icon;
+    [SerializeField] protected Image item_icon; 
+    [SerializeField] protected TextMeshProUGUI item_stack_size;
 
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         ui = GetComponentInParent<UI>();
         rect = GetComponent<RectTransform>();
@@ -39,9 +40,6 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
         {
             if (item_in_slot.item_data.item_type == ItemType.Consumable)
             {
-                if (item_in_slot.item_effect.CanBeUsed() == false)
-                    return;
-
                 inventory.TryUseItem(item_in_slot);
             }
             else
@@ -55,6 +53,9 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
     public void UpdateSlot(Inventory_Item item)
     {
         item_in_slot = item;
+
+        if (default_icon != null)
+            default_icon.gameObject.SetActive(item_in_slot == null);
 
         if (item_in_slot == null)
         {

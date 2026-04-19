@@ -6,13 +6,15 @@ public class Player : Entity
 {
     public static event Action OnPlayerDeath;
 
-    private UI ui;
+    public UI ui { get; private set; }
     public PlayerInputSet input { get; private set; }
     public Player_SkillManager skill_manager { get; private set; }
     public Player_VFX vfx { get; private set; }
     public Entity_Health health { get; private set; }
     public Entity_StatusHandler status_handler { get; private set; }
     public Player_Combat combat { get; private set; }
+    public Inventory_Player inventory { get; private set; }
+    public Player_Stats stats { get; private set;}
 
 
     #region State Variables
@@ -72,8 +74,11 @@ public class Player : Entity
         health = GetComponent<Entity_Health>();
         skill_manager = GetComponent<Player_SkillManager>();
         status_handler = GetComponent<Entity_StatusHandler>();
+        inventory = GetComponent<Inventory_Player>();
+        stats = GetComponent<Player_Stats>();
 
         input = new PlayerInputSet();
+        ui.SetupControlsUI(input);
 
         idleState = new Player_IdleState(this, state_machine, "idle");
         moveState = new Player_MoveState(this, state_machine, "move");
@@ -201,8 +206,8 @@ public class Player : Entity
 
         input.Player.Interact.performed += ctx => TryInteract();
 
-        input.Player.ToggleSkillTreeUI.performed += ctx => ui.ToggleSkillTreeUI();
-        input.Player.ToggleInventoryUI.performed += ctx => ui.ToggleInventoryUI();
+        input.Player.QuickItemSlot_1.performed += ctx => inventory.TryUseQuickItemInSlot(1);
+        input.Player.QuickItemSlot_2.performed += ctx => inventory.TryUseQuickItemInSlot(2);
     }
     private void OnDisable()
     {

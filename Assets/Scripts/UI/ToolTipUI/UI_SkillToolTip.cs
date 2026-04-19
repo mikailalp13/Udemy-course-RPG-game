@@ -36,17 +36,23 @@ public class UI_SkillToolTip : UI_ToolTip
         base.ShowToolTip(show, target_rect);
     }
 
-    public void ShowToolTip(bool show, RectTransform target_rect, UI_TreeNode node)
+    public void ShowToolTip(bool show, RectTransform target_rect, Skill_DataSO skill_data, UI_TreeNode node)
     {
         base.ShowToolTip(show, target_rect);
 
         if (show == false)
             return;
 
-        skill_name.text = node.skill_data.display_name;
-        skill_description.text = node.skill_data.description;
-        skill_cooldown.text = "Cooldown: " + node.skill_data.upgrade_data.cooldown + " s.";
+        skill_name.text = skill_data.display_name;
+        skill_description.text = skill_data.description;
+        skill_cooldown.text = "Cooldown: " + skill_data.upgrade_data.cooldown + " s.";
 
+        if (node == null)
+        {
+            skill_requirements.text = "";
+            return;
+        }
+        
         string skill_locked_text = GetColoredText(important_info_hex, locked_skill_text);
         string requirements = node.is_locked ? skill_locked_text : GetRequirements(node.skill_data.cost, node.needed_nodes, node.conflict_nodes);
 
@@ -55,11 +61,17 @@ public class UI_SkillToolTip : UI_ToolTip
 
     public void LockedSkillEffect()
     {
-        if (text_effect_co != null)
-            StopCoroutine(text_effect_co);
-        
+        StopLockedSkillEffect();
         text_effect_co = StartCoroutine(TextBlinkEffectCo(skill_requirements, 0.15f, 3));
     }
+
+
+    public void StopLockedSkillEffect()
+    {
+        if (text_effect_co != null)
+            StopCoroutine(text_effect_co);
+    }
+
 
     private IEnumerator TextBlinkEffectCo(TextMeshProUGUI text, float blink_interval, int blink_count)
     {

@@ -4,12 +4,11 @@ using System.Collections;
 
 public class Entity : MonoBehaviour
 {
-    public event Action on_flipped;
+    public event Action OnFlipped;
 
 
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
-    public Entity_Stats stats { get; private set; }
     protected StateMachine state_machine;
 
 
@@ -36,7 +35,6 @@ public class Entity : MonoBehaviour
     {
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        stats = GetComponent<Entity_Stats>();
 
         state_machine = new StateMachine();
     }
@@ -127,7 +125,7 @@ public class Entity : MonoBehaviour
         facing_right = !facing_right;
         facing_dir = facing_dir * -1;
 
-        on_flipped?.Invoke();
+        OnFlipped?.Invoke();
     }
 
     private void HandleCollisionDetection()

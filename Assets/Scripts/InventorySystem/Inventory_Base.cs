@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class Inventory_Base : MonoBehaviour
 {
+    protected Player player;
     public event Action OnInventoryChange;
 
     public int max_inventory_size = 10;
@@ -12,7 +13,7 @@ public class Inventory_Base : MonoBehaviour
 
     protected virtual void Awake()
     {
-        
+        player = GetComponent<Player>();
     }
 
     public void TryUseItem(Inventory_Item item_to_use)
@@ -20,6 +21,9 @@ public class Inventory_Base : MonoBehaviour
         Inventory_Item consumable = item_list.Find(item => item == item_to_use);
 
         if (consumable == null)
+            return;
+
+        if (consumable.item_effect.CanBeUsed(player) == false)
             return;
 
         consumable.item_effect.ExecuteEffect();
@@ -40,15 +44,7 @@ public class Inventory_Base : MonoBehaviour
         
     public Inventory_Item FindStackable(Inventory_Item item_to_add)
     {
-        List<Inventory_Item> stackable_items = item_list.FindAll(item => item.item_data == item_to_add.item_data);
-
-        foreach (var stackable_item in stackable_items)
-        {
-            if (stackable_item.CanAddStack())
-                return stackable_item;
-        }
-
-        return null;
+        return item_list.Find(item => item.item_data == item_to_add.item_data && item.CanAddStack());
     } 
 
     public void AddItem(Inventory_Item item_to_add)
@@ -89,6 +85,11 @@ public class Inventory_Base : MonoBehaviour
     public Inventory_Item FindItem(Inventory_Item item_to_find)
     {
         return item_list.Find(item => item == item_to_find);
+    }
+
+    public Inventory_Item FindSameItem(Inventory_Item item_to_find)
+    {
+        return item_list.Find(item => item.item_data == item_to_find.item_data);
     }
 
     public void TriggerUpdateUI() => OnInventoryChange?.Invoke();

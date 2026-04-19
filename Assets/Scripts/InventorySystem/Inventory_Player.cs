@@ -1,20 +1,51 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class Inventory_Player : Inventory_Base
 {
+    public event Action<int> OnQuickSlotUsed;
     public int gold = 1000;
 
-    private Player player;
     public List<Inventory_EquipmentSlot> equip_list;
     public Inventory_Storage storage { get; private set; }
+
+    [Header("Quick Item Slots")]
+    public Inventory_Item[] quick_items = new Inventory_Item[2];
+
 
     protected override void Awake()
     {
         base.Awake();
 
-        player = GetComponent<Player>();
         storage = FindFirstObjectByType<Inventory_Storage>();
+    }
+
+
+    public void SetQuickItemInSlot(int slot_number, Inventory_Item item_to_set)
+    {
+        quick_items[slot_number - 1] = item_to_set;
+        TriggerUpdateUI();
+    }
+
+
+    public void TryUseQuickItemInSlot(int passed_slot_number)
+    {
+        int slot_number = passed_slot_number - 1;
+        var item_to_use = quick_items[slot_number];
+
+        if (item_to_use == null)
+            return;
+        
+        TryUseItem(item_to_use);
+
+        if (FindItem(item_to_use) == null)
+        {
+            quick_items[slot_number] = FindSameItem(item_to_use);
+        }
+
+        TriggerUpdateUI();
+        OnQuickSlotUsed?.Invoke(slot_number);
     }
 
 
