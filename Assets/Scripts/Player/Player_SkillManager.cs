@@ -8,7 +8,7 @@ public class Player_SkillManager : MonoBehaviour
     public Skill_TimeEcho time_echo { get; private set; }
     public Skill_DomainExpansion domain_expansion { get; private set; }
 
-    private Skill_Base[] all_skills;
+    public Skill_Base[] all_skills { get; private set; }
 
     private void Awake()
     {

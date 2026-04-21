@@ -2,13 +2,18 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 
-public class Inventory_Base : MonoBehaviour
+public class Inventory_Base : MonoBehaviour, ISaveable
 {
     protected Player player;
     public event Action OnInventoryChange;
 
     public int max_inventory_size = 10;
     public List<Inventory_Item> item_list = new List<Inventory_Item>();
+
+
+    [Header("ITEM DATA BASE")]
+    [SerializeField] protected ItemListDataSO item_data_base;
+
 
 
     protected virtual void Awake()
@@ -91,6 +96,19 @@ public class Inventory_Base : MonoBehaviour
     {
         return item_list.Find(item => item.item_data == item_to_find.item_data);
     }
+
+
+    public virtual void LoadData(GameData data)
+    {
+        
+    }
+
+
+    public virtual void SaveData(ref GameData data)
+    {
+        
+    }
+
 
     public void TriggerUpdateUI() => OnInventoryChange?.Invoke();
 }

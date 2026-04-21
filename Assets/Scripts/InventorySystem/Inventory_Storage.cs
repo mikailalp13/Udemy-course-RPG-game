@@ -164,4 +164,90 @@ public class Inventory_Storage : Inventory_Base
 
         TriggerUpdateUI();
     }
+
+
+    public override void SaveData(ref GameData data)
+    {
+        base.SaveData(ref data);
+
+        data.storage_items.Clear();
+
+        foreach (var item in item_list)
+        {
+            if (item != null && item.item_data != null)
+            {
+                string save_id = item.item_data.save_id;
+
+                if (data.storage_items.ContainsKey(save_id) == false)
+                    data.storage_items[save_id] = 0;
+
+                data.storage_items[save_id] += item.stack_size;
+            }
+        }
+
+        data.storage_materials.Clear();
+
+        foreach (var item in material_stash)
+        {
+            if (item != null && item.item_data != null)
+            {
+                string save_id = item.item_data.save_id;
+
+
+                if (data.storage_materials.ContainsKey(save_id) == false)
+                    data.storage_materials[save_id] = 0;
+
+
+                data.storage_materials[save_id] += item.stack_size;
+            }
+        }
+    }
+
+
+    public override void LoadData(GameData data)
+    {
+        item_list.Clear();
+        material_stash.Clear();
+
+        foreach (var entry in data.storage_items)
+        {
+            string save_id = entry.Key;
+            int stack_size = entry.Value;
+
+            ItemDataSO item_data = item_data_base.GetItemData(save_id);
+
+            if (item_data == null)
+            {
+                Debug.LogWarning("Item not found: " + save_id);
+                continue;
+            }
+
+
+            for (int i = 0; i < stack_size; i++)
+            {
+                Inventory_Item item_to_load = new Inventory_Item(item_data);
+                AddItem(item_to_load);
+            }
+        }
+
+        foreach (var entry in data.storage_materials)
+        {
+            string save_id = entry.Key;
+            int stack_size = entry.Value;
+
+            ItemDataSO item_data = item_data_base.GetItemData(save_id);
+
+            if (item_data == null)
+            {
+                Debug.LogWarning("Item not found: " + save_id);
+                continue;
+            }
+
+            for (int i = 0; i < stack_size; i++)
+            {
+                Inventory_Item item_to_load = new Inventory_Item(item_data);
+                AddMaterialToStash(item_to_load);
+            }
+        }
+    }
 }

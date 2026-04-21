@@ -55,6 +55,8 @@ public class Skill_Base : MonoBehaviour
     }
 
 
+
+
     public void SetSkillOnCooldown()
     {
         player.ui.in_game_ui.GetSkillSlot(skill_type).StartCooldown(cooldown);
@@ -68,7 +70,9 @@ public class Skill_Base : MonoBehaviour
     }
      
     
+    public SkillType GetSkillType() => skill_type;
+    public SkillUpgradeType GetUpgrade() => upgrade_type;
+    protected bool OnCooldown() => Time.time < last_time_used + cooldown;
     protected bool Unlocked(SkillUpgradeType upgrade_to_check) => upgrade_type == upgrade_to_check;
     public void ReduceCooldownBy(float cooldown_reduction) => last_time_used = last_time_used + cooldown_reduction;
-    protected bool OnCooldown() => Time.time < last_time_used + cooldown;
 }
