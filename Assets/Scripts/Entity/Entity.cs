@@ -9,6 +9,7 @@ public class Entity : MonoBehaviour
 
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
+    public Entity_SFX sfx { get; private set; }
     protected StateMachine state_machine;
 
 
@@ -35,6 +36,7 @@ public class Entity : MonoBehaviour
     {
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        sfx = GetComponent<Entity_SFX>();
 
         state_machine = new StateMachine();
     }
@@ -92,6 +94,8 @@ public class Entity : MonoBehaviour
             StopCoroutine(knockback_co);
         knockback_co = StartCoroutine(KnockbackCo(knockback, duration));
     }
+
+
     private IEnumerator KnockbackCo(Vector2 knocback, float duration)
     {
         is_knocked = true;
@@ -102,6 +106,8 @@ public class Entity : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         is_knocked = false;
     }
+
+
     public void SetVelocity(float xVelocity, float yVelocity)
     {
         if (is_knocked)
@@ -111,6 +117,7 @@ public class Entity : MonoBehaviour
         HandleFlip(xVelocity);
     }
 
+
     public void HandleFlip(float xVelocity)
     {
         if (xVelocity > 0 && facing_right == false)
@@ -118,6 +125,7 @@ public class Entity : MonoBehaviour
         else if (xVelocity < 0 && facing_right == true)
             Flip();
     }
+
 
     public void Flip()
     {
@@ -127,6 +135,7 @@ public class Entity : MonoBehaviour
 
         OnFlipped?.Invoke();
     }
+
 
     private void HandleCollisionDetection()
     {
@@ -140,6 +149,7 @@ public class Entity : MonoBehaviour
         else
             wall_detected = Physics2D.Raycast(primary_wall_check.position, Vector2.right * facing_dir, wall_check_distance, what_is_ground);
     }
+
 
     protected virtual void OnDrawGizmos()
     {

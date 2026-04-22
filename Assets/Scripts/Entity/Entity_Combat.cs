@@ -47,6 +47,7 @@ public class Entity_Combat : MonoBehaviour
             {
                 OnDoingPhysicalDamage?.Invoke(physical_damage);
                 vfx.CreateOnHitVfx(target.transform, attack_data.is_crit, element);
+                
             }
         }
     }

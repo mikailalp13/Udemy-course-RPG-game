@@ -7,16 +7,16 @@ public class Object_Waypoint : MonoBehaviour
 
     [Space]
     [SerializeField] private RespawnType waypoint_type;
-    [SerializeField] private RespawnType connected_waypoint; // if you enter the enter door, you'll go the the previous scene's exit door
+    [SerializeField] private RespawnType connected_waypoint; // if you enter the enter gate, you'll go the the previous scene's exit gate
     [SerializeField] private Transform respawn_point;
     [SerializeField] private bool can_be_triggered = true;
 
 
-
     public RespawnType GetWaypointType() => waypoint_type;
 
-    public Vector3 GetPosition()
+    public Vector3 GetPositionAndSetTriggerFalse()
     {
+        can_be_triggered = false;
         return respawn_point == null ? transform.position : respawn_point.position;
     }
 
@@ -36,8 +36,6 @@ public class Object_Waypoint : MonoBehaviour
     {
         if (can_be_triggered == false)
             return;
-
-        SaveManager.instance.SaveGame();
 
         GameManager.instance.ChangeScene(transfer_to_scene, connected_waypoint);
     }

@@ -15,7 +15,7 @@ public class Inventory_Player : Inventory_Base
 
 
     [Header("Gold Info")]
-    public int gold = 1000;
+    public int gold = 10000;
 
 
 
@@ -139,7 +139,8 @@ public class Inventory_Player : Inventory_Base
 
     public override void LoadData(GameData data)
     {
-        gold = data.gold;
+        if (data.gold > 0)
+            gold = data.gold;
 
         foreach (var entry in data.inventory)
         {

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a8b7a8f985e74421870bb7e9a63af0c, type: 3}
+  m_Name: Audio Database
+  m_EditorClassIdentifier: Assembly-CSharp::AudioDatabaseSO
+  player_audio:
+  - audio_name: player_attack_hit
+    clips:
+    - {fileID: 8300000, guid: e1140838ac0174f26aaf658d8b06534f, type: 3}
+    - {fileID: 8300000, guid: f291d094a51a3406eb5ccff676966872, type: 3}
+    - {fileID: 8300000, guid: 636038014592b4d54bc3b0ed2d64efe4, type: 3}
+    volume: 1
+  - audio_name: player_attack_miss
+    clips:
+    - {fileID: 8300000, guid: d1cdb49ad6bdb48dcbe2b5dec31ed730, type: 3}
+    - {fileID: 8300000, guid: 7df89cec8970249e193f9a3648a21b14, type: 3}
+    - {fileID: 8300000, guid: dc3531214ebf64cec838e7b74ce1232d, type: 3}
+    volume: 1
+  ui_audio:
+  - audio_name: button_click
+    clips:
+    - {fileID: 8300000, guid: c31c6c2add8b640109af190a4dfa0ccb, type: 3}
+    volume: 1

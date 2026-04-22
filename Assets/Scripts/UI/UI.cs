@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class UI : MonoBehaviour
 {
+    public static UI instance;
     [SerializeField] private GameObject[] ui_elements;
     public bool alternative_input { get; private set; }
     private PlayerInputSet input;
@@ -18,6 +19,8 @@ public class UI : MonoBehaviour
     public UI_Merchant merchant_ui { get; private set; }
     public UI_InGame in_game_ui { get; private set; }
     public UI_Options options_ui { get; private set; }
+    public UI_DeathScreen death_screen_ui { get; private set; }
+    public UI_FadeScreen fade_screen_ui { get; private set; }
 
     #endregion
 
@@ -26,6 +29,8 @@ public class UI : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
+        
         item_tool_tip = GetComponentInChildren<UI_ItemToolTip>();
         stat_tool_tip = GetComponentInChildren<UI_StatToolTip>();
         skill_tool_tip = GetComponentInChildren<UI_SkillToolTip>();
@@ -38,6 +43,8 @@ public class UI : MonoBehaviour
         merchant_ui = GetComponentInChildren<UI_Merchant>(true);
         in_game_ui = GetComponentInChildren<UI_InGame>(true);
         options_ui = GetComponentInChildren<UI_Options>(true);
+        death_screen_ui = GetComponentInChildren<UI_DeathScreen>(true);
+        fade_screen_ui = GetComponentInChildren<UI_FadeScreen>(true);
 
         skill_tree_enabled = skill_tree_ui.gameObject.activeSelf;
         inventory_enabled = inventory_ui.gameObject.activeSelf;
@@ -76,29 +83,40 @@ public class UI : MonoBehaviour
     }
 
 
+    public void OpenDeathScreenUI()
+    {
+        SwitchTo(death_screen_ui.gameObject);
+        input.Disable();
+    }
+
+
     public void OpenOptionsUI()
     {
-        foreach (var element in ui_elements)
-            element.gameObject.SetActive(false);
-
         HideAllTooltips();
         StopPlayerControls(true);
-        options_ui.gameObject.SetActive(true);
+
+        SwitchTo(options_ui.gameObject);
     }
 
 
     public void SwitchToInGameUI()
     {
-        foreach (var element in ui_elements)
-            element.gameObject.SetActive(false);
-
-
         HideAllTooltips();
         StopPlayerControls(false);
-        in_game_ui.gameObject.SetActive(true);
+
+        SwitchTo(in_game_ui.gameObject);
 
         inventory_enabled = false;
         skill_tree_enabled = false;
+    }
+
+
+    private void SwitchTo(GameObject object_to_switch_on)
+    {
+        foreach (var element in ui_elements)
+            element.gameObject.SetActive(false);
+
+        object_to_switch_on.SetActive(true);        
     }
 
 
@@ -130,6 +148,7 @@ public class UI : MonoBehaviour
     {
         skill_tree_ui.transform.SetAsLastSibling();
         SetTooltipsAsLastSibling();
+        fade_screen_ui.transform.SetAsLastSibling();
 
         skill_tree_enabled = !skill_tree_enabled;
         skill_tree_ui.gameObject.SetActive(skill_tree_enabled);
@@ -138,10 +157,12 @@ public class UI : MonoBehaviour
         StopPlayerControlsIfNeeded();
     }
 
+
     public void ToggleInventoryUI()
     {
         inventory_ui.transform.SetAsLastSibling();
         SetTooltipsAsLastSibling();
+        fade_screen_ui.transform.SetAsLastSibling();
 
         inventory_enabled = !inventory_enabled;
         inventory_ui.gameObject.SetActive(inventory_enabled);

@@ -773,7 +773,7 @@ MonoBehaviour:
   - item_data: {fileID: 0}
     stack_size: 0
     item_effect: {fileID: 0}
-  gold: 1000
+  gold: 10000
 --- !u!114 &9171946906272697221
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -20,4 +20,7 @@ public class UI_Options : MonoBehaviour
     {
         player.health.EnableHealthBar(is_on);
     }
+
+
+    public void GoMainMenuButton() => GameManager.instance.ChangeScene("MainMenu", RespawnType.NoneSpecific);
 }
