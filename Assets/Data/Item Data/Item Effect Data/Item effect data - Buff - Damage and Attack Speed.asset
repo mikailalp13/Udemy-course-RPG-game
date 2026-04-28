@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43d98a7f769944f2ca88e0027594d5d5, type: 3}
   m_Name: Item effect data - Buff - Damage and Attack Speed
   m_EditorClassIdentifier: Assembly-CSharp::ItemEffect_Buff
-  effect_description: Grants +40 Damage and +15% Attack Speed for 20 seconds.
+  effect_description: 'For 20 seconds, you surrender to fury.
+
+
+    Your blows strike
+    harder (+40 Damage) and faster (+15% Attack Speed).'
   buffs_to_apply:
   - type: 7
     value: 40

@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00c03a9e808fd4b86aeafef127a8d112, type: 3}
   m_Name: Item effect data - Refund All Skills
   m_EditorClassIdentifier: Assembly-CSharp::ItemEffect_RefundAllSkills
-  effect_description: 'Reset all skills.
-
-    Refund all skill points.'
+  effect_description: "Forget what you\u2019ve become. \n\nReset all skills and reclaim
+    your skill points."

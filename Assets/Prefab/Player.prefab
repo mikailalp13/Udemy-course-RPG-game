@@ -703,6 +703,7 @@ GameObject:
   - component: {fileID: 3908301768943825817}
   - component: {fileID: 5075367427597241244}
   - component: {fileID: 2460776491928504701}
+  - component: {fileID: 3417366574750192223}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -1080,6 +1081,21 @@ MonoBehaviour:
   attack_miss: player_attack_miss
   sound_distance: 15
   show_gizmos: 0
+--- !u!114 &3417366574750192223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7391935424544081530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3786568f097d40abb370e6be162bf27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player_QuestManager
+  active_quests: []
+  completed_quests: []
+  quest_database: {fileID: 11400000, guid: b3343e09ab84d4e309c4e2ac957f867f, type: 2}
 --- !u!1 &8482320119580231209
 GameObject:
   m_ObjectHideFlags: 0

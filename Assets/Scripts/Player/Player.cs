@@ -15,7 +15,8 @@ public class Player : Entity
     public Entity_StatusHandler status_handler { get; private set; }
     public Player_Combat combat { get; private set; }
     public Inventory_Player inventory { get; private set; }
-    public Player_Stats stats { get; private set;}
+    public Player_Stats stats { get; private set; }
+    public Player_QuestManager quest_manager { get; private set; }
 
 
     #region State Variables
@@ -78,6 +79,7 @@ public class Player : Entity
         status_handler = GetComponent<Entity_StatusHandler>();
         inventory = GetComponent<Inventory_Player>();
         stats = GetComponent<Player_Stats>();
+        quest_manager = GetComponent<Player_QuestManager>();
 
         input = new PlayerInputSet();
         ui.SetupControlsUI(input);

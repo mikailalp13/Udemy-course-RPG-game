@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efdd32864de0d45c3af003bb8fbdfb75, type: 3}
   m_Name: Item effect data - Ice Blast On Taking Damage
   m_EditorClassIdentifier: Assembly-CSharp::ItemEffect_IceBlastOnTakingDamage
-  effect_description: 'When you take damage and your health falls below 15%, unleash
-    a cold explosion dealing 150 damage to nearby enemies. Cooldown 40s. '
+  effect_description: 'When death draws near, the cold answers.
+
+
+    Falling below
+    15% Health unleashes a freezing blast, dealing 150 damage to nearby enemies.
+    (40s cooldown)'
   effect_data:
     chill_duration: 3
     chill_slow_multiplier: 0.6

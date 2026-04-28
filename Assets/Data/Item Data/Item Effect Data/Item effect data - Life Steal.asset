@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23985786cfa6d46fb8245e83fc770a3a, type: 3}
   m_Name: Item effect data - Life Steal
   m_EditorClassIdentifier: Assembly-CSharp::ItemEffect_LifeSteal
-  effect_description: 'Heals you for 0.2% of physical damage you inflict with basic
-    attacks. '
+  effect_description: "Each strike feeds the hunger within. \n\nHeal for 0.2% of
+    the physical damage you deal with basic attacks."
   percent_healed_on_attack: 0.2

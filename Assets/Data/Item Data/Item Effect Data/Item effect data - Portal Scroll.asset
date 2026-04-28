@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23c7e84b3807d4b2eb0ba03e9b6040cd, type: 3}
   m_Name: Item effect data - Portal Scroll
   m_EditorClassIdentifier: Assembly-CSharp::ItemEffect_PortalScroll
-  effect_description: Open a portal to the camp.
+  effect_description: "Tear the veil and step through. \n\nOpens a portal back to
+    camp."

@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94aca8bfd53474c2ba550de5a7fe8b38, type: 3}
   m_Name: Item effect data - Restores 10% of Max Health
   m_EditorClassIdentifier: Assembly-CSharp::ItemEffect_Heal
-  effect_description: Restores 10% of Max Health.
+  effect_description: "A bitter remedy\u2026 but it keeps you breathing.\n\nRestores
+    10% of your Max Health."
   heal_percent: 0.1

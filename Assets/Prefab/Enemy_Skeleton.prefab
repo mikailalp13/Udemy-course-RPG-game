@@ -780,6 +780,7 @@ MonoBehaviour:
   ground_check: {fileID: 8737565620325827956}
   primary_wall_check: {fileID: 8227408368413302491}
   secondary_wall_check: {fileID: 0}
+  quest_target_id: enemy_skeleton
   battle_move_speed: 3
   attack_distance: 2
   battle_time_duration: 5
@@ -1048,6 +1049,7 @@ MonoBehaviour:
   attack_hit: player_attack_hit
   attack_miss: player_attack_miss
   sound_distance: 15
+  show_gizmos: 0
 --- !u!1 &6765360969479623504
 GameObject:
   m_ObjectHideFlags: 0

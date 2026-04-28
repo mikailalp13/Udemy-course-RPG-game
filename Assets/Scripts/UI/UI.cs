@@ -21,6 +21,7 @@ public class UI : MonoBehaviour
     public UI_Options options_ui { get; private set; }
     public UI_DeathScreen death_screen_ui { get; private set; }
     public UI_FadeScreen fade_screen_ui { get; private set; }
+    public UI_Quest quest_ui { get; private set; }
 
     #endregion
 
@@ -45,6 +46,7 @@ public class UI : MonoBehaviour
         options_ui = GetComponentInChildren<UI_Options>(true);
         death_screen_ui = GetComponentInChildren<UI_DeathScreen>(true);
         fade_screen_ui = GetComponentInChildren<UI_FadeScreen>(true);
+        quest_ui = GetComponentInChildren<UI_Quest>(true);
 
         skill_tree_enabled = skill_tree_ui.gameObject.activeSelf;
         inventory_enabled = inventory_ui.gameObject.activeSelf;
@@ -169,6 +171,16 @@ public class UI : MonoBehaviour
 
         HideAllTooltips();
         StopPlayerControlsIfNeeded();
+    }
+
+
+    public void OpenQuestUI(QuestDataSO[] quests_to_show)
+    {
+        StopPlayerControls(true);
+        HideAllTooltips();
+
+        quest_ui.gameObject.SetActive(true);
+        quest_ui.SetupQuestUI(quests_to_show);
     }
 
 

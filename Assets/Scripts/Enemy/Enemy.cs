@@ -4,6 +4,10 @@ using System.Collections;
 
 public class Enemy : Entity
 {
+    [Header("Quest Info")]
+    public string quest_target_id;
+
+    
     public Entity_Stats stats { get; private set; }
     public Enemy_Health health { get; private set; }
     public Enemy_IdleState idleState;

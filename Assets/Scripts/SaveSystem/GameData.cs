@@ -23,6 +23,11 @@ public class GameData
     public SerializableDictionary<string, bool> unlocked_checkpoints; // checkpoint_id -> unlock_status
     public SerializableDictionary<string, Vector3> in_scene_portals; // scene_name -> portal_position
 
+
+    public SerializableDictionary<string, bool> completed_quests; // quest_save_id -> complete_status
+    public SerializableDictionary<string, int> active_quests; // active_quest_save_id -> current_progress
+
+
     public string portal_destination_scene_name;
     public bool returning_from_town;
 
@@ -42,5 +47,8 @@ public class GameData
 
         unlocked_checkpoints = new SerializableDictionary<string, bool>();
         in_scene_portals = new SerializableDictionary<string, Vector3>();
+
+        completed_quests = new SerializableDictionary<string, bool>();
+        active_quests = new SerializableDictionary<string, int>();
     }
 }

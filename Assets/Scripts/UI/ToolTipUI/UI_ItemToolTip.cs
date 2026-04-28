@@ -13,12 +13,20 @@ public class UI_ItemToolTip : UI_ToolTip
     [SerializeField] private Transform inventory_info;
 
 
-    public void ShowToolTip(bool show, RectTransform target_rect, Inventory_Item item_to_show, bool buy_price = false, bool show_merchant_info = false)
+    public void ShowToolTip(bool show, RectTransform target_rect, Inventory_Item item_to_show, bool buy_price = false, bool show_merchant_info = false, bool show_controls = true)
     {
         base.ShowToolTip(show, target_rect);
 
-        merchant_info.gameObject.SetActive(show_merchant_info);
-        inventory_info.gameObject.SetActive(!show_merchant_info);
+        if (show_controls)
+        {
+            merchant_info.gameObject.SetActive(show_merchant_info);
+            inventory_info.gameObject.SetActive(!show_merchant_info);
+        }
+        else
+        {
+            merchant_info.gameObject.SetActive(false);
+            inventory_info.gameObject.SetActive(false);
+        }
 
         int price = buy_price ? item_to_show.buy_price : Mathf.FloorToInt(item_to_show.sell_price);
         int total_price = price * item_to_show.stack_size;
