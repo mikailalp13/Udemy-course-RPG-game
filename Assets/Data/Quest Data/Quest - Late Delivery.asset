@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ebe25f09d6b1458c8ed87bcf755c017, type: 3}
-  m_Name: Quest - Potion Commotion
+  m_Name: Quest - Late Delivery
   m_EditorClassIdentifier: Assembly-CSharp::QuestDataSO
   quest_save_id: 589554f83993b4c16abe8a024ae5aa75
   quest_type: 2
-  quest_name: Potion Commotion
-  description: 'Oi! I promised Martha some health potions, but I''ve got me hands
-    full. Be a gem and fetch ''em for me, would ya? Bring ''em to me - I''ll pass
-    ''em along.Be in a hurry tho, she gets cranky when I take too long with the help
-    she really needs. '
+  quest_name: Late Delivery
+  description: "Got an order I can\u2019t afford to miss. Martha\u2019s waiting on
+    her potions\u2014and she\u2019s not the patient kind. I\u2019d fetch them myself,
+    but this shop won\u2019t run on ghosts.\n\nHead to the blacksmith, grab the potions,
+    and bring them back to me. \n\nAnd be quick about it\u2026 I\u2019d rather not
+    deal with her temper again."
   quest_goal: '- Deliver health potions to Bob. '
   quest_target_id: 
   required_amount: 4

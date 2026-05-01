@@ -21,25 +21,12 @@ public class Player_QuestManager : MonoBehaviour, ISaveable
     }
 
 
-    public void TryGiveRewardFrom(RewardType npc_type)
+    public void TryGetRewardFrom(RewardType npc_type)
     {
         List<QuestData> get_reward_quests = new List<QuestData>();
 
         foreach (var quest in active_quests)
         {
-            // Deliver items if can
-            if (quest.quest_dataSO.quest_type == QuestType.Delivery)
-            {
-                ItemDataSO required_item = quest.quest_dataSO.item_to_deliver;
-                int required_amount = quest.quest_dataSO.required_amount;
-
-                if (inventory.HasItemAmount(required_item, required_amount))
-                {
-                    inventory.RemoveItemAmount(required_item, required_amount);
-                    quest.AddQuestProgress(required_amount);
-                }
-            }
-
             if (quest.CanGetReward() && quest.quest_dataSO.reward_type == npc_type)
                 get_reward_quests.Add(quest);
         }
@@ -64,6 +51,31 @@ public class Player_QuestManager : MonoBehaviour, ISaveable
                 drop_manager.CreateItemDrop(item.item_data);
             }
         }
+    }
+
+
+    public bool HasCompletedQuest()
+    {
+        for (int i = 0; i < active_quests.Count; i++)
+        {
+            QuestData quest = active_quests[i];
+
+            // Deliver items if can
+            if (quest.quest_dataSO.quest_type == QuestType.Delivery)
+            {
+                ItemDataSO required_item = quest.quest_dataSO.item_to_deliver;
+                int required_amount = quest.quest_dataSO.required_amount;
+
+
+                if (inventory.HasItemAmount(required_item, required_amount))
+                    return true;
+            }
+
+            if (quest.CanGetReward())
+                return true;
+        }
+
+        return false;
     }
 
 

@@ -11,7 +11,6 @@ public class UI : MonoBehaviour
     public UI_SkillToolTip skill_tool_tip { get; private set; }
     public UI_ItemToolTip item_tool_tip { get; private set; }
     public UI_StatToolTip stat_tool_tip { get; private set; }
-
     public UI_SkillTree skill_tree_ui { get; private set; }
     public UI_Inventory inventory_ui { get; private set; }
     public UI_Storage storage_ui { get; private set; }
@@ -22,6 +21,7 @@ public class UI : MonoBehaviour
     public UI_DeathScreen death_screen_ui { get; private set; }
     public UI_FadeScreen fade_screen_ui { get; private set; }
     public UI_Quest quest_ui { get; private set; }
+    public UI_Dialogue dialogue_ui { get; private set; }
 
     #endregion
 
@@ -47,6 +47,7 @@ public class UI : MonoBehaviour
         death_screen_ui = GetComponentInChildren<UI_DeathScreen>(true);
         fade_screen_ui = GetComponentInChildren<UI_FadeScreen>(true);
         quest_ui = GetComponentInChildren<UI_Quest>(true);
+        dialogue_ui = GetComponentInChildren<UI_Dialogue>(true);
 
         skill_tree_enabled = skill_tree_ui.gameObject.activeSelf;
         inventory_enabled = inventory_ui.gameObject.activeSelf;
@@ -81,6 +82,20 @@ public class UI : MonoBehaviour
             }
             Time.timeScale = 0;
             OpenOptionsUI();
+        };
+
+        input.UI.DialogueUI_Interaction.performed += ctx =>
+        {
+            if (dialogue_ui.gameObject.activeInHierarchy)
+                dialogue_ui.DialogueInteraction();
+        };
+
+        input.UI.DialogueUI_Navigation.performed += ctx =>
+        {
+            int direction = Mathf.RoundToInt(ctx.ReadValue<float>());
+
+            if (dialogue_ui.gameObject.activeInHierarchy)
+                dialogue_ui.NavigateChoice(direction);
         };
     }
 
@@ -174,6 +189,17 @@ public class UI : MonoBehaviour
     }
 
 
+    public void OpenDialogueUI(DialogueLineSO first_line, DialogueNpcData npc_data)
+    {
+        StopPlayerControls(true);
+        HideAllTooltips();
+
+        dialogue_ui.gameObject.SetActive(true);
+        dialogue_ui.SetupNpcData(npc_data);
+        dialogue_ui.PlayDialogueLine(first_line);
+    }
+
+
     public void OpenQuestUI(QuestDataSO[] quests_to_show)
     {
         StopPlayerControls(true);
@@ -192,6 +218,20 @@ public class UI : MonoBehaviour
         if (open_storage_ui == false)
         {
             craft_ui.gameObject.SetActive(false);
+            HideAllTooltips();
+        }
+    }
+
+
+    public void OpenCraftUI(bool open_craft_ui)
+    {
+        craft_ui.gameObject.SetActive(open_craft_ui);
+        StopPlayerControls(open_craft_ui);
+
+
+        if (open_craft_ui == false)
+        {
+            storage_ui.gameObject.SetActive(false);
             HideAllTooltips();
         }
     }

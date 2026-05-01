@@ -10,17 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ebe25f09d6b1458c8ed87bcf755c017, type: 3}
-  m_Name: Quest - It's Dangerous to Go Alone
+  m_Name: "Quest - Don\u2019t Go Empty-Handed"
   m_EditorClassIdentifier: Assembly-CSharp::QuestDataSO
   quest_save_id: 44c671286cc924e1f8e106d01d4223bd
-  quest_name: It's Dangerous to Go Alone
-  description: 'Since you''re just startin'' your adventure, you''ll need something
-    to begin with. I bought a sword off some weird fella - looked half mad, but the
-    blade was decent. Wait, where''d i put it. Agh right, forgot it at Joe''s. Go
-    talk to the blacksmith - he''s holdin'' onto weapon worthy of a hero like you. '
+  quest_type: 0
+  quest_name: "Don\u2019t Go Empty-Handed"
+  description: "You\u2019re new. I can tell. And out there? New gets you killed.\n\nYou\u2019ll
+    need a weapon\u2014something that won\u2019t snap in your hands. I had a blade\u2026
+    bought it off a strange fella. Half mad, but he knew steel.\n\nLeft it with Joe,
+    the blacksmith. Go on\u2014he\u2019s holding onto it. Try not to die before you
+    get back."
   quest_goal: '- Talk to blacksmith Joe.'
   quest_target_id: blacksmith_joe
   required_amount: 1
+  item_to_deliver: {fileID: 0}
   reward_type: 0
   reward_items:
   - item_data: {fileID: 11400000, guid: 755e968f3df144ab29f8599036d97450, type: 2}

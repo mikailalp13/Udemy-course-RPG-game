@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fba137113284d411e938db724eb364d5, type: 3}
+  m_Name: Line - MerchantBob2 2 1
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueLineSO
+  dialogue_group_name: Merchant Bob
+  speaker: {fileID: 11400000, guid: 9376e887342cc4ed18c9a6c40125a386, type: 2}
+  text_line:
+  - 
+  player_choice_answer: Got any new work?
+  choice_lines: []
+  action_line: Sure, take a look!
+  action_type: 1

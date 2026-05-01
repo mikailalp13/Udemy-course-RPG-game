@@ -10,18 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ebe25f09d6b1458c8ed87bcf755c017, type: 3}
-  m_Name: Quest - Bone Hunt
+  m_Name: Quest - Grave Business
   m_EditorClassIdentifier: Assembly-CSharp::QuestDataSO
   quest_save_id: e746310f42aa040a499ab4ff84bc3247
-  quest_name: Bone Hunt
+  quest_type: 0
+  quest_name: Grave Business
   description: "Used to be good for business\u2014miners, coin, the smell of iron
-    and ale. Now? Just bones walking where they shouldn\u2019t. Bad for trade\u2026
+    and ale. \n\nNow? Just bones walking where they shouldn\u2019t. Bad for trade\u2026
     bad for sleep. I\u2019d handle it myself, but I\u2019ve got a shop to run\u2014and
-    knees that won\u2019t listen. Put them back in the dirt where they belong. Do
-    that, and maybe I\u2019ll make it worth your while."
+    knees that won\u2019t listen. \n\nPut them back in the dirt where they belong.
+    Do that, and maybe I\u2019ll make it worth your while."
   quest_goal: '- Eliminate 2 skeletons'
   quest_target_id: enemy_skeleton
   required_amount: 2
+  item_to_deliver: {fileID: 0}
   reward_type: 0
   reward_items:
   - item_data: {fileID: 11400000, guid: 0ce98618c7cb24c81a097c0c0ff6f1b8, type: 2}
