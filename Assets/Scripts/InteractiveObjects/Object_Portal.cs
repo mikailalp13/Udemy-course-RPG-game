@@ -6,15 +6,18 @@ public class Object_Portal : MonoBehaviour, ISaveable
     public static Object_Portal instance;
     public bool is_active { get; private set; }
 
+
     [SerializeField] private Vector2 default_position; // Where portal appears in town
     [SerializeField] private string town_scene_name = "Level_0";
 
     [SerializeField] private Transform respawn_point;
     [SerializeField] private bool can_be_triggered;
 
+
     private string current_scene_name;
     private string return_scene_name;
     private bool returning_from_town;
+
 
 
     private void Awake()
@@ -65,10 +68,13 @@ public class Object_Portal : MonoBehaviour, ISaveable
 
 
     private void OnTriggerExit2D(Collider2D collision) => can_be_triggered = true;
+
     
     public void SetTrigger(bool trigger) => can_be_triggered = trigger;
 
+
     public Vector3 GetPosition() => respawn_point != null ? respawn_point.position : transform.position;
+
 
     private bool InTown() => current_scene_name == town_scene_name;
 

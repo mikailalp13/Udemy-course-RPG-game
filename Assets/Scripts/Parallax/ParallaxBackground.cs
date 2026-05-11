@@ -5,7 +5,10 @@ public class ParallaxBackground : MonoBehaviour
     private Camera main_camera;
     private float last_camera_position_x;
     private float camera_half_width;
+
     [SerializeField] private ParallaxLayer[] background_layers;
+
+
 
     private void Awake()
     {
@@ -13,6 +16,7 @@ public class ParallaxBackground : MonoBehaviour
         camera_half_width = main_camera.orthographicSize * main_camera.aspect;
         InitializeLayers();
     }
+
 
     private void FixedUpdate()
     {
@@ -29,6 +33,7 @@ public class ParallaxBackground : MonoBehaviour
             layer.LoopBackground(camera_left_edge, camera_right_edge);
         }
     }
+
 
     private void InitializeLayers()
     {

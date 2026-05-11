@@ -1,8 +1,7 @@
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class UI_InGame : MonoBehaviour
 {
@@ -90,6 +89,7 @@ public class UI_InGame : MonoBehaviour
         
         return null;
     }
+
 
     private void UpdateHealthBar()
     {

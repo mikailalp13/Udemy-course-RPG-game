@@ -12,15 +12,15 @@ public class Player_BasicAttackState : PlayerState
     private const int FirstComboIndex = 1; // the combo index starts with 1, this parameter is used in the Animator.
 
 
-    public Player_BasicAttackState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
+    public Player_BasicAttackState(Player player, StateMachine state_machine, string anim_bool_name) : base(player, state_machine, anim_bool_name)
     {
         if (combo_limit != player.attack_velocity.Length)
         {
             Debug.LogWarning("Adjusted combo limit to match attack velocity array!");
             combo_limit = player.attack_velocity.Length;
         }
-            
     }
+
 
     public override void Enter()
     {
@@ -49,6 +49,7 @@ public class Player_BasicAttackState : PlayerState
             HandleStateExit();            
     }
 
+
     public override void Exit()
     {
         base.Exit();
@@ -56,22 +57,25 @@ public class Player_BasicAttackState : PlayerState
         last_time_attacked = Time.time;
     }
 
+
     private void HandleStateExit()
     {
         if (combo_attack_queued)
         {
-            anim.SetBool(animBoolName, false);
+            anim.SetBool(anim_bool_name, false);
             player.EnterAttackStateWithDelay();
         }
         else
-            stateMachine.ChangeState(player.idleState);
+            state_machine.ChangeState(player.idleState);
     }
+
 
     private void QueueNextAttack()
     {
         if (combo_index < combo_limit)
             combo_attack_queued = true;
     }
+
 
     private void HandleAttackVelocity()
     {
@@ -81,6 +85,7 @@ public class Player_BasicAttackState : PlayerState
             player.SetVelocity(0, rb.linearVelocity.y);
     }
 
+
     private void ApplyAttackVelocity()
     {
         Vector2 attackVelocity = player.attack_velocity[combo_index - 1];
@@ -88,6 +93,7 @@ public class Player_BasicAttackState : PlayerState
         attack_velocity_timer = player.attack_velocity_duration;
         player.SetVelocity(attackVelocity.x * attack_dir, attackVelocity.y);
     }
+
 
     private void ResetComboIndexIfNeeded()
     {

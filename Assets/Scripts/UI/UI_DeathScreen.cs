@@ -7,10 +7,12 @@ public class UI_DeathScreen : MonoBehaviour
         GameManager.instance.ChangeScene("Level_0", RespawnType.NoneSpecific);
     }
 
+
     public void GoToCheckpointButton()
     {
         GameManager.instance.RestartScene();
     }
+    
 
     public void GoToMainMenuButton()
     {

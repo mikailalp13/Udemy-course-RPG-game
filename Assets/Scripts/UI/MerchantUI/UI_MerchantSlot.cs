@@ -3,9 +3,10 @@ using UnityEngine.EventSystems;
 
 public class UI_MerchantSlot : UI_ItemSlot
 {
+    public MerchantSlotType slot_type;
     private Inventory_Merchant merchant;
     public enum MerchantSlotType { MerchantSlot, PlayerSlot }
-    public MerchantSlotType slot_type;
+
 
 
     public override void OnPointerDown(PointerEventData eventData)
@@ -40,6 +41,7 @@ public class UI_MerchantSlot : UI_ItemSlot
         ui.item_tool_tip.ShowToolTip(false, null);
     }
 
+
     public override void OnPointerEnter(PointerEventData eventData)
     {
         if (item_in_slot == null)
@@ -50,6 +52,7 @@ public class UI_MerchantSlot : UI_ItemSlot
         else
             ui.item_tool_tip.ShowToolTip(true, rect, item_in_slot, false, true);
     }
+
 
     public void SetupMerchantUI(Inventory_Merchant merchant) => this.merchant = merchant;
 }

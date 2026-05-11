@@ -30,6 +30,7 @@ public class Inventory_Item
         item_id = item_data.item_name + " - " + Guid.NewGuid();
     }
 
+
     public void AddModifiers(Entity_Stats player_stats)
     {
         foreach (var mod in modifiers)
@@ -38,6 +39,7 @@ public class Inventory_Item
             stat_to_modify.AddModifier(mod.value, item_id);
         }
     }
+
 
     public void RemoveModifiers(Entity_Stats player_stats)
     {
@@ -48,6 +50,7 @@ public class Inventory_Item
         }
     }
 
+
     private EquipmentDataSO EquipmentData()
     {
         if (item_data is EquipmentDataSO equipment)
@@ -56,11 +59,15 @@ public class Inventory_Item
         return null;
     }
 
+
     public void AddItemEffect(Player player) => item_effect?.Subscribe(player);
+
     public void RemoveItemEffect(Player player) => item_effect?.Unsubscribe();
 
     public bool CanAddStack() => stack_size < item_data.max_stack_size;
+
     public void AddStack() => stack_size++;   
+
     public void RemoveStack() => stack_size--;
 
 
@@ -104,45 +111,47 @@ public class Inventory_Item
         return sb.ToString();
     }
 
+
     private string GetStatNameByType(StatType type)
     {
         switch (type)
         {
-            case StatType.max_health: return "Max Health";
-            case StatType.health_regen: return "Health Regeneration";
-            case StatType.evasion: return "Evasion";
-            case StatType.armor: return "Armor";
-            case StatType.strength: return "Strength";
-            case StatType.agility: return "Agility";
-            case StatType.intelligence: return "Intelligence";
-            case StatType.vitality: return "Vitality";
-            case StatType.attack_speed: return "Attack Speed";
-            case StatType.damage: return "Damage";
-            case StatType.crit_chance: return "Crit Chance";
-            case StatType.crit_power: return "Crit Power";
-            case StatType.armor_reduction: return "Armor Reduction";
-            case StatType.fire_damage: return "Fire Damage";
-            case StatType.ice_damage: return "Ice Damage";
-            case StatType.lightning_damage: return "Lightning Damage";
-            case StatType.ice_resistance: return "Ice Resistance";
-            case StatType.fire_resistance: return "Fire Resistance";
-            case StatType.lightning_resistance: return "Lightning Resistance";
+            case StatType.MaxHealth: return "Max Health";
+            case StatType.HealthRegen: return "Health Regeneration";
+            case StatType.Evasion: return "Evasion";
+            case StatType.Armor: return "Armor";
+            case StatType.Strength: return "Strength";
+            case StatType.Agility: return "Agility";
+            case StatType.Intelligence: return "Intelligence";
+            case StatType.Vitality: return "Vitality";
+            case StatType.AttackSpeed: return "Attack Speed";
+            case StatType.Damage: return "Damage";
+            case StatType.CritChance: return "Crit Chance";
+            case StatType.CritPower: return "Crit Power";
+            case StatType.ArmorReduction: return "Armor Reduction";
+            case StatType.FireDamage: return "Fire Damage";
+            case StatType.IceDamage: return "Ice Damage";
+            case StatType.LightningDamage: return "Lightning Damage";
+            case StatType.IceResistance: return "Ice Resistance";
+            case StatType.FireResistance: return "Fire Resistance";
+            case StatType.LightningResistance: return "Lightning Resistance";
             default: return "Unknown Stat";    
         }
     }
+
 
     private bool IsPercentageStat(StatType type)
     {
         switch (type)
         {
-            case StatType.crit_chance:
-            case StatType.crit_power:
-            case StatType.armor_reduction:
-            case StatType.ice_resistance:
-            case StatType.fire_resistance:
-            case StatType.lightning_resistance:
-            case StatType.attack_speed:
-            case StatType.evasion:
+            case StatType.CritChance:
+            case StatType.CritPower:
+            case StatType.ArmorReduction:
+            case StatType.IceResistance:
+            case StatType.FireResistance:
+            case StatType.LightningResistance:
+            case StatType.AttackSpeed:
+            case StatType.Evasion:
                 return true;
             default:
                 return false;

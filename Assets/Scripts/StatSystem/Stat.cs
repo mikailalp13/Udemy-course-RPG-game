@@ -1,14 +1,15 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 
 [Serializable]
 public class Stat
 {
     [SerializeField] float base_value;
     [SerializeField] private List<StatModifier> modifiers = new List<StatModifier>(); // we can modify lists dynamically
-    private bool need_to_calculate = true; 
     private float final_value;
+    private bool need_to_calculate = true; 
+
 
     public float GetValue()
     {
@@ -22,6 +23,7 @@ public class Stat
         return final_value;
     }
 
+
     public void AddModifier(float value, string source)
     {
         StatModifier mod_to_add = new StatModifier(value, source);
@@ -29,12 +31,14 @@ public class Stat
         need_to_calculate = true;
     }
 
+
     public void RemoveModifier(string source)
     {
         modifiers.RemoveAll(modifier => modifier.source == source); 
         // just like foreach. we "remove all" if the condition is true. modifier is the name like foreach (var modifier in ...)
         need_to_calculate = true;
     }
+
 
     private float GetFinalValue()
     {
@@ -51,6 +55,7 @@ public class Stat
     public float SetBaseValue(float value) => base_value = value;
     
 }
+
 
 [Serializable]
 public class StatModifier

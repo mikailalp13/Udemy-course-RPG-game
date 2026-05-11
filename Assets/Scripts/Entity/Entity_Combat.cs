@@ -17,6 +17,7 @@ public class Entity_Combat : MonoBehaviour
     [SerializeField] private LayerMask what_is_target;
 
 
+
     private void Awake()
     {
         vfx = GetComponent<Entity_VFX>();
@@ -29,7 +30,7 @@ public class Entity_Combat : MonoBehaviour
     {
         bool target_got_hit = false;
 
-        foreach (var target in GetDetectedColliders())
+        foreach (var target in GetDetectedColliders(what_is_target))
         {
             IDamageable damageable = target.GetComponent<IDamageable>();
 
@@ -60,10 +61,48 @@ public class Entity_Combat : MonoBehaviour
             sfx?.PlayAttackMiss();
     }
 
-    protected Collider2D[] GetDetectedColliders()
+
+    public void PerformAttackOnTarget(Transform target, DamageScaleData damage_scale_data = null)
     {
-        return Physics2D.OverlapCircleAll(target_check.position, target_check_radius, what_is_target);
+        bool target_got_hit = false;
+            
+        IDamageable damageable = target.GetComponent<IDamageable>();
+
+        if (damageable == null)
+            return;
+
+        DamageScaleData damage_scale = damage_scale_data == null ? basic_attack_scale : damage_scale_data;
+        AttackData attack_data = stats.GetAttackData(basic_attack_scale);
+        Entity_StatusHandler status_handler = target.GetComponent<Entity_StatusHandler>(); 
+            
+        float physical_damage = attack_data.physcial_damage;
+        float elemental_damage = attack_data.elemental_damage;
+        ElementType element = attack_data.element;
+
+
+        target_got_hit = damageable.TakeDamage(physical_damage, elemental_damage, element, transform);
+            
+        if (element != ElementType.None)
+            status_handler?.ApplyStatusEffect(element, attack_data.effect_data);
+
+
+        if (target_got_hit)
+        {
+            OnDoingPhysicalDamage?.Invoke(physical_damage);
+            vfx.CreateOnHitVfx(target.transform, attack_data.is_crit, element);
+            sfx?.PlayAttackHit();
+        }
+
+        if (target_got_hit == false)
+            sfx?.PlayAttackMiss();
     }
+
+
+    protected Collider2D[] GetDetectedColliders(LayerMask what_to_detect)
+    {
+        return Physics2D.OverlapCircleAll(target_check.position, target_check_radius, what_to_detect);
+    }
+
 
     private void OnDrawGizmos()
     {

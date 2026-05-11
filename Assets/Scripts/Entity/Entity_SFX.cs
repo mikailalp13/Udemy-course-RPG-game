@@ -8,9 +8,11 @@ public class Entity_SFX : MonoBehaviour
     [SerializeField] private string attack_hit;
     [SerializeField] private string attack_miss;
 
+
     [Space]
     [SerializeField] private float sound_distance = 15f;
     [SerializeField] private bool show_gizmos;
+
 
 
     private void Awake()

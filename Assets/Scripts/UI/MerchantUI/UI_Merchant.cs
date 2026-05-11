@@ -8,10 +8,12 @@ public class UI_Merchant : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI gold_text;
 
+
     [Space]
     [SerializeField] private UI_ItemSlotParent merchant_slots;
     [SerializeField] private UI_ItemSlotParent inventory_slots;
     [SerializeField] private UI_EquipSlotParent equip_slots;
+
 
 
     public void SetupMerchantUI(Inventory_Merchant merchant, Inventory_Player inventory)
@@ -28,6 +30,7 @@ public class UI_Merchant : MonoBehaviour
         foreach (var slot in merchant_slots)
             slot.SetupMerchantUI(merchant);
     }
+    
 
     private void UpdateSlotUI()
     {

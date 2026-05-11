@@ -8,6 +8,7 @@ public class UI_QuestRewardSlot : UI_ItemSlot
         
     }
 
+
     public override void OnPointerEnter(PointerEventData eventData)
     {
         if (item_in_slot == null)

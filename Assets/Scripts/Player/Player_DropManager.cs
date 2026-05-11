@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Player_DropManager : Entity_DropManager
 {
@@ -9,10 +9,12 @@ public class Player_DropManager : Entity_DropManager
     private Inventory_Player inventory;
 
 
+
     private void Awake()
     {
         inventory = GetComponent<Inventory_Player>();
     }
+
 
     public override void DropItems()
     {
@@ -40,5 +42,4 @@ public class Player_DropManager : Entity_DropManager
             }
         }
     }
-
 }

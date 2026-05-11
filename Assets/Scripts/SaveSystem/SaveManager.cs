@@ -15,6 +15,7 @@ public class SaveManager : MonoBehaviour
     [SerializeField] private bool encrypt_data = true;
 
 
+
     private void Awake()
     {
         instance = this;
@@ -70,10 +71,12 @@ public class SaveManager : MonoBehaviour
         LoadGame();
     }
 
+
     private void OnApplicationQuit()
     {
         SaveGame();
     }
+
 
     private List<ISaveable> FindISaveables()
     {

@@ -3,9 +3,11 @@ using UnityEngine;
 public class Player_SwordThrowState : PlayerState
 {
     private Camera main_camera;
-    public Player_SwordThrowState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
+
+    public Player_SwordThrowState(Player player, StateMachine state_machine, string anim_bool_name) : base(player, state_machine, anim_bool_name)
     {
     }
+
 
     public override void Enter()
     {
@@ -15,8 +17,8 @@ public class Player_SwordThrowState : PlayerState
 
         if (main_camera != Camera.main)
             main_camera = Camera.main;
-
     }
+
 
     public override void Update()
     {
@@ -38,8 +40,9 @@ public class Player_SwordThrowState : PlayerState
         }
 
         if (input.Player.RangeAttack.WasReleasedThisFrame() || trigger_called)
-            stateMachine.ChangeState(player.idleState);
+            state_machine.ChangeState(player.idleState);
     }
+
 
     public override void Exit()
     {
@@ -48,6 +51,7 @@ public class Player_SwordThrowState : PlayerState
         anim.SetBool("swordThrowPerformed", false);
         skill_manager.sword_throw.EnableDots(false);
     }
+
 
     private Vector2 DirectionToMouse()
     {

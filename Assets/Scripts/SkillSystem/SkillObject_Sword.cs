@@ -9,11 +9,14 @@ public class SkillObject_Sword : SkillObject_Base
     protected float come_back_speed = 20f;
     protected float max_allowed_distance = 25f;
 
+
+
     protected virtual void Update()
     {
         transform.right = rb.linearVelocity;
         HandleComeBack();
     }
+
 
     public virtual void SetupSword(Skill_SwordThrow sword_manager, Vector2 direction)
     {
@@ -26,7 +29,9 @@ public class SkillObject_Sword : SkillObject_Base
         damage_scale_data = sword_manager.damage_scale_data;
     }
 
+
     public void GetSwordBackToPlayer() => should_come_back = true;   
+
 
     protected void HandleComeBack()
     {
@@ -44,16 +49,17 @@ public class SkillObject_Sword : SkillObject_Base
             Destroy(gameObject);
     }
 
+
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         StopSword(collision);
         DamageEnemiesInRadius(transform, 1);
     }
 
+
     protected void StopSword(Collider2D collision)
     {
         rb.simulated = false;
         transform.parent = collision.transform;
     }
-
 }

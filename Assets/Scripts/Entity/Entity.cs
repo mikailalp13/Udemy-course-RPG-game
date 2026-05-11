@@ -1,5 +1,5 @@
-using UnityEngine;
 using System;
+using UnityEngine;
 using System.Collections;
 
 public class Entity : MonoBehaviour
@@ -9,6 +9,7 @@ public class Entity : MonoBehaviour
 
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
+    public Collider2D col { get; private set; }
     public Entity_SFX sfx { get; private set; }
     protected StateMachine state_machine;
 
@@ -32,19 +33,24 @@ public class Entity : MonoBehaviour
     private Coroutine knockback_co;
     private Coroutine slow_down_co;
 
+
+
     protected virtual void Awake()
     {
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         sfx = GetComponent<Entity_SFX>();
+        col = GetComponent<Collider2D>();
 
         state_machine = new StateMachine();
     }
+
 
     protected virtual void Start()
     {
 
     }
+
 
     protected virtual void Update()
     {
@@ -57,6 +63,7 @@ public class Entity : MonoBehaviour
     {
         state_machine.current_state.AnimationTrigger();
     }
+
 
     public virtual void EntityDeath()
     {
@@ -83,10 +90,12 @@ public class Entity : MonoBehaviour
         yield return null;
     }
 
+
     public virtual void StopSlowDown()
     {
         slow_down_co = null;
     }
+
 
     public void RecieveKnockback(Vector2 knockback, float duration)
     {
@@ -159,5 +168,4 @@ public class Entity : MonoBehaviour
         if (secondary_wall_check != null)
             Gizmos.DrawLine(secondary_wall_check.position, secondary_wall_check.position + new Vector3(wall_check_distance * facing_dir, 0));
     }
-
 }

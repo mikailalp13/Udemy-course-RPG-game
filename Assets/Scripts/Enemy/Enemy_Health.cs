@@ -6,6 +6,7 @@ public class Enemy_Health : Entity_Health
     private Player_QuestManager quest_manager;
 
 
+
     protected override void Start()
     {
         base.Start();

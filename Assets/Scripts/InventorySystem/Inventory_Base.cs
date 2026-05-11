@@ -21,6 +21,7 @@ public class Inventory_Base : MonoBehaviour, ISaveable
         player = GetComponent<Player>();
     }
 
+
     public void TryUseItem(Inventory_Item item_to_use)
     {
         Inventory_Item consumable = item_list.Find(item => item == item_to_use);
@@ -41,16 +42,19 @@ public class Inventory_Base : MonoBehaviour, ISaveable
         OnInventoryChange?.Invoke();
     }
 
+
     public bool CanAddItem(Inventory_Item item_to_add)
     {
         bool has_stackable = FindStackable(item_to_add) != null;
         return has_stackable || item_list.Count < max_inventory_size;
     } 
         
+
     public Inventory_Item FindStackable(Inventory_Item item_to_add)
     {
         return item_list.Find(item => item.item_data == item_to_add.item_data && item.CanAddStack());
     } 
+
 
     public void AddItem(Inventory_Item item_to_add)
     {
@@ -127,10 +131,12 @@ public class Inventory_Base : MonoBehaviour, ISaveable
         return false;
     }
 
+
     public Inventory_Item FindItem(Inventory_Item item_to_find)
     {
         return item_list.Find(item => item == item_to_find);
     }
+
 
     public Inventory_Item FindSameItem(Inventory_Item item_to_find)
     {

@@ -19,6 +19,7 @@ public class Object_Checkpoint : MonoBehaviour, ISaveable
 
     public string GetCheckPointId() => checkpoint_id;
 
+
     public Vector3 GetPosition() => respawn_point == null ? transform.position : respawn_point.position;
 
 

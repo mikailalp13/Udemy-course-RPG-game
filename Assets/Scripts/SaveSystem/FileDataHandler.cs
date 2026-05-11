@@ -8,11 +8,13 @@ public class FileDataHandler
     private bool encrypt_data;
     private string code_word = "unityrpg";
 
+
     public FileDataHandler(string data_dir_path, string data_file_name, bool encrypt_data)
     {
         full_path = Path.Combine(data_dir_path, data_file_name);
         this.encrypt_data = encrypt_data;
     }
+
 
     public void SaveData(GameData game_data)
     {
@@ -82,11 +84,13 @@ public class FileDataHandler
         return load_data;
     }
 
+
     public void Delete()
     {
         if (File.Exists(full_path))
             File.Delete(full_path);
     }
+    
 
     private string EncryptDecrypt(string data)
     {

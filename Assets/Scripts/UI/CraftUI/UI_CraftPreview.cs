@@ -16,6 +16,7 @@ public class UI_CraftPreview : MonoBehaviour
     [SerializeField] private TextMeshProUGUI button_text;
 
 
+
     public void SetupCraftPreview(Inventory_Storage storage)
     {
         this.storage = storage;
@@ -25,6 +26,7 @@ public class UI_CraftPreview : MonoBehaviour
         foreach (var slot in craft_preview_slots)
             slot.gameObject.SetActive(false);
     }
+
 
     public void ConfirmCraft()
     {
@@ -40,6 +42,7 @@ public class UI_CraftPreview : MonoBehaviour
         UpdateCraftPreviewSlots();
     }
 
+
     public void UpdateCraftPreview(ItemDataSO item_data)
     {
         item_to_craft = new Inventory_Item(item_data);
@@ -49,6 +52,7 @@ public class UI_CraftPreview : MonoBehaviour
         item_info.text = item_to_craft.GetItemInfo();
         UpdateCraftPreviewSlots();
     }
+
 
     private void UpdateCraftPreviewSlots(){
 

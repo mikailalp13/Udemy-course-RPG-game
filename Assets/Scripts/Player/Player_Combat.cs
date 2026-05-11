@@ -3,12 +3,16 @@ using UnityEngine;
 public class Player_Combat : Entity_Combat
 {
     [Header("Counter attack details")]
-    [SerializeField] private float counterRecovery = 0.1f;
+    [SerializeField] private float counter_recovery = 0.1f;
+    [SerializeField] private LayerMask what_is_counterable;
+
+
+
     public bool CounterAttackPerformed()
     {
-        bool hasPerformedCounter = false;
+        bool has_performed_counter = false;
 
-        foreach (var target in GetDetectedColliders())
+        foreach (var target in GetDetectedColliders(what_is_counterable))
         {
             ICounterable counterable = target.GetComponent<ICounterable>();
 
@@ -18,12 +22,13 @@ public class Player_Combat : Entity_Combat
             if (counterable.CanBeCountered)
             {
                 counterable.HandleCounter();
-                hasPerformedCounter = true;
+                has_performed_counter = true;
             }
         }
 
-        return hasPerformedCounter;
+        return has_performed_counter;
     }
 
-    public float GetCounterRecoveryDuration() => counterRecovery;
+
+    public float GetCounterRecoveryDuration() => counter_recovery;
 }

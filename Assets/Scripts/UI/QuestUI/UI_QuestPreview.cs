@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class UI_QuestPreview : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI quest_name;
-    [SerializeField] private TextMeshProUGUI quest_description;
-    [SerializeField] private TextMeshProUGUI quest_goal;
-    [SerializeField] private UI_QuestRewardSlot[] quest_reward;
-
-    [SerializeField] private GameObject[] additional_objects;
     private UI_Quest quest_ui;
     private QuestDataSO preview_quest;
+
+    [SerializeField] private TextMeshProUGUI quest_name;
+    [SerializeField] private TextMeshProUGUI quest_goal;
+    [SerializeField] private TextMeshProUGUI quest_description;
+    [SerializeField] private GameObject[] additional_objects;
+    [SerializeField] private UI_QuestRewardSlot[] quest_reward;
 
 
     public void SetupQuestPreview(QuestDataSO quest_dataSO)

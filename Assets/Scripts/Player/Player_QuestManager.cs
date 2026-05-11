@@ -14,6 +14,7 @@ public class Player_QuestManager : MonoBehaviour, ISaveable
     [SerializeField] private QuestDatabaseSO quest_database;
 
 
+
     private void Awake()
     {
         drop_manager = GetComponent<Entity_DropManager>();
@@ -132,6 +133,7 @@ public class Player_QuestManager : MonoBehaviour, ISaveable
         return active_quests.Find(q => q.quest_dataSO == quest_to_check) != null;
     }
 
+
     public void LoadData(GameData data)
     {
         active_quests.Clear();
@@ -155,6 +157,7 @@ public class Player_QuestManager : MonoBehaviour, ISaveable
             active_quests.Add(quest_to_load);
         }
     }
+
 
     public void SaveData(ref GameData data)
     {

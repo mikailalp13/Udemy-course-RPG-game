@@ -1,10 +1,11 @@
-using System.Collections;
 using UnityEngine;
+using System.Collections;
 
 public class Entity_VFX : MonoBehaviour
 {
     protected SpriteRenderer sr;
     private Entity entity;
+
 
     [Header("On Taking Damage VFX")]
     [SerializeField] private Material on_damage_material;
@@ -26,12 +27,60 @@ public class Entity_VFX : MonoBehaviour
     private Color original_hit_vfx_color;
 
 
+    [Header("Image Echo VFX")]
+    [Range(0.01f, 0.2f)]
+    [SerializeField] private float image_echo_interval = 0.05f;
+    [SerializeField] private GameObject image_echo_prefab;
+    private Coroutine image_echo_co;
+
+
+
     private void Awake()
     {
         entity = GetComponent<Entity>();
         sr = GetComponentInChildren<SpriteRenderer>();
         original_material = sr.material;
         original_hit_vfx_color = hit_vfx_color;
+    }
+
+
+    public void DoImageEchoEffect(float duration)
+    {
+        StopImageEchoEffect();
+        image_echo_co = StartCoroutine(ImageEchoEffectCo(duration));
+    }
+
+
+    public void StopImageEchoEffect()
+    {
+        if (image_echo_co != null)
+            StopCoroutine(image_echo_co);
+    }
+    
+
+    private IEnumerator ImageEchoEffectCo(float duration)
+    {
+        float time_tracker = 0;
+
+        while (time_tracker < duration)
+        {
+            CreateImageEcho();
+
+            yield return new WaitForSeconds(image_echo_interval);
+            time_tracker += image_echo_interval;
+        }
+    }
+
+
+    private void CreateImageEcho()
+    {
+        Vector3 position = entity.anim.transform.position;
+        float scale = entity.anim.transform.localScale.x;
+
+        GameObject image_echo = Instantiate(image_echo_prefab, position, transform.rotation);
+
+        image_echo.transform.localScale = new Vector3(scale, scale, scale);
+        image_echo.GetComponentInChildren<SpriteRenderer>().sprite = sr.sprite;
     }
 
 
@@ -44,6 +93,7 @@ public class Entity_VFX : MonoBehaviour
         else if (element == ElementType.Lightning)
             StartCoroutine(PlayStatusVfxCo(duration, shock_vfx));
     }
+
 
     public void StopAllVfx()
     {
@@ -75,6 +125,7 @@ public class Entity_VFX : MonoBehaviour
         sr.color = Color.white;
     }
 
+
     public void CreateOnHitVfx(Transform target, bool is_crit, ElementType element)
     {
         GameObject hit_prefab = is_crit ? crit_hit_vfx : hit_vfx;
@@ -84,8 +135,8 @@ public class Entity_VFX : MonoBehaviour
 
         if (entity.facing_dir == -1 && is_crit)
             vfx.transform.Rotate(0, 180, 0);
-
     }
+
     
     public Color GetElementColor(ElementType element)
     {
@@ -102,6 +153,7 @@ public class Entity_VFX : MonoBehaviour
         }
     }
 
+
     public void PlayeOnDamageVfx()
     {
         if (on_damage_vfx_coroutine != null)
@@ -109,6 +161,7 @@ public class Entity_VFX : MonoBehaviour
 
         on_damage_vfx_coroutine = StartCoroutine(OnDamageVfxCo());
     }
+
 
     private IEnumerator OnDamageVfxCo()
     {

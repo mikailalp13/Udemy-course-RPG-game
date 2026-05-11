@@ -10,6 +10,7 @@ public class Object_Merchant : Object_NPC, IInteractable
     private Inventory_Merchant merchant;
 
 
+
     protected override void Awake()
     {
         base.Awake();
@@ -38,6 +39,7 @@ public class Object_Merchant : Object_NPC, IInteractable
         // ui.OpenMerchantUI(true);
     }
 
+
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
@@ -46,6 +48,7 @@ public class Object_Merchant : Object_NPC, IInteractable
         merchant.SetInventory(inventory);
     }
 
+
     protected override void OnTriggerExit2D(Collider2D collision)
     {
         base.OnTriggerExit2D(collision);
@@ -53,5 +56,4 @@ public class Object_Merchant : Object_NPC, IInteractable
         ui.HideAllTooltips();
         ui.OpenMerchantUI(false);
     }
-
 }

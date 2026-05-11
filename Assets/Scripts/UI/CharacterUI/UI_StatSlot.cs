@@ -1,6 +1,6 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using TMPro;
 
 public class UI_StatSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -11,6 +11,7 @@ public class UI_StatSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [SerializeField] private StatType stat_slot_type;
     [SerializeField] private TextMeshProUGUI stat_name;
     [SerializeField] private TextMeshProUGUI stat_value;
+
 
 
     private void OnValidate()
@@ -27,10 +28,12 @@ public class UI_StatSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         player_stats = FindFirstObjectByType<Player_Stats>();
     }
 
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         ui.stat_tool_tip.ShowToolTip(true, rect, stat_slot_type);
     }
+
 
     public void OnPointerExit(PointerEventData eventData)
     {
@@ -42,7 +45,7 @@ public class UI_StatSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         Stat stat_to_update = player_stats.GetStatByType(stat_slot_type);
 
-        if (stat_to_update == null && stat_slot_type != StatType.elemental_damage)
+        if (stat_to_update == null && stat_slot_type != StatType.ElementalDamage)
         {
             Debug.Log($"You do not have {stat_slot_type} implemented on the player");
             return;
@@ -53,87 +56,87 @@ public class UI_StatSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         switch (stat_slot_type)
         {
             // Major Stats
-            case StatType.strength:
-                value = player_stats.major.strength.GetValue();
+            case StatType.Strength:
+                value = player_stats.major.Strength.GetValue();
                 break;
             
-            case StatType.agility:
-                value = player_stats.major.agility.GetValue();
+            case StatType.Agility:
+                value = player_stats.major.Agility.GetValue();
                 break;
 
-            case StatType.intelligence:
-                value = player_stats.major.intelligence.GetValue();
+            case StatType.Intelligence:
+                value = player_stats.major.Intelligence.GetValue();
                 break;
 
-            case StatType.vitality:
-                value = player_stats.major.vitality.GetValue();
+            case StatType.Vitality:
+                value = player_stats.major.Vitality.GetValue();
                 break;
 
             // Offense Stats
-            case StatType.damage:
+            case StatType.Damage:
                 value = player_stats.GetBaseDamage();
                 break;
             
-            case StatType.crit_chance:
+            case StatType.CritChance:
                 value = player_stats.GetCritChance();
                 break;
 
-            case StatType.crit_power:
+            case StatType.CritPower:
                 value = player_stats.GetCritPower();
                 break;
 
-            case StatType.armor_reduction:
+            case StatType.ArmorReduction:
                 value = player_stats.GetArmorReduction() * 100;
                 break;
 
-            case StatType.attack_speed:
-                value = player_stats.offense.attack_speed.GetValue() * 100;
+            case StatType.AttackSpeed:
+                value = player_stats.offense.AttackSpeed.GetValue() * 100;
                 break;
 
             // Defense Stats
-            case StatType.max_health: 
+            case StatType.MaxHealth: 
                 value = player_stats.GetMaxHealth();
                 break;
 
-            case StatType.health_regen: 
-                value = player_stats.resources.health_regen.GetValue();
+            case StatType.HealthRegen: 
+                value = player_stats.resources.HealthRegen.GetValue();
                 break;
 
-            case StatType.evasion: 
+            case StatType.Evasion: 
                 value = player_stats.GetEvasion();
                 break;
 
-            case StatType.armor: 
+            case StatType.Armor: 
                 value = player_stats.GetBaseArmor();
                 break;
 
             // Elemental Damage Stats
-            case StatType.ice_damage: 
-                value = player_stats.offense.ice_damage.GetValue();
+            case StatType.IceDamage: 
+                value = player_stats.offense.IceDamage.GetValue();
                 break;
 
-            case StatType.fire_damage: 
-                value = player_stats.offense.fire_damage.GetValue();
+            case StatType.FireDamage: 
+                value = player_stats.offense.FireDamage.GetValue();
                 break;
 
-            case StatType.lightning_damage: 
-                value = player_stats.offense.lightning_damage.GetValue();
+            case StatType.LightningDamage: 
+                value = player_stats.offense.LightningDamage.GetValue();
                 break;
 
-            case StatType.elemental_damage: 
+            case StatType.ElementalDamage: 
                 value = player_stats.GetElementalDamage(out ElementType element, 1);
                 break;
 
             // Elemental Resistance Stats
-            case StatType.ice_resistance:
+            case StatType.IceResistance:
                 value = player_stats.GetElementalResistance(ElementType.Ice) * 100;
                 break;
 
-            case StatType.fire_resistance:
+            case StatType.FireResistance:
                 value = player_stats.GetElementalResistance(ElementType.Fire) * 100;
                 break;
 
-            case StatType.lightning_resistance:
+            case StatType.LightningResistance:
                 value = player_stats.GetElementalResistance(ElementType.Lightning) * 100;
                 break;
         }
@@ -146,49 +149,49 @@ public class UI_StatSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         switch (type)
         {
-            case StatType.crit_chance:
-            case StatType.crit_power:
-            case StatType.armor_reduction:
-            case StatType.ice_resistance:
-            case StatType.fire_resistance:
-            case StatType.lightning_resistance:
-            case StatType.attack_speed:
-            case StatType.evasion:
+            case StatType.CritChance:
+            case StatType.CritPower:
+            case StatType.ArmorReduction:
+            case StatType.IceResistance:
+            case StatType.FireResistance:
+            case StatType.LightningResistance:
+            case StatType.AttackSpeed:
+            case StatType.Evasion:
                 return true;
             default:
                 return false;
     }
-}   
+    }   
 
 
     private string GetStatNameByType(StatType type)
     {
         switch (type)
         {
-            case StatType.max_health: return "Max Health";
-            case StatType.health_regen: return "Health Regeneration";
-            case StatType.evasion: return "Evasion";
-            case StatType.armor: return "Armor";
+            case StatType.MaxHealth: return "Max Health";
+            case StatType.HealthRegen: return "Health Regeneration";
+            case StatType.Evasion: return "Evasion";
+            case StatType.Armor: return "Armor";
 
-            case StatType.strength: return "Strength";
-            case StatType.agility: return "Agility";
-            case StatType.intelligence: return "Intelligence";
-            case StatType.vitality: return "Vitality";
+            case StatType.Strength: return "Strength";
+            case StatType.Agility: return "Agility";
+            case StatType.Intelligence: return "Intelligence";
+            case StatType.Vitality: return "Vitality";
 
-            case StatType.attack_speed: return "Attack Speed";
-            case StatType.damage: return "Damage";
-            case StatType.crit_chance: return "Crit Chance";
-            case StatType.crit_power: return "Crit Power";
-            case StatType.armor_reduction: return "Armor Reduction";
+            case StatType.AttackSpeed: return "Attack Speed";
+            case StatType.Damage: return "Damage";
+            case StatType.CritChance: return "Crit Chance";
+            case StatType.CritPower: return "Crit Power";
+            case StatType.ArmorReduction: return "Armor Reduction";
 
-            case StatType.fire_damage: return "Fire Damage";
-            case StatType.ice_damage: return "Ice Damage";
-            case StatType.lightning_damage: return "Lightning Damage";
-            case StatType.elemental_damage: return "Elemental Damage";
+            case StatType.FireDamage: return "Fire Damage";
+            case StatType.IceDamage: return "Ice Damage";
+            case StatType.LightningDamage: return "Lightning Damage";
+            case StatType.ElementalDamage: return "Elemental Damage";
 
-            case StatType.ice_resistance: return "Ice Resistance";
-            case StatType.fire_resistance: return "Fire Resistance";
-            case StatType.lightning_resistance: return "Lightning Resistance";
+            case StatType.IceResistance: return "Ice Resistance";
+            case StatType.FireResistance: return "Fire Resistance";
+            case StatType.LightningResistance: return "Lightning Resistance";
 
             default: return "Unknown Stat";    
         }

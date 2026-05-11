@@ -1,5 +1,5 @@
-using System.Collections;
 using UnityEngine;
+using System.Collections;
 
 public class Skill_Shard : Skill_Base
 {
@@ -21,11 +21,13 @@ public class Skill_Shard : Skill_Base
 
 
     [Header("Teleport Shard Upgrade")]
-    [SerializeField] private float shard_exist_duration = 10;
+    [SerializeField] private float shard_exist_duration = 10f;
 
 
     [Header("Health Rewind Shard Uograde")]
     [SerializeField] private float saved_health_percent;
+
+
 
     protected override void Awake()
     {
@@ -34,6 +36,7 @@ public class Skill_Shard : Skill_Base
         current_charges = max_charges;
         player_health = GetComponentInParent<Entity_Health>();
     }
+
 
     public void CreateShard()
     {
@@ -47,6 +50,7 @@ public class Skill_Shard : Skill_Base
             current_shard.OnExplode += ForceCooldown;
     }
 
+
     public void CreateRawShard(Transform target = null, bool shards_can_move = false)
     {
         bool can_move = shards_can_move != false ? shards_can_move :
@@ -56,10 +60,12 @@ public class Skill_Shard : Skill_Base
         shard.GetComponent<SkillObject_Shard>().SetupShard(this, detonate_time, can_move, shard_speed, target);
     }
 
+
     public void CreateDomainShard(Transform target)
     {
         
     }
+
 
     public override void TryUseSkill()
     {
@@ -82,6 +88,7 @@ public class Skill_Shard : Skill_Base
             HandleShardHealthRewind();
     }
 
+
     private void HandleShardHealthRewind()
     {
         if (current_shard == null)
@@ -97,6 +104,7 @@ public class Skill_Shard : Skill_Base
         }
     }
 
+
     private void HandleShardTeleport()
     {
         if (current_shard == null)
@@ -108,6 +116,7 @@ public class Skill_Shard : Skill_Base
         }
     }
 
+
     private void SwapPlayerAndShard()
     {
         Vector3 shard_position = current_shard.transform.position;
@@ -118,6 +127,7 @@ public class Skill_Shard : Skill_Base
 
         player.TeleportPlayer(shard_position);
     }
+
 
     private void HandleShardMulticast()
     {
@@ -132,6 +142,7 @@ public class Skill_Shard : Skill_Base
             StartCoroutine(ShardRechargeCo());
     }
 
+
     private IEnumerator ShardRechargeCo()
     {
         is_recharging = true;
@@ -145,6 +156,7 @@ public class Skill_Shard : Skill_Base
         is_recharging = false;
     }
 
+
     private void HandleShardMoving()
     {
         CreateShard();
@@ -153,11 +165,13 @@ public class Skill_Shard : Skill_Base
         SetSkillOnCooldown();
     }
 
+
     private void HandleShardRegular()
     {
         CreateShard();
         SetSkillOnCooldown();
     }
+
 
     public float GetDetonateTime()
     {
@@ -167,6 +181,7 @@ public class Skill_Shard : Skill_Base
         return detonate_time;
     }
 
+
     private void ForceCooldown()
     {
         if (OnCooldown() == false)
@@ -175,5 +190,4 @@ public class Skill_Shard : Skill_Base
             current_shard.OnExplode -= ForceCooldown;
         }
     }
-    
 }

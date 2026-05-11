@@ -1,13 +1,14 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "RPG Setup / Item Data / Item Effect / Buff Effect", fileName = "Item effect data - Buff")]
 
+[CreateAssetMenu(menuName = "RPG Setup / Item Data / Item Effect / Buff Effect", fileName = "Item effect data - Buff")]
 public class ItemEffect_Buff : ItemEffectDataSO
 {
     [SerializeField] private BuffEffectData[] buffs_to_apply;
     [SerializeField] private float duration;
     [SerializeField] private string source = Guid.NewGuid().ToString();
+
 
     public override bool CanBeUsed(Player player)
     {
@@ -22,6 +23,7 @@ public class ItemEffect_Buff : ItemEffectDataSO
             return false;
         }
     }
+
 
     public override void ExecuteEffect()
     {

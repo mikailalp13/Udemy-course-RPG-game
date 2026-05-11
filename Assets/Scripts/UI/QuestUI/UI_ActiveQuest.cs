@@ -1,10 +1,11 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class UI_ActiveQuest : MonoBehaviour
 {
     private Player_QuestManager quest_manager;
     private UI_ActiveQuestSlot[] quest_slots;
+
 
 
     private void Awake()

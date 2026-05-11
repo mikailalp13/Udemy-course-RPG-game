@@ -18,21 +18,23 @@ public class Entity_Health : MonoBehaviour , IDamageable
 
     
     [Header("Health Regen")]
-    [SerializeField] private float regen_interval = 1;
-    [SerializeField] private bool can_regenerate_health = true;
-    public float last_damage_taken { get; private set; }
     public bool is_dead { get; private set; }
+    public float last_damage_taken { get; private set; }
     protected bool can_take_damage = true;
+    [SerializeField] private float regen_interval = 1f;
+    [SerializeField] private bool can_regenerate_health = true;
     
 
     [Header("On Damage Knockback")]
     [SerializeField] private Vector2 knockback_power = new Vector2(1.5f, 2.5f);
-    [SerializeField] private Vector2 heavy_knockback_power = new Vector2(4, 4);
+    [SerializeField] private Vector2 heavy_knockback_power = new Vector2(4f, 4f);
     [SerializeField] private float knockback_duration = 0.2f;
     [SerializeField] private float heavy_knockback_duration = 0.5f;
 
+
     [Header("On Heavy Damage")]
     [SerializeField] private float heavy_damage_threshold = 0.3f; // percentage of health you should loose to heavy damage
+
 
 
     protected virtual void Awake()
@@ -42,14 +44,12 @@ public class Entity_Health : MonoBehaviour , IDamageable
         entity_stats = GetComponent<Entity_Stats>();
         health_bar = GetComponentInChildren<Slider>();
         drop_manager = GetComponent<Entity_DropManager>();
-
-        SetupHealth();
     }
 
 
     protected virtual void Start()
     {
-        
+        SetupHealth();
     }
 
 
@@ -110,7 +110,7 @@ public class Entity_Health : MonoBehaviour , IDamageable
         if (can_regenerate_health == false)
             return;
         
-        float regen_amount = entity_stats.resources.health_regen.GetValue();
+        float regen_amount = entity_stats.resources.HealthRegen.GetValue();
         IncreaseHealth(regen_amount);
     }
 
@@ -195,6 +195,7 @@ public class Entity_Health : MonoBehaviour , IDamageable
 
 
     private float CalculateDuration(float damage) => IsHeavyDamage(damage) ? heavy_knockback_duration : knockback_duration;
+    
     
     private bool IsHeavyDamage(float damage)
     {

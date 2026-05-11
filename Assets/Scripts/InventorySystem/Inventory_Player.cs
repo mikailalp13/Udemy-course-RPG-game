@@ -1,6 +1,6 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
-using System;
 
 public class Inventory_Player : Inventory_Base
 {
@@ -90,6 +90,7 @@ public class Inventory_Player : Inventory_Base
         RemoveOneItem(item_to_equip);
     }
 
+
     public void UnequipItem(Inventory_Item item_to_unequip, bool replacing_item = false)
     {
         if (CanAddItem(item_to_unequip) == false && replacing_item == false)
@@ -110,6 +111,7 @@ public class Inventory_Player : Inventory_Base
         player.health.SetHealthToPercent(saved_health_percent);
         AddItem(item_to_unequip);
     }
+
 
     public override void SaveData(ref GameData data)
     {
@@ -136,6 +138,7 @@ public class Inventory_Player : Inventory_Base
                 data.equiped_items[slot.equiped_item.item_data.save_id] = slot.slot_type;
         }
     }
+    
 
     public override void LoadData(GameData data)
     {

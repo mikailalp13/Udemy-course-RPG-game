@@ -7,6 +7,7 @@ public class Object_Blacksmith : Object_NPC, IInteractable
     private Inventory_Storage storage;
 
 
+
     protected override void Awake()
     {
         base.Awake();
@@ -15,6 +16,7 @@ public class Object_Blacksmith : Object_NPC, IInteractable
         anim = GetComponentInChildren<Animator>();
         anim.SetBool("isBlacksmith", true);
     }
+
 
     public override void Interact()
     {
@@ -26,6 +28,7 @@ public class Object_Blacksmith : Object_NPC, IInteractable
         ui.OpenStorageUI(true);
     }
 
+
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
@@ -33,6 +36,7 @@ public class Object_Blacksmith : Object_NPC, IInteractable
         inventory = player.GetComponent<Inventory_Player>();
         storage.SetInventory(inventory);
     }
+
 
     protected override void OnTriggerExit2D(Collider2D collision)
     {

@@ -23,6 +23,7 @@ public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, IS
         }
     }
 
+
     public void OnBeforeSerialize()
     {
         keys.Clear();

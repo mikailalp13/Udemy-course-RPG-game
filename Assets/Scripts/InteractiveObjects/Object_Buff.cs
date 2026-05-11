@@ -18,16 +18,20 @@ public class Object_Buff : MonoBehaviour
     [SerializeField] private float float_range = 0.1f;
     private Vector3  start_position;
 
+
+
     private void Awake()
     {
         start_position = transform.position;
     }
+
 
     private void Update()
     {
         float y_offset = Mathf.Sin(Time.time * float_speed) * float_range; // we used this to make our object move vertically
         transform.position = start_position + new Vector3(0, y_offset);
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -38,6 +42,5 @@ public class Object_Buff : MonoBehaviour
             stats_to_modify.ApplyBuff(buffs, buff_duration, buff_name);
             Destroy(gameObject);
         }
-
     }
 }

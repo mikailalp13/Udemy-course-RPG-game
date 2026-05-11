@@ -6,9 +6,9 @@ public class UI_CraftSlot : MonoBehaviour
 {
     private ItemDataSO item_to_craft;
     [SerializeField] private UI_CraftPreview craft_preview;
-
     [SerializeField] private Image craft_item_icon;
     [SerializeField] private TextMeshProUGUI craft_item_name;
+
 
 
     public void SetupButton(ItemDataSO craft_data)
@@ -21,5 +21,4 @@ public class UI_CraftSlot : MonoBehaviour
 
 
     public void UpdateCraftPreview() => craft_preview.UpdateCraftPreview(item_to_craft);
-
 }

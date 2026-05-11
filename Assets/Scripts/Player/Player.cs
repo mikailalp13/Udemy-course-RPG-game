@@ -41,7 +41,7 @@ public class Player : Entity
     public Vector2[] attack_velocity;
     public Vector2 jump_attack_velocity;
     public float attack_velocity_duration = 0.1f;
-    public float combo_reset_time = 1;
+    public float combo_reset_time = 1f;
     private Coroutine queued_attack_co;
 
 
@@ -52,8 +52,9 @@ public class Player : Entity
 
     [Header("Movement Details")]
     public float move_speed;
-    public float jump_force = 5;
+    public float jump_force = 5f;
     public Vector2 wall_jump_force;
+
 
     [Range(0, 1)]
     public float in_air_move_multiplier = 0.7f; // should be from 0 to 1
@@ -61,10 +62,10 @@ public class Player : Entity
     public float wall_slide_slow_multiplier = 0.7f;
     [Space]
     public float dash_duration = 0.25f;
-    public float dash_speed = 20;
+    public float dash_speed = 20f;
     public Vector2 move_input { get; private set; }
-
     public Vector2 mouse_position { get; private set; }
+
 
     protected override void Awake()
     {
@@ -99,6 +100,7 @@ public class Player : Entity
         domainExpansionState = new Player_DomainExpansionState(this, state_machine, "jumpFall");
     }
 
+
     protected override void Start()
     {
         base.Start();
@@ -106,7 +108,9 @@ public class Player : Entity
         state_machine.Initialize(idleState);
     }
 
+
     public void TeleportPlayer(Vector3 position) => transform.position = position;
+
 
     protected override IEnumerator SlowDownEntityCo(float duration, float slow_multiplier)
     {
@@ -147,6 +151,7 @@ public class Player : Entity
         }
     }
 
+
     public override void EntityDeath()
     {
         base.EntityDeath();
@@ -155,6 +160,7 @@ public class Player : Entity
         state_machine.ChangeState(deadState);
     }
 
+
     public void EnterAttackStateWithDelay()
     {
         if (queued_attack_co != null)
@@ -162,11 +168,13 @@ public class Player : Entity
         queued_attack_co = StartCoroutine(EnterAttackStateWithDelayCo());
     }
 
+
     private IEnumerator EnterAttackStateWithDelayCo()
     {
         yield return new WaitForEndOfFrame();
         state_machine.ChangeState(basicAttackState);
     }
+
 
     private void TryInteract()
     {
@@ -196,6 +204,7 @@ public class Player : Entity
         closest.GetComponent<IInteractable>().Interact();
     }
 
+
     private void OnEnable()
     {
         input.Enable();        
@@ -213,6 +222,8 @@ public class Player : Entity
         input.Player.QuickItemSlot_1.performed += ctx => inventory.TryUseQuickItemInSlot(1);
         input.Player.QuickItemSlot_2.performed += ctx => inventory.TryUseQuickItemInSlot(2);
     }
+
+    
     private void OnDisable()
     {
         input.Disable();

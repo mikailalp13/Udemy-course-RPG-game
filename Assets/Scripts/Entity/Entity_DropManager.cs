@@ -8,15 +8,16 @@ public class Entity_DropManager : MonoBehaviour
     [SerializeField] private GameObject item_drop_prefab;
     [SerializeField] private ItemListDataSO drop_data;
 
+
     [Header("Drop Restrictions")]
     [SerializeField] private int max_rarity_amount = 1200;
     [SerializeField] private int max_items_to_drop = 3;
 
 
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X))
-            DropItems();
+        
     }
 
     public virtual void DropItems()
@@ -42,6 +43,7 @@ public class Entity_DropManager : MonoBehaviour
         GameObject new_item = Instantiate(item_drop_prefab, transform.position, Quaternion.identity);
         new_item.GetComponent<Object_ItemPickup>().SetupItem(item_to_drop);
     }
+
 
     public List<ItemDataSO> RollDrops()
     {

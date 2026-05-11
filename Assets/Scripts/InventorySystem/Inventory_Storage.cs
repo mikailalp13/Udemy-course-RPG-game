@@ -1,11 +1,12 @@
+using System.Linq;
 using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
 
 public class Inventory_Storage : Inventory_Base
 {
     public Inventory_Player player_inventory { get; private set; }
     public List<Inventory_Item> material_stash;
+
 
 
     public void CraftItem(Inventory_Item item_to_craft)

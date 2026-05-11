@@ -6,10 +6,13 @@ public class UI_ToolTip : MonoBehaviour
 
     [SerializeField] private Vector2 offset = new Vector2(300, 20);
 
+
+
     protected virtual void Awake()
     {
         rect = GetComponent<RectTransform>();
     }
+
 
     public virtual void ShowToolTip(bool show, RectTransform targetRect)
     {
@@ -21,6 +24,7 @@ public class UI_ToolTip : MonoBehaviour
 
         UpdatePosition(targetRect);
     }
+
 
     private void UpdatePosition(RectTransform targetRect)
     {
@@ -43,6 +47,7 @@ public class UI_ToolTip : MonoBehaviour
 
         rect.position = target_position;
     }
+
 
     protected string GetColoredText(string color, string text)
     {

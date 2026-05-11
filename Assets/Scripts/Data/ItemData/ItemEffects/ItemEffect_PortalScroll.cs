@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[CreateAssetMenu(menuName = "RPG Setup / Item Data / Item Effect / Portal Scroll", fileName = "Item effect data - Portal Scroll")]
 
+[CreateAssetMenu(menuName = "RPG Setup / Item Data / Item Effect / Portal Scroll", fileName = "Item effect data - Portal Scroll")]
 public class ItemEffect_PortalScroll : ItemEffectDataSO
 {
     public override void ExecuteEffect()

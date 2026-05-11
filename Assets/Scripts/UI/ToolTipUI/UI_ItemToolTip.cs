@@ -13,6 +13,7 @@ public class UI_ItemToolTip : UI_ToolTip
     [SerializeField] private Transform inventory_info;
 
 
+
     public void ShowToolTip(bool show, RectTransform target_rect, Inventory_Item item_to_show, bool buy_price = false, bool show_merchant_info = false, bool show_controls = true)
     {
         base.ShowToolTip(show, target_rect);
@@ -41,6 +42,7 @@ public class UI_ItemToolTip : UI_ToolTip
         string color = GetColorByRarity(item_to_show.item_data.item_rarity);
         item_name.text = GetColoredText(color, item_to_show.item_data.item_name);;
     }
+
 
     private string GetColorByRarity(int rarity)
     {

@@ -1,5 +1,6 @@
-using UnityEngine;
 using System;
+using UnityEngine;
+
 
 [CreateAssetMenu(menuName = "RPG Setup / Skill Data", fileName = "Skill data - ")]
 public class Skill_DataSO : ScriptableObject
@@ -18,7 +19,8 @@ public class Skill_DataSO : ScriptableObject
     public UpgradeData upgrade_data;
 }  
 
-[System.Serializable]
+
+[Serializable]
 public class UpgradeData
 {
     public SkillUpgradeType upgrade_type;

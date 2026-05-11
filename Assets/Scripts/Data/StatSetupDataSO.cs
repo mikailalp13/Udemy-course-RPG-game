@@ -1,5 +1,5 @@
 using UnityEngine;
-// scriptable object
+
 
 [CreateAssetMenu(menuName = "RPG Setup / Default Stat Setup", fileName = "Default Stat Setup")]
 public class StatSetupDataSO : ScriptableObject

@@ -5,6 +5,7 @@ public class UI_ItemSlotParent : MonoBehaviour
 {
     private UI_ItemSlot[] slots;
 
+
     public void UpdateSlots(List<Inventory_Item> item_list)
     {
         if (slots == null)

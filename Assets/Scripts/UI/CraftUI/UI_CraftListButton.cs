@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class UI_CraftListButton : MonoBehaviour
 {
-    [SerializeField] private ItemListDataSO craft_data;
     private UI_CraftSlot[] craft_slots;
+    [SerializeField] private ItemListDataSO craft_data;
+
 
 
     public void SetCraftSlots(UI_CraftSlot[] craft_slots) => this.craft_slots = craft_slots;
+
 
     public void UpdateCraftSlots()
     {

@@ -6,15 +6,16 @@ using UnityEngine.EventSystems;
 public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public Inventory_Item item_in_slot { get; private set; }
-    protected Inventory_Player inventory;
     protected UI ui;
     protected RectTransform rect;
+    protected Inventory_Player inventory;
 
 
     [Header("UI Slot Setup")]
     [SerializeField] private GameObject default_icon;
     [SerializeField] protected Image item_icon; 
     [SerializeField] protected TextMeshProUGUI item_stack_size;
+
 
 
     protected virtual void Awake()
@@ -50,6 +51,7 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
             ui.item_tool_tip.ShowToolTip(false, null);        
     }
 
+
     public void UpdateSlot(Inventory_Item item)
     {
         item_in_slot = item;
@@ -70,6 +72,7 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
         item_stack_size.text = item.stack_size > 1 ? item.stack_size.ToString() : "";
     }
 
+
     public virtual void OnPointerEnter(PointerEventData eventData)
     {
         if (item_in_slot == null)
@@ -77,6 +80,7 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
 
         ui.item_tool_tip.ShowToolTip(true, rect, item_in_slot);
     }
+
 
     public void OnPointerExit(PointerEventData eventData)
     {

@@ -3,9 +3,11 @@ using UnityEngine;
 public class Player_JumpAttackState : PlayerState
 {
     private bool touched_ground;
-    public Player_JumpAttackState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
+
+    public Player_JumpAttackState(Player player, StateMachine state_machine, string anim_bool_name) : base(player, state_machine, anim_bool_name)
     {
     }
+
 
     public override void Enter()
     {
@@ -14,6 +16,7 @@ public class Player_JumpAttackState : PlayerState
 
         player.SetVelocity(player.jump_attack_velocity.x * player.facing_dir, player.jump_attack_velocity.y);
     }
+    
 
     public override void Update()
     {
@@ -27,8 +30,6 @@ public class Player_JumpAttackState : PlayerState
         }
 
         if (trigger_called && player.ground_detected)
-            stateMachine.ChangeState(player.idleState);
-
+            state_machine.ChangeState(player.idleState);
     }
-
 }

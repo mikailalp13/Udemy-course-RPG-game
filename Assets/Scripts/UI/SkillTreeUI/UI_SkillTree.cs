@@ -1,15 +1,16 @@
-using System.Linq;
 using TMPro;
+using System.Linq;
 using UnityEngine;
 
 public class UI_SkillTree : MonoBehaviour, ISaveable
 {
+    private UI_TreeNode[] all_tree_nodes;
+    public Player_SkillManager skill_manager { get; private set; }
+
     [SerializeField] private int skill_points;
     [SerializeField] private TextMeshProUGUI skill_points_text;
     [SerializeField] private UI_TreeConnectHandler[] parent_nodes;
 
-    private UI_TreeNode[] all_tree_nodes;
-    public Player_SkillManager skill_manager { get; private set; }
 
 
     private void Start()
@@ -18,11 +19,13 @@ public class UI_SkillTree : MonoBehaviour, ISaveable
         UpdateSkillPointsUI();
     }
 
+
     private void UpdateSkillPointsUI()
     {
         skill_points_text.text = skill_points.ToString();
         
     }
+
 
     public void UnlockDefaultSkills()
     {
@@ -33,6 +36,7 @@ public class UI_SkillTree : MonoBehaviour, ISaveable
             node.UnlockDefaultSkill();
     }
 
+
     [ContextMenu("Reset Skill Tree")]
     public void RefundAllSkills()
     {
@@ -41,12 +45,18 @@ public class UI_SkillTree : MonoBehaviour, ISaveable
         foreach (var node in skill_nodes)
             node.Refund();
     }
+
+
     public bool EnoughSkillPoints(int cost) => skill_points >= cost;
+
+
     public void RemoveSkillPoints(int cost)
     {
         skill_points = skill_points - cost;
         UpdateSkillPointsUI();
     } 
+
+
     public void AddSkillPoints(int points)
     {
         skill_points = skill_points + points;
@@ -60,6 +70,7 @@ public class UI_SkillTree : MonoBehaviour, ISaveable
         foreach (var node in parent_nodes)
             node.UpdateAllConnections();
     }
+
 
     public void LoadData(GameData data)
     {
@@ -84,6 +95,7 @@ public class UI_SkillTree : MonoBehaviour, ISaveable
             }
         }
     }
+
 
     public void SaveData(ref GameData data)
     {

@@ -11,6 +11,7 @@ public class UI_Options : MonoBehaviour
     [SerializeField] private AudioMixer audio_mixer;
     [SerializeField] private float mixer_multiplier = 25f;
 
+
     [Header("BGM Volume Settings")]
     [SerializeField] private Slider bgm_slider;
     [SerializeField] private string bgm_parameter;
@@ -25,7 +26,6 @@ public class UI_Options : MonoBehaviour
     private void Start()
     {
         player = FindFirstObjectByType<Player>();
-
         
         health_bar_toggle.onValueChanged.AddListener(OnHealthBarToggleChanged);
     }

@@ -1,7 +1,6 @@
-using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
@@ -17,6 +16,7 @@ public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public bool is_unlocked;
     public bool is_locked;
 
+
     [Header("Skill Details")]
     public Skill_DataSO skill_data;
     [SerializeField] private string skill_name;
@@ -24,6 +24,7 @@ public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [SerializeField] private int skill_cost;
     [SerializeField] private string locked_color_hex = "#9F9797";
     private Color last_color;
+
 
 
     private void Start()
@@ -120,6 +121,7 @@ public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         return true;
     }
 
+
     private void LockConflictNodes()
     {
         foreach (var node in conflict_nodes)
@@ -129,6 +131,7 @@ public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         }  
     }
 
+
     public void LockChildNodes()
     {
         is_locked = true;
@@ -137,6 +140,7 @@ public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             node.LockChildNodes();
 
     }
+
 
     private void UpdateIconColor(Color color)
     {
@@ -156,6 +160,7 @@ public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             ui.skill_tool_tip.LockedSkillEffect();
     }
 
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         ui.skill_tool_tip.ShowToolTip(true, rect, skill_data, this);
@@ -164,6 +169,7 @@ public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             return;
         ToggleNodeHighlight(true);        
     }
+
 
     public void OnPointerExit(PointerEventData eventData)
     {
@@ -175,6 +181,7 @@ public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         ToggleNodeHighlight(false);
     }
 
+
     private void ToggleNodeHighlight(bool highlight)
     {
         Color highlight_color = Color.white * 0.9f; highlight_color.a = 1; // no transparency
@@ -182,6 +189,7 @@ public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
         UpdateIconColor(color_to_apply);
     }
+
 
     private Color GetColorByHex(string hexNumber)
     {
@@ -199,6 +207,7 @@ public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             UpdateIconColor(Color.white);
     }
 
+
     private void OnValidate()
     {
         if (skill_data == null)
@@ -208,5 +217,4 @@ public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         skill_cost = skill_data.cost;
         gameObject.name = "UI_TreeNode - " + skill_data.display_name;
     }
-
 }

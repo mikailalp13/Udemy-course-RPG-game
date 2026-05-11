@@ -8,6 +8,7 @@ public class Inventory_Merchant : Inventory_Base
     [SerializeField] private int min_items_amount = 4;
 
 
+
     protected override void Awake()
     {
         base.Awake();
@@ -47,6 +48,7 @@ public class Inventory_Merchant : Inventory_Base
         TriggerUpdateUI();
     }
 
+
     public void TrySellItem(Inventory_Item item_to_sell, bool sell_full_stack)
     {
         int amount_to_sell = sell_full_stack ? item_to_sell.stack_size: 1;
@@ -61,6 +63,7 @@ public class Inventory_Merchant : Inventory_Base
 
         TriggerUpdateUI();
     }
+
 
     public void FillShopList()
     {

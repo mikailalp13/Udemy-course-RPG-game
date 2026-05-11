@@ -9,6 +9,7 @@ public class Player_Stats : Entity_Stats
     private Inventory_Player inventory;
 
 
+
     protected override void Awake()
     {
         base.Awake();
@@ -16,15 +17,18 @@ public class Player_Stats : Entity_Stats
         inventory = GetComponent<Inventory_Player>();
     }
 
+
     public bool CanApplyBuffOf(string source)
     {
         return active_buff.Contains(source) == false; // this way player wont be able to use more than one same buff at the time
     }
 
+
     public void ApplyBuff(BuffEffectData[] buffs_to_apply, float duration, string source)
     {
         StartCoroutine(BuffCo(buffs_to_apply, duration, source));
     }
+
 
     private IEnumerator BuffCo(BuffEffectData[] buffs_to_apply, float duration, string source)
     {

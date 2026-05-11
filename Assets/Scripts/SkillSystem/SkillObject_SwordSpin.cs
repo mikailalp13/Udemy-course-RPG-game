@@ -3,8 +3,8 @@ using UnityEngine;
 public class SkillObject_SwordSpin : SkillObject_Sword
 {
     private int max_distance;
-    private float attacks_per_second;
     private float attack_timer;
+    private float attacks_per_second;
 
 
     public override void SetupSword(Skill_SwordThrow sword_manager, Vector2 direction)
@@ -27,6 +27,7 @@ public class SkillObject_SwordSpin : SkillObject_Sword
         HandleComeBack();
     }
 
+
     private void HandleStopping()
     {
         float distance_to_player = Vector2.Distance(transform.position, player_transform.position);
@@ -34,6 +35,7 @@ public class SkillObject_SwordSpin : SkillObject_Sword
         if (distance_to_player > max_distance && rb.simulated == true)
             rb.simulated = false;
     }
+
 
     private void HandleAttack()
     {
@@ -45,6 +47,7 @@ public class SkillObject_SwordSpin : SkillObject_Sword
             attack_timer = 1 / attacks_per_second;
         }
     }
+
 
     protected override void OnTriggerEnter2D(Collider2D collision)
     {

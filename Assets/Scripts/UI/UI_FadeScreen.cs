@@ -8,6 +8,7 @@ public class UI_FadeScreen : MonoBehaviour
     public Coroutine fade_effect_co { get; private set; }
 
 
+
     private void Awake()
     {
         fade_image = GetComponent<Image>();

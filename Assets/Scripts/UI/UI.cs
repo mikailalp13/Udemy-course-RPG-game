@@ -3,9 +3,10 @@ using UnityEngine;
 public class UI : MonoBehaviour
 {
     public static UI instance;
+    private PlayerInputSet input;
     [SerializeField] private GameObject[] ui_elements;
     public bool alternative_input { get; private set; }
-    private PlayerInputSet input;
+
 
     #region UI Components
     public UI_SkillToolTip skill_tool_tip { get; private set; }
@@ -22,11 +23,12 @@ public class UI : MonoBehaviour
     public UI_FadeScreen fade_screen_ui { get; private set; }
     public UI_Quest quest_ui { get; private set; }
     public UI_Dialogue dialogue_ui { get; private set; }
-
     #endregion
 
     private bool skill_tree_enabled;
     private bool inventory_enabled;
+
+
 
     private void Awake()
     {
@@ -52,6 +54,7 @@ public class UI : MonoBehaviour
         skill_tree_enabled = skill_tree_ui.gameObject.activeSelf;
         inventory_enabled = inventory_ui.gameObject.activeSelf;
     }
+
 
     private void Start()
     {

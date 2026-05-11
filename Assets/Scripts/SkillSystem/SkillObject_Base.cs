@@ -3,6 +3,7 @@ using UnityEngine;
 public class SkillObject_Base : MonoBehaviour
 {
     [SerializeField] private GameObject on_hit_vfx;
+
     [Space]
     [SerializeField] protected LayerMask what_is_enemy;
     [SerializeField] protected Transform target_check;
@@ -17,11 +18,13 @@ public class SkillObject_Base : MonoBehaviour
     protected Transform last_target;
 
 
+
     protected virtual void Awake()
     {
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
+
 
     protected void DamageEnemiesInRadius(Transform t, float radius)
     {
@@ -54,6 +57,7 @@ public class SkillObject_Base : MonoBehaviour
         }
     }
 
+
     protected Transform FindClosestTarget()
     {
         Transform target = null;
@@ -73,10 +77,12 @@ public class SkillObject_Base : MonoBehaviour
         return target;
     }
 
+
     protected Collider2D[] GetEnemiesAround(Transform t, float radius)
     {
         return Physics2D.OverlapCircleAll(t.position, radius, what_is_enemy); 
     }
+    
 
     protected virtual void OnDrawGizmos()
     {

@@ -12,6 +12,7 @@ public class UI_QuickItemSlotOption : UI_ItemSlot
         UpdateSlot(item_to_set);
     }
 
+
     public override void OnPointerDown(PointerEventData eventData)
     {
         current_quick_item_slot.SetupQuickSlotItem(item_in_slot);

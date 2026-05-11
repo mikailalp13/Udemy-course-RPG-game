@@ -45,6 +45,7 @@ public class Skill_SwordThrow : Skill_Base
     private Vector2 confirmed_direction;
 
 
+
     protected override void Awake()
     {
         base.Awake();
@@ -52,6 +53,7 @@ public class Skill_SwordThrow : Skill_Base
         sword_gravity = sword_prefab.GetComponent<Rigidbody2D>().gravityScale;
         dots = GenerateDots();
     }
+
 
     public override bool CanUseSkill()
     {
@@ -66,6 +68,7 @@ public class Skill_SwordThrow : Skill_Base
         return base.CanUseSkill();
     }
 
+
     public void ThrowSword()
     {
         GameObject sword_prefab = GetSwordPrefab();
@@ -76,6 +79,7 @@ public class Skill_SwordThrow : Skill_Base
 
         SetSkillOnCooldown();
     }
+
 
     private GameObject GetSwordPrefab()
     {
@@ -94,6 +98,7 @@ public class Skill_SwordThrow : Skill_Base
         Debug.Log("No valid sword upgrade selected!");
         return null;
     }
+
 
     private void UpdateThrowPower()
     {
@@ -114,6 +119,7 @@ public class Skill_SwordThrow : Skill_Base
         }
     }
 
+
     private Vector2 GetThrowPower() => confirmed_direction * (current_throw_power * 9);   
 
     public void PredictTrajectory(Vector2 direction)
@@ -123,6 +129,7 @@ public class Skill_SwordThrow : Skill_Base
             dots[i].position = GetTrajectoryPoint(direction, i * space_between_dots);
         }
     }
+
 
     private Vector2 GetTrajectoryPoint(Vector2 direction, float t)
     {
@@ -143,13 +150,16 @@ public class Skill_SwordThrow : Skill_Base
         return player_position + predicted_point;
     }
 
+
     public void ConfirmTrajectory(Vector2 direction) => confirmed_direction = direction;
+
 
     public void EnableDots(bool enable)
     {
         foreach (Transform t in dots)   
             t.gameObject.SetActive(enable);
     }
+
 
     private Transform[] GenerateDots()
     {
@@ -160,6 +170,7 @@ public class Skill_SwordThrow : Skill_Base
             new_dots[i] = Instantiate(prediction_dot, transform.position, Quaternion.identity, transform).transform;
             new_dots[i].gameObject.SetActive(false);
         }
+        
         return new_dots;
     }
 }

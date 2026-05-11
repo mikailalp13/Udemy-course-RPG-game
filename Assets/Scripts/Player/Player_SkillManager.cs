@@ -10,6 +10,8 @@ public class Player_SkillManager : MonoBehaviour
 
     public Skill_Base[] all_skills { get; private set; }
 
+
+
     private void Awake()
     {
         dash = GetComponentInChildren<Skill_Dash>();
@@ -21,11 +23,13 @@ public class Player_SkillManager : MonoBehaviour
         all_skills = GetComponentsInChildren<Skill_Base>();
     }
 
+
     public void ReduceAllSkillCooldownBy(float amount)
     {
         foreach (var skill in all_skills)
             skill.ReduceCooldownBy(amount);
     }
+
 
     public Skill_Base GetSkillByType(SkillType type)
     {
@@ -41,6 +45,5 @@ public class Player_SkillManager : MonoBehaviour
                 Debug.Log($"Skill type {type} is not implemented yet.");
                 return null;
         }
-
     }
 }

@@ -20,6 +20,5 @@ public class Player_Health : Entity_Health
         player.ui.OpenDeathScreenUI();
         //GameManager.instance.SetLastPlayerPosition(transform.position);
         //GameManager.instance.RestartScene();
-
     }
 }

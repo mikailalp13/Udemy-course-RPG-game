@@ -15,6 +15,7 @@ public class UI_Dialogue : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogue_text;
     [SerializeField] private TextMeshProUGUI[] dialogue_choices_text;
 
+
     [Space]
     [SerializeField] private float text_speed = 0.1f;
     private string full_text_to_display;
@@ -27,6 +28,7 @@ public class UI_Dialogue : MonoBehaviour
 
     private bool waiting_to_confirm;
     private bool can_interact;
+
 
 
     private void Awake()

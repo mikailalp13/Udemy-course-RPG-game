@@ -5,13 +5,16 @@ public class Skill_TimeEcho : Skill_Base
     [SerializeField] private GameObject time_echo_prefab;
     [SerializeField] private float time_echo_duration;
 
+
     [Header("Attack Upgrades")]
     [SerializeField] private int max_attacks = 3;
     [SerializeField] private float duplicate_chance = 0.3f;
 
+
     [Header("Heal Wisp Upgrades")]
     [SerializeField] private float damage_percent_healed = 0.3f;
     [SerializeField] private float cooldown_reduced_in_seconds;
+
 
     public float GetPercentOfDamageHealed()
     {
@@ -21,6 +24,7 @@ public class Skill_TimeEcho : Skill_Base
         return damage_percent_healed;
     }
 
+
     public float GetCooldownReduceInSeconds()
     {
         if (upgrade_type != SkillUpgradeType.TimeEcho_CooldownWisp)
@@ -29,16 +33,20 @@ public class Skill_TimeEcho : Skill_Base
         return cooldown_reduced_in_seconds;
     }
 
+
     public bool CanRemoveNegativeEffects()
     {
         return upgrade_type == SkillUpgradeType.TimeEcho_CleanseWisp;
     }
+
+
     public bool ShouldBeWisp()
     {
         return upgrade_type == SkillUpgradeType.TimeEcho_HealWisp
             || upgrade_type == SkillUpgradeType.TimeEcho_CleanseWisp
             || upgrade_type == SkillUpgradeType.TimeEcho_CooldownWisp;
     }
+
 
     public float GetDuplicateChance()
     {
@@ -47,6 +55,7 @@ public class Skill_TimeEcho : Skill_Base
         
         return duplicate_chance;
     }
+
 
     public int GetMaxAttacks()
     {
@@ -59,10 +68,12 @@ public class Skill_TimeEcho : Skill_Base
         return 0;
     }
 
+
     public float GetEchoDuration()
     {
         return time_echo_duration;
     }
+
 
     public override void TryUseSkill()
     {
@@ -72,6 +83,7 @@ public class Skill_TimeEcho : Skill_Base
         CreateTimeEcho();
         SetSkillOnCooldown();
     }
+    
 
     public void CreateTimeEcho(Vector3? target_position = null)
     {

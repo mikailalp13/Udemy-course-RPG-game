@@ -1,8 +1,8 @@
-using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Collections;
+using UnityEngine.EventSystems;
 
 public class UI_SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -10,14 +10,14 @@ public class UI_SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     private Image skill_icon;
     private RectTransform rect;
     private Button button;
-
     private Skill_DataSO skill_data;
-
     public SkillType skill_type;
+
     [SerializeField] private Image cooldown_image;
     [SerializeField] private string input_key_name;
     [SerializeField] private TextMeshProUGUI input_key_text;
     [SerializeField] private GameObject conflict_slot;
+
 
 
     private void Awake()
@@ -28,10 +28,12 @@ public class UI_SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         rect = GetComponent<RectTransform>();
     }
 
+
     private void OnValidate()
     {
         gameObject.name = "UI_SkillSlot - " + skill_type.ToString();
     }
+
 
     public void SetupSkillSlot(Skill_DataSO selected_skill)
     {
@@ -47,13 +49,16 @@ public class UI_SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             conflict_slot.SetActive(false);
     }
 
+
     public void StartCooldown(float cooldown)
     {
         cooldown_image.fillAmount = 1;
         StartCoroutine(CooldownCo(cooldown));
     }
 
+
     public void ResetCooldown() => cooldown_image.fillAmount = 0;
+
 
     private IEnumerator CooldownCo(float duration)
     {

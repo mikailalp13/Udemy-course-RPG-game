@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class SkillObject_TimeEcho : SkillObject_Base
 {
+    private bool should_move_to_player;
     [SerializeField] private float wisp_move_speed = 15f;
     [SerializeField] private GameObject on_death_vfx;
     [SerializeField] private LayerMask whatIsGround;
-    private bool should_move_to_player;
 
 
     private Transform player_transform;
@@ -15,7 +15,6 @@ public class SkillObject_TimeEcho : SkillObject_Base
     private SkillObject_Health echo_health;
     private Player_SkillManager skill_manager;
     private Entity_StatusHandler status_handler;
-
 
     public int max_attacks { get; private set; }
 
@@ -40,6 +39,7 @@ public class SkillObject_TimeEcho : SkillObject_Base
         Invoke(nameof(HandleDeath), echo_manager.GetEchoDuration());
     }
 
+
     private void Update()
     {
         if (should_move_to_player)
@@ -51,6 +51,7 @@ public class SkillObject_TimeEcho : SkillObject_Base
             StopHorizontalMovement();
         }
     }
+
 
     private void HandlePlayerTouch()
     {
@@ -64,6 +65,7 @@ public class SkillObject_TimeEcho : SkillObject_Base
             status_handler.RemoveAllNegativeEffects();
     }
 
+
     private void HandleWispMovement()
     {
         transform.position = Vector2.MoveTowards(transform.position, player_transform.position, wisp_move_speed * Time.deltaTime);
@@ -75,6 +77,7 @@ public class SkillObject_TimeEcho : SkillObject_Base
         }
     }
 
+
     private void FlipToTarget()
     {
         Transform target = FindClosestTarget();
@@ -82,6 +85,7 @@ public class SkillObject_TimeEcho : SkillObject_Base
         if (target != null && target.position.x < transform.position.x)
             transform.Rotate(0, 180, 0);
     }
+
 
     public void PerformAttack()
     {
@@ -97,6 +101,7 @@ public class SkillObject_TimeEcho : SkillObject_Base
             echo_manager.CreateTimeEcho(last_target.position + new Vector3 (x_offset, 0));
     }
 
+
     public void HandleDeath()
     {
         Instantiate(on_death_vfx, transform.position, Quaternion.identity);
@@ -107,6 +112,7 @@ public class SkillObject_TimeEcho : SkillObject_Base
             Destroy(gameObject);
     }
 
+
     private void TurnIntoWisp()
     {
         should_move_to_player = true;
@@ -114,6 +120,7 @@ public class SkillObject_TimeEcho : SkillObject_Base
         wisp_trail.gameObject.SetActive(true);
         rb.simulated = false;
     }
+
 
     private void StopHorizontalMovement()
     {

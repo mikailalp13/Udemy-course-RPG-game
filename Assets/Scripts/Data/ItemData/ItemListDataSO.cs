@@ -2,8 +2,8 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "RPG Setup / Item Data / Item List", fileName = "List of Items - ")]
 
+[CreateAssetMenu(menuName = "RPG Setup / Item Data / Item List", fileName = "List of Items - ")]
 public class ItemListDataSO : ScriptableObject
 {
     public ItemDataSO[] item_list;

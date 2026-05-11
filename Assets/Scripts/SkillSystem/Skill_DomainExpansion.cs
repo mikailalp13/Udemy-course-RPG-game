@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+
 public class Skill_DomainExpansion : Skill_Base
 {
     [SerializeField] private GameObject domain_prefab;
@@ -17,6 +18,7 @@ public class Skill_DomainExpansion : Skill_Base
     private float spell_cast_timer;
     private float spells_per_second;
 
+
     [Header("Time Echo Cast Upgrade")]
     [SerializeField] private int echo_to_cast = 8;
     [SerializeField] private float echo_cast_domain_slow = 1f;
@@ -31,6 +33,7 @@ public class Skill_DomainExpansion : Skill_Base
 
     private List<Enemy> trapped_targets = new List<Enemy>();
     private Transform current_target;
+
 
 
     public void CreateDomain()
@@ -57,6 +60,7 @@ public class Skill_DomainExpansion : Skill_Base
         }
     }
 
+
     private void CastSpell(Transform target)
     {
         if (upgrade_type == SkillUpgradeType.Domain_EchoSpam)
@@ -71,6 +75,7 @@ public class Skill_DomainExpansion : Skill_Base
         }
     }
 
+
     private Transform FindTargetInDomain()
     {
         trapped_targets.RemoveAll(target => target == null || target.health.is_dead);
@@ -81,6 +86,7 @@ public class Skill_DomainExpansion : Skill_Base
         int random_index = Random.Range(0, trapped_targets.Count);
         return trapped_targets[random_index].transform;
     }
+
 
     public float GetDomainDuration()
     {
@@ -125,10 +131,12 @@ public class Skill_DomainExpansion : Skill_Base
             && upgrade_type != SkillUpgradeType.Domain_ShardSpam; 
     }
 
+
     public void AddTarget(Enemy target_to_add)
     {
         trapped_targets.Add(target_to_add);
     }
+
 
     public void ClearTargets()
     {

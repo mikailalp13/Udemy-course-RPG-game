@@ -1,6 +1,6 @@
+using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
-using TMPro;
 
 public class UI_Inventory : MonoBehaviour
 {
@@ -9,6 +9,7 @@ public class UI_Inventory : MonoBehaviour
     [SerializeField] private UI_ItemSlotParent inventory_slots_parent;
     [SerializeField] private UI_EquipSlotParent equip_slot_parent;
     [SerializeField] private TextMeshProUGUI gold_text;
+
 
 
     private void Awake()

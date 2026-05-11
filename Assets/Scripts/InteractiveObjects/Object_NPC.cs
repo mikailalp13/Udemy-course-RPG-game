@@ -6,9 +6,11 @@ public class Object_NPC : MonoBehaviour, IInteractable
     protected Transform player;
     protected Player_QuestManager quest_manager;
 
+
     [Header("Quest Info")]
     [SerializeField] private string npc_target_quest_id;
     [SerializeField] protected RewardType reward_npc;
+
 
     [Space]
     [SerializeField] private Transform npc;
@@ -20,6 +22,7 @@ public class Object_NPC : MonoBehaviour, IInteractable
     [SerializeField] private float float_speed = 8f;
     [SerializeField] private float float_range = 0.1f;
     private Vector3 start_position;
+
 
 
     protected virtual void Awake()
@@ -41,6 +44,7 @@ public class Object_NPC : MonoBehaviour, IInteractable
         HandleNpcFlip();
         HandleTooltipFloat();
     }
+
 
     private void HandleTooltipFloat()
     {
@@ -81,6 +85,7 @@ public class Object_NPC : MonoBehaviour, IInteractable
     {
         interact_tool_tip.SetActive(false);
     }
+
 
     public virtual void Interact()
     {

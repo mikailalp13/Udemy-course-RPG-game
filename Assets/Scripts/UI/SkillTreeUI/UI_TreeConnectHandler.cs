@@ -1,6 +1,6 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 using System.Collections.Generic;
 
 [Serializable]
@@ -12,19 +12,24 @@ public class UI_TreeConnectDetails
     [Range(-50f, 50f)] public float rotation;
 }
 
+
 public class UI_TreeConnectHandler : MonoBehaviour
 {
-    private RectTransform rect => GetComponent<RectTransform>();
+    private Color original_color;
+    private Image connection_image;
+
     [SerializeField] private UI_TreeConnectDetails[] connection_details;
     [SerializeField] private UI_TreeConnection[] connections;  
-    private Image connection_image;
-    private Color original_color;
+    private RectTransform rect => GetComponent<RectTransform>();
+
+
 
     private void Awake()
     {
         if (connection_image != null)
             original_color = connection_image.color;
     }
+
 
     public UI_TreeNode[] GetChildNodes()
     {
@@ -40,6 +45,7 @@ public class UI_TreeConnectHandler : MonoBehaviour
 
         return children_to_return.ToArray();
     }
+
 
     public void UpdateConnections()
     {
@@ -62,6 +68,7 @@ public class UI_TreeConnectHandler : MonoBehaviour
         }
     }
 
+
     public void UpdateAllConnections()
     {
         UpdateConnections();
@@ -75,6 +82,7 @@ public class UI_TreeConnectHandler : MonoBehaviour
         }
     }
 
+
     public void UnlockConnectionImage(bool unlocked)
     {
         if (connection_image == null)
@@ -82,8 +90,13 @@ public class UI_TreeConnectHandler : MonoBehaviour
         
         connection_image.color = unlocked ? Color.white : original_color;
     }
+
     public void SetConnectionImage(Image image) => connection_image = image;   
+
+
     public void SetPosition(Vector2 position) => rect.anchoredPosition = position;
+
+
     private void OnValidate()
     {
         if (connection_details.Length <= 0)

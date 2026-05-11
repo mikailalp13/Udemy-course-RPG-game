@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class Player_JumpState : Player_AiredState
 {
-    public Player_JumpState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
+    public Player_JumpState(Player player, StateMachine state_machine, string anim_bool_name) : base(player, state_machine, anim_bool_name)
     {
     }
+
 
     public override void Enter()
     {
@@ -14,13 +15,14 @@ public class Player_JumpState : Player_AiredState
         player.SetVelocity(rb.linearVelocity.x, player.jump_force);
     }
 
+
     public override void Update()
     {
         base.Update();
 
         // if y velocity goes down -> character is falling, transfer to fallState
         // we need to be sure we are not in jump attack state when we transfer to fall state 
-        if (rb.linearVelocity.y < 0 && stateMachine.current_state != player.jumpAttackState)
-            stateMachine.ChangeState(player.fallState);
+        if (rb.linearVelocity.y < 0 && state_machine.current_state != player.jumpAttackState)
+            state_machine.ChangeState(player.fallState);
     }
 }

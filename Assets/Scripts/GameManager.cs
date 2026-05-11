@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour, ISaveable
     private bool data_loaded;
 
 
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -165,6 +166,7 @@ public class GameManager : MonoBehaviour, ISaveable
         
         data_loaded = true;
     }
+
 
     public void SaveData(ref GameData data)
     {

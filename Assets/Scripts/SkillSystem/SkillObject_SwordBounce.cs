@@ -3,11 +3,12 @@ using System.Collections.Generic;
 
 public class SkillObject_SwordBounce : SkillObject_Sword
 {
-    [SerializeField] private float bounce_speed = 15f;
     private int bounce_count;
     private Collider2D[] enemy_targets;
     private Transform next_target;
+    [SerializeField] private float bounce_speed = 15f;
     private List<Transform> selected_before = new List<Transform>();
+
 
 
     public override void SetupSword(Skill_SwordThrow sword_manager, Vector2 direction)
@@ -18,11 +19,14 @@ public class SkillObject_SwordBounce : SkillObject_Sword
         bounce_speed = sword_manager.bounce_speed;
         bounce_count = sword_manager.bounce_count;
     }
+
+
     protected override void Update()
     {
         HandleComeBack();
         HandleBounce();
     }
+
 
     private void HandleBounce()
     {
@@ -44,11 +48,13 @@ public class SkillObject_SwordBounce : SkillObject_Sword
         }
     }
 
+
     private void BounceToNextTarget()
     {
         next_target = GetNextTarget();
         bounce_count--;
     }
+
 
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
@@ -66,6 +72,7 @@ public class SkillObject_SwordBounce : SkillObject_Sword
             next_target = GetNextTarget();
     }
 
+
     private Transform GetNextTarget()
     {
         List<Transform> valid_target = GetValidTargets();
@@ -77,6 +84,7 @@ public class SkillObject_SwordBounce : SkillObject_Sword
 
         return next_target;
     }
+
 
     private List<Transform> GetValidTargets()
     {
@@ -97,6 +105,8 @@ public class SkillObject_SwordBounce : SkillObject_Sword
             return alive_targets;
         }
     }
+
+
     private List<Transform> GetAliveTargets()
     {
         List<Transform> alive_targets = new List<Transform>();

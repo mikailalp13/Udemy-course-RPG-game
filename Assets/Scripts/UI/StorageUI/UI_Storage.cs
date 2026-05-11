@@ -9,6 +9,8 @@ public class UI_Storage : MonoBehaviour
     [SerializeField] private UI_ItemSlotParent storage_parent;
     [SerializeField] private UI_ItemSlotParent material_stash_parent; 
 
+
+
     public void SetupStorageUI(Inventory_Storage storage)
     {
         this.storage = storage;
@@ -23,10 +25,12 @@ public class UI_Storage : MonoBehaviour
             slot.SetStorage(storage);
     }
 
+
     private void OnEnable()
     {
         UpdateUI();
     }
+    
 
     private void UpdateUI()
     {

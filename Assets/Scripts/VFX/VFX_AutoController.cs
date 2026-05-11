@@ -1,19 +1,23 @@
-using System.Runtime.Serialization;
 using UnityEngine;
 using System.Collections;
+using System.Runtime.Serialization;
 
 public class VFX_AutoController : MonoBehaviour
 {
     private SpriteRenderer sr;
+
     [SerializeField] private bool auto_destroy = true;
     [SerializeField] private float destroy_delay = 1;
+
+
     [Space]
     [SerializeField] private bool random_offset = true;
     [SerializeField] private bool random_rotation = true;
 
+
     [Header("Fade Effect")]    
     [SerializeField] private bool can_fade;
-    [SerializeField] private float fade_speed = 1;
+    [SerializeField] private float fade_speed = 1f;
 
 
     [Header("Random Rotation")]
@@ -22,16 +26,19 @@ public class VFX_AutoController : MonoBehaviour
 
 
     [Header("Random Position")]
-    [SerializeField] private float xMinOffset = -0.3f;
-    [SerializeField] private float xMaxOffset = 0.3f;
+    [SerializeField] private float x_min_offset = -0.3f;
+    [SerializeField] private float x_max_offset = 0.3f;
     [Space]
-    [SerializeField] private float yMinOffset = -0.3f;
-    [SerializeField] private float yMaxOffset = 0.3f;
+    [SerializeField] private float y_min_offset = -0.3f;
+    [SerializeField] private float y_max_offset = 0.3f;
+
+
 
     private void Awake()
     {
         sr = GetComponentInChildren<SpriteRenderer>();
     }
+
 
     private void Start()
     {
@@ -44,6 +51,7 @@ public class VFX_AutoController : MonoBehaviour
         if (auto_destroy)
             Destroy(gameObject, destroy_delay);
     }
+
 
     private IEnumerator FadeCo()
     {
@@ -59,13 +67,14 @@ public class VFX_AutoController : MonoBehaviour
         sr.color = target_color;
     }
 
+
     private void ApplyRandomOffset()
     {
         if (random_offset == false)
             return;
 
-        float x_offset = Random.Range(xMinOffset, xMaxOffset);
-        float y_offset = Random.Range(yMinOffset, yMaxOffset);
+        float x_offset = Random.Range(x_min_offset, x_max_offset);
+        float y_offset = Random.Range(y_min_offset, y_max_offset);
 
         transform.position += new Vector3(x_offset, y_offset);
     }

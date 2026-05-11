@@ -1,12 +1,14 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 
 public class UI_TreeConnection : MonoBehaviour
 {
     [SerializeField] private RectTransform rotation_point;
     [SerializeField] private RectTransform connection_length;
     [SerializeField] private RectTransform child_node_connection_point;
+
+
 
     public void DirectConnection(NodeDirectionType direction, float length, float offset)
     {
@@ -17,6 +19,7 @@ public class UI_TreeConnection : MonoBehaviour
         rotation_point.localRotation = Quaternion.Euler(0, 0, angle + offset);
         connection_length.sizeDelta = new Vector2(final_length, connection_length.sizeDelta.y);
     }
+
 
     public Image GetConnectionImage() => connection_length.GetComponent<Image>();
 
@@ -34,6 +37,7 @@ public class UI_TreeConnection : MonoBehaviour
         return localPosition;
     }
 
+
     private float GetDirectionAngle(NodeDirectionType type)
     {
         switch (type)
@@ -50,6 +54,7 @@ public class UI_TreeConnection : MonoBehaviour
         }
     }
 }
+
 public enum NodeDirectionType
 {
     None,

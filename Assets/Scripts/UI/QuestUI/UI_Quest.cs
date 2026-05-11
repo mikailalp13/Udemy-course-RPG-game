@@ -10,6 +10,7 @@ public class UI_Quest : MonoBehaviour, ISaveable
     public Player_QuestManager quest_manager { get; private set; }
 
 
+
     private void Awake()
     {
         quest_slots = GetComponentsInChildren<UI_QuestSlot>(true);
@@ -66,10 +67,12 @@ public class UI_Quest : MonoBehaviour, ISaveable
 
     public UI_QuestPreview GetQuestPreview() => quest_preview;
 
+
     public void LoadData(GameData data)
     {
         current_game_data = data;
     }
+
 
     public void SaveData(ref GameData data)
     {

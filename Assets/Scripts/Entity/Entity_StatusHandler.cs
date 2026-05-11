@@ -26,12 +26,14 @@ public class Entity_StatusHandler : MonoBehaviour
         entity_vfx = GetComponent<Entity_VFX>();
     }
 
+
     public void RemoveAllNegativeEffects()
     {
         StopAllCoroutines();
         current_effect = ElementType.None;
         entity_vfx.StopAllVfx();
     }
+
 
     public void ApplyStatusEffect(ElementType element, ElementalEffectData effectData)
     {
@@ -44,6 +46,7 @@ public class Entity_StatusHandler : MonoBehaviour
         if (element == ElementType.Lightning && CanBeApplied(ElementType.Lightning))
             ApplyShockEffect(effectData.shock_duration, effectData.shock_damage, effectData.shock_charge);
     }
+
 
     private void ApplyShockEffect(float duration, float damage, float charge)
     {
@@ -65,6 +68,7 @@ public class Entity_StatusHandler : MonoBehaviour
         shock_co = StartCoroutine(ShockEffectCo(duration));
     }
 
+
     private void StopShockEffect()
     {
         current_effect = ElementType.None;
@@ -72,11 +76,13 @@ public class Entity_StatusHandler : MonoBehaviour
         entity_vfx.StopAllVfx();
     }
 
+
     private void DoLightningStrike(float damage)
     {
         Instantiate(lightning_strike_vfx, transform.position, Quaternion.identity);
         entity_health.ReduceHealth(damage);
     }
+
 
     private IEnumerator ShockEffectCo(float duration)
     {
@@ -87,6 +93,7 @@ public class Entity_StatusHandler : MonoBehaviour
         StopShockEffect();
     }
 
+
     private void ApplyBurnEffect(float duration, float fire_damage)
     {
         // gives damage over time
@@ -95,6 +102,7 @@ public class Entity_StatusHandler : MonoBehaviour
 
         StartCoroutine(BurnEffectCo(duration, final_damage));
     }
+
 
     private IEnumerator BurnEffectCo(float duration, float total_damage)
     {
@@ -125,6 +133,7 @@ public class Entity_StatusHandler : MonoBehaviour
         StartCoroutine(ChillEffectCo(final_duration, slow_multiplier));
     }
 
+
     private IEnumerator ChillEffectCo(float duration, float slow_multiplier)
     {
         entity.SlowDownEntity(duration, slow_multiplier);
@@ -134,6 +143,7 @@ public class Entity_StatusHandler : MonoBehaviour
         yield return new WaitForSeconds(duration);
         current_effect = ElementType.None;
     }
+    
 
     public bool CanBeApplied(ElementType element)
     {

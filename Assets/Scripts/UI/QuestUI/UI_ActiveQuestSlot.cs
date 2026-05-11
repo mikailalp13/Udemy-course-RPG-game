@@ -11,6 +11,7 @@ public class UI_ActiveQuestSlot : MonoBehaviour
     [SerializeField] private Image[] quest_reward_preview;
 
 
+
     public void SetupActiveQuestSlot(QuestData quest_to_setup)
     {
         quest_preview = transform.root.GetComponentInChildren<UI_ActiveQuestPreview>();

@@ -21,6 +21,7 @@ public class Object_ItemPickup : MonoBehaviour
         SetupVisuals();
     }
 
+
     public void SetupItem(ItemDataSO item_data)
     {
         this.item_data = item_data;
@@ -32,11 +33,13 @@ public class Object_ItemPickup : MonoBehaviour
         col.isTrigger = false;
     }
 
+
     private void SetupVisuals()
     {
         sr.sprite = item_data.item_icon;
         gameObject.name = "Object_ItemPickup - " + item_data.item_name;
     }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

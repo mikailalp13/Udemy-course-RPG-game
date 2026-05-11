@@ -11,6 +11,7 @@ public class Skill_Dash : Skill_Base
             CreateShard();
     }
 
+
     public void OnEndEffect()
     {
         if (Unlocked(SkillUpgradeType.Dash_CloneOnStartAndArrival))
@@ -19,10 +20,12 @@ public class Skill_Dash : Skill_Base
             CreateShard();
     }
 
+
     private void CreateShard()
     {
         skill_manager.shard.CreateRawShard();
     }
+    
 
     private void CreateClone()
     {

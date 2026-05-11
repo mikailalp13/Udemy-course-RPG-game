@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
+
 [CreateAssetMenu(menuName = "RPG Setup / Item Data / Material Item", fileName = "Material data - ")]
 public class ItemDataSO : ScriptableObject
 {
@@ -36,8 +37,10 @@ public class ItemDataSO : ScriptableObject
     public ItemType item_type;
     public int max_stack_size = 1;
 
+
     [Header("Item Effect")]
     public ItemEffectDataSO item_effect;
+
 
 
     private void OnValidate()
@@ -49,6 +52,7 @@ public class ItemDataSO : ScriptableObject
         save_id = AssetDatabase.AssetPathToGUID(path);
 #endif
     }
+
 
     public float GetDropChance()
     {

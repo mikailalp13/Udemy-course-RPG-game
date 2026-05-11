@@ -10,6 +10,7 @@ public class UI_Craft : MonoBehaviour
     private UI_CraftListButton[] craft_list_buttons;
 
 
+
     public void SetupCraftUI(Inventory_Storage storage)
     {
         inventory = storage.player_inventory;
@@ -20,6 +21,7 @@ public class UI_Craft : MonoBehaviour
         craft_preview_ui.SetupCraftPreview(storage);
         SetupCraftListButtons();
     }
+
 
     private void SetupCraftListButtons()
     {
@@ -33,6 +35,7 @@ public class UI_Craft : MonoBehaviour
         foreach (var button in craft_list_buttons)
             button.SetCraftSlots(craft_slots);
     }
+
 
     private void UpdateUI() => inventory_parent.UpdateSlots(inventory.item_list);
 }

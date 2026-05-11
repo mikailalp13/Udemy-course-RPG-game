@@ -9,7 +9,9 @@ public class UI_StorageSlot : UI_ItemSlot
 
     public StorageSlotType slot_type;
 
+
     public void SetStorage(Inventory_Storage storage) => this.storage = storage;
+
 
     public override void OnPointerDown(PointerEventData eventData)
     {

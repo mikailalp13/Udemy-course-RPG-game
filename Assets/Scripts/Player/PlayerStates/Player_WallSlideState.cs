@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class Player_WallSlideState : PlayerState
 {
-    public Player_WallSlideState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
+    public Player_WallSlideState(Player player, StateMachine state_machine, string anim_bool_name) : base(player, state_machine, anim_bool_name)
     {
     }
+    
 
     public override void Update()
     {
@@ -13,19 +14,20 @@ public class Player_WallSlideState : PlayerState
 
 
         if (input.Player.Jump.WasPressedThisFrame())
-            stateMachine.ChangeState(player.wallJumpState);
+            state_machine.ChangeState(player.wallJumpState);
 
         if (player.wall_detected == false)
-            stateMachine.ChangeState(player.fallState);
+            state_machine.ChangeState(player.fallState);
 
         if (player.ground_detected)
-            {
-                stateMachine.ChangeState(player.idleState);
+        {
+            state_machine.ChangeState(player.idleState);
 
-                if(player.facing_dir != player.move_input.x)
-                    player.Flip();
-            }
+            if(player.facing_dir != player.move_input.x)
+                player.Flip();
+        }
     }
+
 
     private void HandleWallSlide()
     {

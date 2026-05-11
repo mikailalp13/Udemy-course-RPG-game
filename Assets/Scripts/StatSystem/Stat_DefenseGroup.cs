@@ -5,11 +5,11 @@ using UnityEngine;
 public class Stat_DefenseGroup
 {
     // physical defense
-    public Stat armor;
-    public Stat evasion;
+    public Stat Armor;
+    public Stat Evasion;
 
     // elemental resistance
-    public Stat fire_res;
-    public Stat ice_res;
-    public Stat lightning_res;
+    public Stat FireRes;
+    public Stat IceRes;
+    public Stat LightningRes;
 }

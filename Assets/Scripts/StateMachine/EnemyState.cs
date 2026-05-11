@@ -3,7 +3,9 @@ using UnityEngine;
 public class EnemyState : EntityState
 {
     protected Enemy enemy;
-    public EnemyState(Enemy enemy, StateMachine stateMachine, string animBoolName) : base(stateMachine, animBoolName)
+    
+    
+    public EnemyState(Enemy enemy, StateMachine state_machine, string anim_bool_name) : base(state_machine, anim_bool_name)
     {
         this.enemy = enemy;
 
@@ -11,6 +13,7 @@ public class EnemyState : EntityState
         anim = enemy.anim;
         stats = enemy.stats;
     }
+
 
     public override void UpdateAnimationParameters()
     {

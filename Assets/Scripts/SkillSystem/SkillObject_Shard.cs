@@ -1,14 +1,16 @@
-using UnityEngine;
 using System;
+using UnityEngine;
 
 public class SkillObject_Shard : SkillObject_Base
 {
     public event Action OnExplode;
     private Skill_Shard shard_manager;
 
-    [SerializeField] private GameObject vfx_prefab;
-    private Transform target;
     private float speed;
+    private Transform target;
+    [SerializeField] private GameObject vfx_prefab;
+
+
 
     private void Update()
     {
@@ -18,11 +20,13 @@ public class SkillObject_Shard : SkillObject_Base
         transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
     }
 
+
     public void MoveTowardsClosestTarget(float speed, Transform new_target = null)
     {
         target = new_target == null ? FindClosestTarget() : new_target;
         this.speed = speed;
     }
+
 
     public void SetupShard(Skill_Shard shard_manager)
     {
@@ -36,6 +40,7 @@ public class SkillObject_Shard : SkillObject_Base
         Invoke(nameof(Explode), detonation_time);
     }
 
+
     public void SetupShard(Skill_Shard shard_manager, float detonation_time, bool can_move, float shard_speed, Transform target = null)
     {
         this.shard_manager = shard_manager;
@@ -48,6 +53,7 @@ public class SkillObject_Shard : SkillObject_Base
             MoveTowardsClosestTarget(shard_speed, target);
         
     }
+
 
     public void Explode()
     {
@@ -67,5 +73,4 @@ public class SkillObject_Shard : SkillObject_Base
 
         Explode();
     }
-
 }

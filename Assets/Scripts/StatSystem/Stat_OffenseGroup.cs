@@ -4,18 +4,17 @@ using UnityEngine;
 [Serializable]
 public class Stat_OffenseGroup
 {
-    public Stat attack_speed;
+    public Stat AttackSpeed;
     // physical damage
-    public Stat damage;
-    public Stat crit_power;
-    public Stat crit_chance;
-    public Stat armor_reduction;
+    public Stat Damage;
+    public Stat CritPower;
+    public Stat CritChance;
+    public Stat ArmorReduction;
 
     
     // elemental damage 
 
-    public Stat fire_damage;
-    public Stat ice_damage;
-    public Stat lightning_damage;
-
+    public Stat FireDamage;
+    public Stat IceDamage;
+    public Stat LightningDamage;
 }

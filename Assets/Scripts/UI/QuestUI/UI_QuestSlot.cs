@@ -11,6 +11,7 @@ public class UI_QuestSlot : MonoBehaviour
     private UI_QuestPreview quest_preview;
 
 
+
     public void SetupQuestSlot(QuestDataSO quest_dataSO)
     {
         quest_preview = transform.root.GetComponentInChildren<UI_Quest>().GetQuestPreview();
@@ -40,5 +41,4 @@ public class UI_QuestSlot : MonoBehaviour
     {
         quest_preview.SetupQuestPreview(quest_in_slot);
     }
-
 }

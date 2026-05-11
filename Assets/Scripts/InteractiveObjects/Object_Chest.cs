@@ -4,13 +4,15 @@ public class Object_Chest : MonoBehaviour , IDamageable
 {
     private Rigidbody2D rb =>  GetComponentInChildren<Rigidbody2D>();
     private Animator anim => GetComponentInChildren<Animator>();
-    private Entity_VFX fx =>  GetComponent<Entity_VFX>();
+    private Entity_VFX vfx =>  GetComponent<Entity_VFX>();
     private Entity_DropManager drop_manager => GetComponent<Entity_DropManager>();
 
 
     [Header("Open Details")]
     [SerializeField] private Vector2 knockback;
     [SerializeField] private bool can_drop_items = true;
+
+
 
     public bool TakeDamage(float damage, float elemental_damage, ElementType element, Transform damage_dealer)
     {
@@ -20,7 +22,7 @@ public class Object_Chest : MonoBehaviour , IDamageable
         can_drop_items = false;
         drop_manager?.DropItems();
         
-        fx.PlayeOnDamageVfx();
+        vfx.PlayeOnDamageVfx();
 
         anim.SetBool("chestOpen", true);
 

@@ -22,6 +22,5 @@ public class QuestData
     public QuestData(QuestDataSO quest_dataSO)
     {
         this.quest_dataSO = quest_dataSO;
-
     }
 }

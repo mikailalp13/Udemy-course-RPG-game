@@ -4,12 +4,14 @@ public class SkillObject_SwordPierce : SkillObject_Sword
 {
     private int amount_to_pierce;
 
+
     public override void SetupSword(Skill_SwordThrow sword_manager, Vector2 direction)
     {
         base.SetupSword(sword_manager,direction);
 
         amount_to_pierce = sword_manager.amount_to_pierce;
     }
+
 
     protected override void OnTriggerEnter2D(Collider2D collision)
     {

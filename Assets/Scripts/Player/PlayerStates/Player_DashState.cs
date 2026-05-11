@@ -4,9 +4,12 @@ public class Player_DashState : PlayerState
 {
     private float original_gravity_scale;
     private int dash_dir;
-    public Player_DashState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
+
+
+    public Player_DashState(Player player, StateMachine state_machine, string anim_bool_name) : base(player, state_machine, anim_bool_name)
     {
     }
+
 
     public override void Enter()
     {
@@ -22,6 +25,7 @@ public class Player_DashState : PlayerState
         rb.gravityScale = 0;
 
         player.health.SetCanTakeDamage(false);
+        player.gameObject.layer = LayerMask.NameToLayer("Untargetable");
     }
 
 
@@ -34,11 +38,12 @@ public class Player_DashState : PlayerState
         if (state_timer < 0)
         {
             if (player.ground_detected)
-                stateMachine.ChangeState(player.idleState);
+                state_machine.ChangeState(player.idleState);
             else
-                stateMachine.ChangeState(player.fallState);
+                state_machine.ChangeState(player.fallState);
         }
     }
+
 
     public override void Exit()
     {
@@ -49,17 +54,18 @@ public class Player_DashState : PlayerState
         player.health.SetCanTakeDamage(true);
         player.SetVelocity(0, 0);
         rb.gravityScale = original_gravity_scale;
+        player.gameObject.layer = LayerMask.NameToLayer("Player");
     }
+
 
     private void CancelDashIfNeeded()
     {
         if (player.wall_detected)
         {
             if (player.ground_detected)
-                stateMachine.ChangeState(player.idleState);
+                state_machine.ChangeState(player.idleState);
             else
-                stateMachine.ChangeState(player.wallSlideState);
+                state_machine.ChangeState(player.wallSlideState);
         }
-
     }
 }

@@ -10,9 +10,10 @@ public class Player_DomainExpansionState : PlayerState
     private bool created_domain;
 
 
-    public Player_DomainExpansionState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
+    public Player_DomainExpansionState(Player player, StateMachine state_machine, string anim_bool_name) : base(player, state_machine, anim_bool_name)
     {
     }
+
 
     public override void Enter()
     {
@@ -25,6 +26,7 @@ public class Player_DomainExpansionState : PlayerState
         player.SetVelocity(0, player.rise_speed);
         player.health.SetCanTakeDamage(false);
     }
+
 
     public override void Update()
     {
@@ -40,10 +42,11 @@ public class Player_DomainExpansionState : PlayerState
             if (state_timer < 0){ 
                 is_levitating = false;
                 rb.gravityScale = original_gravity;
-                stateMachine.ChangeState(player.idleState);
+                state_machine.ChangeState(player.idleState);
             }
         }
     }
+
 
     public override void Exit()
     {
@@ -51,6 +54,7 @@ public class Player_DomainExpansionState : PlayerState
         created_domain = false;
         player.health.SetCanTakeDamage(true);
     }
+
 
     private void Levitate()
     {
@@ -66,6 +70,7 @@ public class Player_DomainExpansionState : PlayerState
             skill_manager.domain_expansion.CreateDomain();
         }
     }
+
 
     private float GetAvaliableRiseDistance()
     {

@@ -1,7 +1,7 @@
-using UnityEngine;
 using TMPro;
-using System.Text;
 using System;
+using UnityEngine;
+using System.Text;
 using System.Collections;
 
 public class UI_SkillToolTip : UI_ToolTip
@@ -14,6 +14,7 @@ public class UI_SkillToolTip : UI_ToolTip
     [SerializeField] private TextMeshProUGUI skill_cooldown; 
     [SerializeField] private TextMeshProUGUI skill_requirements;
 
+
     [Space]
     [SerializeField] private string met_condition_hex = "#76CB18";
     [SerializeField] private string not_met_condition_hex = "#CA1836";
@@ -23,6 +24,8 @@ public class UI_SkillToolTip : UI_ToolTip
 
     private Coroutine text_effect_co;
 
+
+
     protected override void Awake()
     {
         base.Awake();
@@ -31,10 +34,12 @@ public class UI_SkillToolTip : UI_ToolTip
         skill_tree = ui.GetComponentInChildren<UI_SkillTree>(true);
     }
 
+
     public override void ShowToolTip(bool show, RectTransform target_rect)
     {
         base.ShowToolTip(show, target_rect);
     }
+
 
     public void ShowToolTip(bool show, RectTransform target_rect, Skill_DataSO skill_data, UI_TreeNode node)
     {
@@ -58,6 +63,7 @@ public class UI_SkillToolTip : UI_ToolTip
 
         skill_requirements.text = requirements;
     }
+
 
     public void LockedSkillEffect()
     {
@@ -84,6 +90,7 @@ public class UI_SkillToolTip : UI_ToolTip
             yield return new WaitForSeconds(blink_interval);
         }
     }
+
 
     private string GetRequirements(int skill_cost, UI_TreeNode[] needed_nodes, UI_TreeNode[] conflict_nodes)
     {

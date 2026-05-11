@@ -26,10 +26,12 @@ public class SkillObject_DomainExpansion : SkillObject_Base
         Invoke(nameof(ShrinkDomain), duration);
     }
 
+
     private void Update()
     {
         HandleScaling();
     }
+
 
     private void HandleScaling()
     {
@@ -43,17 +45,20 @@ public class SkillObject_DomainExpansion : SkillObject_Base
             TerminateDomain();
     }
 
+
     private void TerminateDomain()
     {
         domain_manager.ClearTargets();
         Destroy(gameObject);
     }
 
+
     private void ShrinkDomain()
     {
         target_scale = Vector3.zero;
         is_shrinking = true;
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -65,6 +70,7 @@ public class SkillObject_DomainExpansion : SkillObject_Base
         domain_manager.AddTarget(enemy);
         enemy.SlowDownEntity(duration, slow_down_percent, true);
     }
+
 
     private void OnTriggerExit2D(Collider2D collision)
     {

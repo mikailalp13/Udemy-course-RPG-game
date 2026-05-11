@@ -2,26 +2,28 @@ using UnityEngine;
 
 public class Player_GroundedState : PlayerState
 {
-    public Player_GroundedState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
+    public Player_GroundedState(Player player, StateMachine state_machine, string anim_bool_name) : base(player, state_machine, anim_bool_name)
     {
     }
+
+    
     public override void Update()
     {
         base.Update();
 
         if (rb.linearVelocity.y < 0 && player.ground_detected == false)
-            stateMachine.ChangeState(player.fallState);
+            state_machine.ChangeState(player.fallState);
 
         if (input.Player.Jump.WasPressedThisFrame())
-            stateMachine.ChangeState(player.jumpState);
+            state_machine.ChangeState(player.jumpState);
 
         if (input.Player.Attack.WasPressedThisFrame())
-            stateMachine.ChangeState(player.basicAttackState);
+            state_machine.ChangeState(player.basicAttackState);
 
         if (input.Player.CounterAttack.WasPressedThisFrame())
-            stateMachine.ChangeState(player.counterAttackState);
+            state_machine.ChangeState(player.counterAttackState);
         
         if (input.Player.RangeAttack.WasPressedThisFrame() && skill_manager.sword_throw.CanUseSkill())
-            stateMachine.ChangeState(player.swordThrowState);
+            state_machine.ChangeState(player.swordThrowState);
     }
 }

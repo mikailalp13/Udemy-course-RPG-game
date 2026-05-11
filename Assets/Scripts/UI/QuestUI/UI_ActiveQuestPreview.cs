@@ -11,6 +11,7 @@ public class UI_ActiveQuestPreview : MonoBehaviour
     [SerializeField] private UI_QuestRewardSlot[] quest_reward_slots;
 
 
+
     public void SetupQuestPreview(QuestData quest_data)
     {
         quest_manager = Player.instance.quest_manager;
